@@ -1,0 +1,1264 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> show tables
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 2
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++---------------------+
+| Tables_in_excelr_db |
++---------------------+
+| authors             |
+| book_sales          |
+| books               |
+| customers           |
+| dep_1               |
+| department_3        |
+| department_333      |
+| dept_11             |
+| drinks              |
+| emp_1               |
+| emp_99              |
+| employees           |
+| fraud               |
+| meals               |
+| members             |
+| movies              |
+| myclass_1           |
+| myclass_2           |
+| myemp               |
+| offices             |
+| orders              |
+| patients            |
+| patients_2          |
+| payments            |
+| person              |
+| product             |
+| products            |
+| sales               |
+| secretsanta         |
+| student             |
+| students_d          |
+| t                   |
+| temperature         |
+| trains              |
++---------------------+
+34 rows in set (0.11 sec)
+
+mysql> select 8 from books;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+10 rows in set (0.02 sec)
+
+mysql> select 8 from customers;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+30 rows in set (0.04 sec)
+
+mysql> select * from customers;
++------------+-----------------+
+| customerid | name            |
++------------+-----------------+
+|          1 | Alice Johnson   |
+|          2 | Bob Smith       |
+|          3 | Carol Taylor    |
+|          4 | David Brown     |
+|          5 | Eve White       |
+|          6 | Frank Jones     |
+|          7 | Grace Lee       |
+|          8 | Henry Garcia    |
+|          9 | Isabel Martinez |
+|         10 | Jack Wilson     |
+|         11 | Karen Moore     |
+|         12 | Leo Clark       |
+|         13 | Mia Lewis       |
+|         14 | Noah Walker     |
+|         15 | Olivia Allen    |
+|         16 | Pete Young      |
+|         17 | Quinn Harris    |
+|         18 | Rachel King     |
+|         19 | Steve Wright    |
+|         20 | Tina Scott      |
+|         21 | Uma Adams       |
+|         22 | Vince Baker     |
+|         23 | Wendy Gonzalez  |
+|         24 | Xavier Nelson   |
+|         25 | Yvonne Carter   |
+|         26 | Zachary Roberts |
+|         27 | April Hill      |
+|         28 | Brooke Green    |
+|         29 | Caleb Phillips  |
+|         30 | Diana Mitchell  |
++------------+-----------------+
+30 rows in set (0.02 sec)
+
+mysql> select * from products;
++-----------+---------------------------------------------+------------------+---------------------------+------------+--------+
+| pcode     | pname                                       | productLine      | pvendor                   | qtyInStock | MRP    |
++-----------+---------------------------------------------+------------------+---------------------------+------------+--------+
+| S10_1678  | 1969 Harley Davidson Ultimate Chopper       | Motorcycles      | Min Lin Diecast           |       7933 |  95.70 |
+| S10_1949  | 1952 Alpine Renault 1300                    | Classic Cars     | Classic Metal Creations   |       7305 | 214.30 |
+| S10_2016  | 1996 Moto Guzzi 1100i                       | Motorcycles      | Highway 66 Mini Classics  |       6625 | 118.94 |
+| S10_4698  | 2003 Harley-Davidson Eagle Drag Bike        | Motorcycles      | Red Start Diecast         |       5582 | 193.66 |
+| S10_4757  | 1972 Alfa Romeo GTA                         | Classic Cars     | Motor City Art Classics   |       3252 | 136.00 |
+| S10_4962  | 1962 LanciaA Delta 16V                      | Classic Cars     | Second Gear Diecast       |       6791 | 147.74 |
+| S12_1099  | 1968 Ford Mustang                           | Classic Cars     | Autoart Studio Design     |         68 | 194.57 |
+| S12_1108  | 2001 Ferrari Enzo                           | Classic Cars     | Second Gear Diecast       |       3619 | 207.80 |
+| S12_1666  | 1958 Setra Bus                              | Trucks and Buses | Welly Diecast Productions |       1579 | 136.67 |
+| S12_2823  | 2002 Suzuki XREO                            | Motorcycles      | Unimax Art Galleries      |       9997 | 150.62 |
+| S12_3148  | 1969 Corvair Monza                          | Classic Cars     | Welly Diecast Productions |       6906 | 151.08 |
+| S12_3380  | 1968 Dodge Charger                          | Classic Cars     | Welly Diecast Productions |       9123 | 117.44 |
+| S12_3891  | 1969 Ford Falcon                            | Classic Cars     | Second Gear Diecast       |       1049 | 173.02 |
+| S12_3990  | 1970 Plymouth Hemi Cuda                     | Classic Cars     | Studio M Art Models       |       5663 |  79.80 |
+| S12_4473  | 1957 Chevy Pickup                           | Trucks and Buses | Exoto Designs             |       6125 | 118.50 |
+| S12_4675  | 1969 Dodge Charger                          | Classic Cars     | Welly Diecast Productions |       7323 | 115.16 |
+| S18_1097  | 1940 Ford Pickup Truck                      | Trucks and Buses | Studio M Art Models       |       2613 | 116.67 |
+| S18_1129  | 1993 Mazda RX-7                             | Classic Cars     | Highway 66 Mini Classics  |       3975 | 141.54 |
+| S18_1342  | 1937 Lincoln Berline                        | Vintage Cars     | Motor City Art Classics   |       8693 | 102.74 |
+| S18_1367  | 1936 Mercedes-Benz 500K Special Roadster    | Vintage Cars     | Studio M Art Models       |       8635 |  53.91 |
+| S18_1589  | 1965 Aston Martin DB5                       | Classic Cars     | Classic Metal Creations   |       9042 | 124.44 |
+| S18_1662  | 1980s Black Hawk Helicopter                 | Planes           | Red Start Diecast         |       5330 | 157.69 |
+| S18_1749  | 1917 Grand Touring Sedan                    | Vintage Cars     | Welly Diecast Productions |       2724 | 170.00 |
+| S18_1889  | 1948 Porsche 356-A Roadster                 | Classic Cars     | Gearbox Collectibles      |       8826 |  77.00 |
+| S18_1984  | 1995 Honda Civic                            | Classic Cars     | Min Lin Diecast           |       9772 | 142.25 |
+| S18_2238  | 1998 Chrysler Plymouth Prowler              | Classic Cars     | Gearbox Collectibles      |       4724 | 163.73 |
+| S18_2248  | 1911 Ford Town Car                          | Vintage Cars     | Motor City Art Classics   |        540 |  60.54 |
+| S18_2319  | 1964 Mercedes Tour Bus                      | Trucks and Buses | Unimax Art Galleries      |       8258 | 122.73 |
+| S18_2325  | 1932 Model A Ford J-Coupe                   | Vintage Cars     | Autoart Studio Design     |       9354 | 127.13 |
+| S18_2432  | 1926 Ford Fire Engine                       | Trucks and Buses | Carousel DieCast Legends  |       2018 |  60.77 |
+| S18_2581  | P-51-D Mustang                              | Planes           | Gearbox Collectibles      |        992 |  84.48 |
+| S18_2625  | 1936 Harley Davidson El Knucklehead         | Motorcycles      | Welly Diecast Productions |       4357 |  60.57 |
+| S18_2795  | 1928 Mercedes-Benz SSK                      | Vintage Cars     | Gearbox Collectibles      |        548 | 168.75 |
+| S18_2870  | 1999 Indy 500 Monte Carlo SS                | Classic Cars     | Red Start Diecast         |       8164 | 132.00 |
+| S18_2949  | 1913 Ford Model T Speedster                 | Vintage Cars     | Carousel DieCast Legends  |       4189 | 101.31 |
+| S18_2957  | 1934 Ford V8 Coupe                          | Vintage Cars     | Min Lin Diecast           |       5649 |  62.46 |
+| S18_3029  | 1999 Yamaha Speed Boat                      | Ships            | Min Lin Diecast           |       4259 |  86.02 |
+| S18_3136  | 18th Century Vintage Horse Carriage         | Vintage Cars     | Red Start Diecast         |       5992 | 104.72 |
+| S18_3140  | 1903 Ford Model A                           | Vintage Cars     | Unimax Art Galleries      |       3913 | 136.59 |
+| S18_3232  | 1992 Ferrari 360 Spider red                 | Classic Cars     | Unimax Art Galleries      |       8347 | 169.34 |
+| S18_3233  | 1985 Toyota Supra                           | Classic Cars     | Highway 66 Mini Classics  |       7733 | 107.57 |
+| S18_3259  | Collectable Wooden Train                    | Trains           | Carousel DieCast Legends  |       6450 | 100.84 |
+| S18_3278  | 1969 Dodge Super Bee                        | Classic Cars     | Min Lin Diecast           |       1917 |  80.41 |
+| S18_3320  | 1917 Maxwell Touring Car                    | Vintage Cars     | Exoto Designs             |       7913 |  99.21 |
+| S18_3482  | 1976 Ford Gran Torino                       | Classic Cars     | Gearbox Collectibles      |       9127 | 146.99 |
+| S18_3685  | 1948 Porsche Type 356 Roadster              | Classic Cars     | Gearbox Collectibles      |       8990 | 141.28 |
+| S18_3782  | 1957 Vespa GS150                            | Motorcycles      | Studio M Art Models       |       7689 |  62.17 |
+| S18_3856  | 1941 Chevrolet Special Deluxe Cabriolet     | Vintage Cars     | Exoto Designs             |       2378 | 105.87 |
+| S18_4027  | 1970 Triumph Spitfire                       | Classic Cars     | Min Lin Diecast           |       5545 | 143.62 |
+| S18_4409  | 1932 Alfa Romeo 8C2300 Spider Sport         | Vintage Cars     | Exoto Designs             |       6553 |  92.03 |
+| S18_4522  | 1904 Buick Runabout                         | Vintage Cars     | Exoto Designs             |       8290 |  87.77 |
+| S18_4600  | 1940s Ford truck                            | Trucks and Buses | Motor City Art Classics   |       3128 | 121.08 |
+| S18_4668  | 1939 Cadillac Limousine                     | Vintage Cars     | Studio M Art Models       |       6645 |  50.31 |
+| S18_4721  | 1957 Corvette Convertible                   | Classic Cars     | Classic Metal Creations   |       1249 | 148.80 |
+| S18_4933  | 1957 Ford Thunderbird                       | Classic Cars     | Studio M Art Models       |       3209 |  71.27 |
+| S24_1046  | 1970 Chevy Chevelle SS 454                  | Classic Cars     | Unimax Art Galleries      |       1005 |  73.49 |
+| S24_1444  | 1970 Dodge Coronet                          | Classic Cars     | Highway 66 Mini Classics  |       4074 |  57.80 |
+| S24_1578  | 1997 BMW R 1100 S                           | Motorcycles      | Autoart Studio Design     |       7003 | 112.70 |
+| S24_1628  | 1966 Shelby Cobra 427 S/C                   | Classic Cars     | Carousel DieCast Legends  |       8197 |  50.31 |
+| S24_1785  | 1928 British Royal Navy Airplane            | Planes           | Classic Metal Creations   |       3627 | 109.42 |
+| S24_1937  | 1939 Chevrolet Deluxe Coupe                 | Vintage Cars     | Motor City Art Classics   |       7332 |  33.19 |
+| S24_2000  | 1960 BSA Gold Star DBD34                    | Motorcycles      | Highway 66 Mini Classics  |         15 |  76.17 |
+| S24_2011  | 18th century schooner                       | Ships            | Carousel DieCast Legends  |       1898 | 122.89 |
+| S24_2022  | 1938 Cadillac V-16 Presidential Limousine   | Vintage Cars     | Classic Metal Creations   |       2847 |  44.80 |
+| S24_2300  | 1962 Volkswagen Microbus                    | Trucks and Buses | Autoart Studio Design     |       2327 | 127.79 |
+| S24_2360  | 1982 Ducati 900 Monster                     | Motorcycles      | Highway 66 Mini Classics  |       6840 |  69.26 |
+| S24_2766  | 1949 Jaguar XK 120                          | Classic Cars     | Classic Metal Creations   |       2350 |  90.87 |
+| S24_2840  | 1958 Chevy Corvette Limited Edition         | Classic Cars     | Carousel DieCast Legends  |       2542 |  35.36 |
+| S24_2841  | 1900s Vintage Bi-Plane                      | Planes           | Autoart Studio Design     |       5942 |  68.51 |
+| S24_2887  | 1952 Citroen-15CV                           | Classic Cars     | Exoto Designs             |       1452 | 117.44 |
+| S24_2972  | 1982 Lamborghini Diablo                     | Classic Cars     | Second Gear Diecast       |       7723 |  37.76 |
+| S24_3151  | 1912 Ford Model T Delivery Wagon            | Vintage Cars     | Min Lin Diecast           |       9173 |  88.51 |
+| S24_3191  | 1969 Chevrolet Camaro Z28                   | Classic Cars     | Exoto Designs             |       4695 |  85.61 |
+| S24_3371  | 1971 Alpine Renault 1600s                   | Classic Cars     | Welly Diecast Productions |       7995 |  61.23 |
+| S24_3420  | 1937 Horch 930V Limousine                   | Vintage Cars     | Autoart Studio Design     |       2902 |  65.75 |
+| S24_3432  | 2002 Chevy Corvette                         | Classic Cars     | Gearbox Collectibles      |       9446 | 107.08 |
+| S24_3816  | 1940 Ford Delivery Sedan                    | Vintage Cars     | Carousel DieCast Legends  |       6621 |  83.86 |
+| S24_3856  | 1956 Porsche 356A Coupe                     | Classic Cars     | Classic Metal Creations   |       6600 | 140.43 |
+| S24_3949  | Corsair F4U ( Bird Cage)                    | Planes           | Second Gear Diecast       |       6812 |  68.24 |
+| S24_3969  | 1936 Mercedes Benz 500k Roadster            | Vintage Cars     | Red Start Diecast         |       2081 |  41.03 |
+| S24_4048  | 1992 Porsche Cayenne Turbo Silver           | Classic Cars     | Exoto Designs             |       6582 | 118.28 |
+| S24_4258  | 1936 Chrysler Airflow                       | Vintage Cars     | Second Gear Diecast       |       4710 |  97.39 |
+| S24_4278  | 1900s Vintage Tri-Plane                     | Planes           | Unimax Art Galleries      |       2756 |  72.45 |
+| S24_4620  | 1961 Chevrolet Impala                       | Classic Cars     | Classic Metal Creations   |       7869 |  80.84 |
+| S32_1268  | 1980’s GM Manhattan Express                 | Trucks and Buses | Motor City Art Classics   |       5099 |  96.31 |
+| S32_1374  | 1997 BMW F650 ST                            | Motorcycles      | Exoto Designs             |        178 |  99.89 |
+| S32_2206  | 1982 Ducati 996 R                           | Motorcycles      | Gearbox Collectibles      |       9241 |  40.23 |
+| S32_2509  | 1954 Greyhound Scenicruiser                 | Trucks and Buses | Classic Metal Creations   |       2874 |  54.11 |
+| S32_3207  | 1950's Chicago Surface Lines Streetcar      | Trains           | Gearbox Collectibles      |       8601 |  62.14 |
+| S32_3522  | 1996 Peterbilt 379 Stake Bed with Outrigger | Trucks and Buses | Red Start Diecast         |        814 |  64.64 |
+| S32_4289  | 1928 Ford Phaeton Deluxe                    | Vintage Cars     | Highway 66 Mini Classics  |        136 |  68.79 |
+| S32_4485  | 1974 Ducati 350 Mk3 Desmo                   | Motorcycles      | Second Gear Diecast       |       3341 | 102.05 |
+| S50_1341  | 1930 Buick Marquette Phaeton                | Vintage Cars     | Studio M Art Models       |       7062 |  43.64 |
+| S50_1392  | Diamond T620 Semi-Skirted Tanker            | Trucks and Buses | Highway 66 Mini Classics  |       1016 | 115.75 |
+| S50_1514  | 1962 City of Detroit Streetcar              | Trains           | Classic Metal Creations   |       1645 |  58.58 |
+| S50_4713  | 2002 Yamaha YZR M1                          | Motorcycles      | Autoart Studio Design     |        600 |  81.36 |
+| S700_1138 | The Schooner Bluenose                       | Ships            | Autoart Studio Design     |       1897 |  66.67 |
+| S700_1691 | American Airlines: B767-300                 | Planes           | Min Lin Diecast           |       5841 |  91.34 |
+| S700_1938 | The Mayflower                               | Ships            | Studio M Art Models       |        737 |  86.61 |
+| S700_2047 | HMS Bounty                                  | Ships            | Unimax Art Galleries      |       3501 |  90.52 |
+| S700_2466 | America West Airlines B757-200              | Planes           | Motor City Art Classics   |       9653 |  99.72 |
+| S700_2610 | The USS Constitution Ship                   | Ships            | Red Start Diecast         |       7083 |  72.28 |
+| S700_2824 | 1982 Camaro Z28                             | Classic Cars     | Carousel DieCast Legends  |       6934 | 101.15 |
+| S700_2834 | ATA: B757-300                               | Planes           | Highway 66 Mini Classics  |       7106 | 118.65 |
+| S700_3167 | F/A 18 Hornet 1/72                          | Planes           | Motor City Art Classics   |        551 |  80.00 |
+| S700_3505 | The Titanic                                 | Ships            | Carousel DieCast Legends  |       1956 | 100.17 |
+| S700_3962 | The Queen Mary                              | Ships            | Welly Diecast Productions |       5088 |  99.31 |
+| S700_4002 | American Airlines: MD-11S                   | Planes           | Second Gear Diecast       |       8820 |  74.03 |
+| S72_1253  | Boeing X-32A JSF                            | Planes           | Motor City Art Classics   |       4857 |  49.66 |
+| S72_3212  | Pont Yacht                                  | Ships            | Unimax Art Galleries      |        414 |  54.60 |
++-----------+---------------------------------------------+------------------+---------------------------+------------+--------+
+110 rows in set (0.03 sec)
+
+mysql> select * from customers;
++------------+-----------------+
+| customerid | name            |
++------------+-----------------+
+|          1 | Alice Johnson   |
+|          2 | Bob Smith       |
+|          3 | Carol Taylor    |
+|          4 | David Brown     |
+|          5 | Eve White       |
+|          6 | Frank Jones     |
+|          7 | Grace Lee       |
+|          8 | Henry Garcia    |
+|          9 | Isabel Martinez |
+|         10 | Jack Wilson     |
+|         11 | Karen Moore     |
+|         12 | Leo Clark       |
+|         13 | Mia Lewis       |
+|         14 | Noah Walker     |
+|         15 | Olivia Allen    |
+|         16 | Pete Young      |
+|         17 | Quinn Harris    |
+|         18 | Rachel King     |
+|         19 | Steve Wright    |
+|         20 | Tina Scott      |
+|         21 | Uma Adams       |
+|         22 | Vince Baker     |
+|         23 | Wendy Gonzalez  |
+|         24 | Xavier Nelson   |
+|         25 | Yvonne Carter   |
+|         26 | Zachary Roberts |
+|         27 | April Hill      |
+|         28 | Brooke Green    |
+|         29 | Caleb Phillips  |
+|         30 | Diana Mitchell  |
++------------+-----------------+
+30 rows in set (0.00 sec)
+
+mysql> select * from product;
++-----------+----------------------------+------------+
+| productid | product_name               | customerid |
++-----------+----------------------------+------------+
+|       101 | Stainless Steel Toaster    |          1 |
+|       102 | Electric Coffee Grinder    |          1 |
+|       103 | Microwave Oven             |          3 |
+|       104 | Dishwasher                 |          4 |
+|       105 | Electric Kettle            |          5 |
+|       106 | Blender                    |          6 |
+|       107 | Slow Cooker                |          7 |
+|       108 | Food Processor             |          3 |
+|       109 | Rice Cooker                |          9 |
+|       110 | Juicer                     |         10 |
+|       111 | Hand Mixer                 |          3 |
+|       112 | Stand Mixer                |         12 |
+|       113 | Espresso Machine           |         13 |
+|       114 | Air Fryer                  |         14 |
+|       115 | Deep Fryer                 |          3 |
+|       116 | Sandwich Maker             |         16 |
+|       117 | Ice Cream Maker            |          4 |
+|       118 | Induction Cooktop          |         18 |
+|       119 | Countertop Oven            |         19 |
+|       120 | Bread Maker                |          4 |
+|       121 | Portable Grill             |         21 |
+|       122 | Steam Oven                 |         22 |
+|       123 | Popcorn Maker              |         23 |
+|       124 | Waffle Maker               |         24 |
+|       125 | Sous Vide Precision Cooker |         25 |
+|       126 | Electric Skillet           |          1 |
+|       127 | Tea Maker                  |          3 |
+|       128 | Hot Water Dispenser        |         28 |
+|       129 | Convection Oven            |         29 |
+|       130 | Chocolate Fountain         |          3 |
+|       131 | Multi-Cooker               |          1 |
+|       132 | Herb Infuser               |          4 |
+|       133 | Nutrition Scale            |          3 |
+|       134 | Yogurt Maker               |          4 |
+|       135 | Vacuum Sealer              |          5 |
+|       136 | Soda Maker                 |          6 |
+|       137 | Electric Steamer           |          7 |
+|       138 | Spice Grinder              |          8 |
+|       139 | Food Dehydrator            |          9 |
+|       140 | Pasta Maker                |         10 |
+|       141 | Rotisserie Oven            |         11 |
+|       142 | Vegetable Chopper          |         12 |
+|       143 | Pizza Oven                 |         13 |
+|       144 | Garbage Disposal           |         14 |
+|       145 | Compact Refrigerator       |         15 |
+|       146 | Egg Cooker                 |          3 |
+|       147 | Ice Maker                  |          1 |
+|       148 | Range Hood                 |         18 |
+|       149 | Wine Cooler                |          4 |
+|       150 | Pressure Cooker            |          9 |
++-----------+----------------------------+------------+
+50 rows in set (0.02 sec)
+
+mysql> delete form customers where customerid=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customers where customerid=1' at line 1
+mysql> delete from customers where customerid=1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from product;
++-----------+----------------------------+------------+
+| productid | product_name               | customerid |
++-----------+----------------------------+------------+
+|       101 | Stainless Steel Toaster    |       NULL |
+|       102 | Electric Coffee Grinder    |       NULL |
+|       103 | Microwave Oven             |          3 |
+|       104 | Dishwasher                 |          4 |
+|       105 | Electric Kettle            |          5 |
+|       106 | Blender                    |          6 |
+|       107 | Slow Cooker                |          7 |
+|       108 | Food Processor             |          3 |
+|       109 | Rice Cooker                |          9 |
+|       110 | Juicer                     |         10 |
+|       111 | Hand Mixer                 |          3 |
+|       112 | Stand Mixer                |         12 |
+|       113 | Espresso Machine           |         13 |
+|       114 | Air Fryer                  |         14 |
+|       115 | Deep Fryer                 |          3 |
+|       116 | Sandwich Maker             |         16 |
+|       117 | Ice Cream Maker            |          4 |
+|       118 | Induction Cooktop          |         18 |
+|       119 | Countertop Oven            |         19 |
+|       120 | Bread Maker                |          4 |
+|       121 | Portable Grill             |         21 |
+|       122 | Steam Oven                 |         22 |
+|       123 | Popcorn Maker              |         23 |
+|       124 | Waffle Maker               |         24 |
+|       125 | Sous Vide Precision Cooker |         25 |
+|       126 | Electric Skillet           |       NULL |
+|       127 | Tea Maker                  |          3 |
+|       128 | Hot Water Dispenser        |         28 |
+|       129 | Convection Oven            |         29 |
+|       130 | Chocolate Fountain         |          3 |
+|       131 | Multi-Cooker               |       NULL |
+|       132 | Herb Infuser               |          4 |
+|       133 | Nutrition Scale            |          3 |
+|       134 | Yogurt Maker               |          4 |
+|       135 | Vacuum Sealer              |          5 |
+|       136 | Soda Maker                 |          6 |
+|       137 | Electric Steamer           |          7 |
+|       138 | Spice Grinder              |          8 |
+|       139 | Food Dehydrator            |          9 |
+|       140 | Pasta Maker                |         10 |
+|       141 | Rotisserie Oven            |         11 |
+|       142 | Vegetable Chopper          |         12 |
+|       143 | Pizza Oven                 |         13 |
+|       144 | Garbage Disposal           |         14 |
+|       145 | Compact Refrigerator       |         15 |
+|       146 | Egg Cooker                 |          3 |
+|       147 | Ice Maker                  |       NULL |
+|       148 | Range Hood                 |         18 |
+|       149 | Wine Cooler                |          4 |
+|       150 | Pressure Cooker            |          9 |
++-----------+----------------------------+------------+
+50 rows in set (0.00 sec)
+
+mysql> update customers set customerid=30 where customerid=3;
+ERROR 1062 (23000): Duplicate entry '30' for key 'customers.PRIMARY'
+mysql> update customers set customerid=33 where customerid=3;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++-----------+----------------------------+------------+
+| productid | product_name               | customerid |
++-----------+----------------------------+------------+
+|       101 | Stainless Steel Toaster    |       NULL |
+|       102 | Electric Coffee Grinder    |       NULL |
+|       103 | Microwave Oven             |       NULL |
+|       104 | Dishwasher                 |          4 |
+|       105 | Electric Kettle            |          5 |
+|       106 | Blender                    |          6 |
+|       107 | Slow Cooker                |          7 |
+|       108 | Food Processor             |       NULL |
+|       109 | Rice Cooker                |          9 |
+|       110 | Juicer                     |         10 |
+|       111 | Hand Mixer                 |       NULL |
+|       112 | Stand Mixer                |         12 |
+|       113 | Espresso Machine           |         13 |
+|       114 | Air Fryer                  |         14 |
+|       115 | Deep Fryer                 |       NULL |
+|       116 | Sandwich Maker             |         16 |
+|       117 | Ice Cream Maker            |          4 |
+|       118 | Induction Cooktop          |         18 |
+|       119 | Countertop Oven            |         19 |
+|       120 | Bread Maker                |          4 |
+|       121 | Portable Grill             |         21 |
+|       122 | Steam Oven                 |         22 |
+|       123 | Popcorn Maker              |         23 |
+|       124 | Waffle Maker               |         24 |
+|       125 | Sous Vide Precision Cooker |         25 |
+|       126 | Electric Skillet           |       NULL |
+|       127 | Tea Maker                  |       NULL |
+|       128 | Hot Water Dispenser        |         28 |
+|       129 | Convection Oven            |         29 |
+|       130 | Chocolate Fountain         |       NULL |
+|       131 | Multi-Cooker               |       NULL |
+|       132 | Herb Infuser               |          4 |
+|       133 | Nutrition Scale            |       NULL |
+|       134 | Yogurt Maker               |          4 |
+|       135 | Vacuum Sealer              |          5 |
+|       136 | Soda Maker                 |          6 |
+|       137 | Electric Steamer           |          7 |
+|       138 | Spice Grinder              |          8 |
+|       139 | Food Dehydrator            |          9 |
+|       140 | Pasta Maker                |         10 |
+|       141 | Rotisserie Oven            |         11 |
+|       142 | Vegetable Chopper          |         12 |
+|       143 | Pizza Oven                 |         13 |
+|       144 | Garbage Disposal           |         14 |
+|       145 | Compact Refrigerator       |         15 |
+|       146 | Egg Cooker                 |       NULL |
+|       147 | Ice Maker                  |       NULL |
+|       148 | Range Hood                 |         18 |
+|       149 | Wine Cooler                |          4 |
+|       150 | Pressure Cooker            |          9 |
++-----------+----------------------------+------------+
+50 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
++------+--------+-------+
+10 rows in set (0.03 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into student (13,"dinesh",55);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '13,"dinesh",55)' at line 1
+mysql> insert into student values(13,"dinesh",55);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
+|   13 | dinesh |    55 |
++------+--------+-------+
+11 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
++------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into student values(13,"dinesh",55);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(14,"dishant",45);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(15,"sushant",45);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+
+| s_id | name    | marks |
++------+---------+-------+
+|    1 | mahesh  |    72 |
+|    2 | sagar   |    72 |
+|    3 | suchit  |    72 |
+|    4 | mahesh  |    72 |
+|    5 | tom     |    60 |
+|    6 | sagar   |    72 |
+|    8 | NULL    |    35 |
+|   10 | sam     |    95 |
+|   11 | ram     |    88 |
+|   12 | pixel   |    35 |
+|   13 | dinesh  |    55 |
+|   14 | dishant |    45 |
+|   15 | sushant |    45 |
++------+---------+-------+
+13 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
++------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into student values(13,"dinesh",55);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(14,"dishant",45);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(15,"sushant",45);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+
+| s_id | name    | marks |
++------+---------+-------+
+|    1 | mahesh  |    72 |
+|    2 | sagar   |    72 |
+|    3 | suchit  |    72 |
+|    4 | mahesh  |    72 |
+|    5 | tom     |    60 |
+|    6 | sagar   |    72 |
+|    8 | NULL    |    35 |
+|   10 | sam     |    95 |
+|   11 | ram     |    88 |
+|   12 | pixel   |    35 |
+|   13 | dinesh  |    55 |
+|   14 | dishant |    45 |
+|   15 | sushant |    45 |
++------+---------+-------+
+13 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+
+| s_id | name    | marks |
++------+---------+-------+
+|    1 | mahesh  |    72 |
+|    2 | sagar   |    72 |
+|    3 | suchit  |    72 |
+|    4 | mahesh  |    72 |
+|    5 | tom     |    60 |
+|    6 | sagar   |    72 |
+|    8 | NULL    |    35 |
+|   10 | sam     |    95 |
+|   11 | ram     |    88 |
+|   12 | pixel   |    35 |
+|   13 | dinesh  |    55 |
+|   14 | dishant |    45 |
+|   15 | sushant |    45 |
++------+---------+-------+
+13 rows in set (0.00 sec)
+
+mysql> create table xyz (val varchar(100));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into xyz values("a");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into xyz values("a"),("b"),("c");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select* from xyz;
++------+
+| val  |
++------+
+| a    |
+| a    |
+| b    |
+| c    |
++------+
+4 rows in set (0.01 sec)
+
+mysql> savepoint first;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into xyz values("p"),("q"),("r");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select* from xyz;
++------+
+| val  |
++------+
+| a    |
+| a    |
+| b    |
+| c    |
+| p    |
+| q    |
+| r    |
++------+
+7 rows in set (0.00 sec)
+
+mysql> savepoint second;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into xyz values("x"),("y"),("z");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select* from xyz;
++------+
+| val  |
++------+
+| a    |
+| a    |
+| b    |
+| c    |
+| p    |
+| q    |
+| r    |
+| x    |
+| y    |
+| z    |
++------+
+10 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select* from xyz;
+Empty set (0.00 sec)
+
+mysql> insert into xyz values("a");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into xyz values("a"),("b"),("c");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> savepoint first;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into xyz values("p"),("q"),("r");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select* from xyz;
++------+
+| val  |
++------+
+| a    |
+| a    |
+| b    |
+| c    |
+| p    |
+| q    |
+| r    |
++------+
+7 rows in set (0.00 sec)
+
+mysql> savepoint second;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into xyz values("x"),("y"),("z");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> rollback second;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'second' at line 1
+mysql> rollback to second;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select* from xyz;
++------+
+| val  |
++------+
+| a    |
+| a    |
+| b    |
+| c    |
+| p    |
+| q    |
+| r    |
++------+
+7 rows in set (0.00 sec)
+
+mysql> set autocommit=1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+106 rows in set (0.02 sec)
+       create view myview as select emp_id,first_name,salary from myemp;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from myview;
++--------+-------------+----------+
+| emp_id | first_name  | salary   |
++--------+-------------+----------+
+|    100 | Steven      | 24000.00 |
+|    101 | Neena       | 17000.00 |
+|    102 | Lex         | 17000.00 |
+|    103 | Alexander   |  9000.00 |
+|    104 | Bruce       |  6000.00 |
+|    105 | David       |  4800.00 |
+|    106 | Valli       |  4800.00 |
+|    107 | Diana       |  4200.00 |
+|    108 | Nancy       | 12000.00 |
+|    109 | Daniel      |  9000.00 |
+|    110 | John        |  8200.00 |
+|    111 | Ismael      |  7700.00 |
+|    112 | Jose Manuel |  7800.00 |
+|    113 | Luis        |  6900.00 |
+|    114 | Den         | 11000.00 |
+|    115 | Alexander   |  3100.00 |
+|    116 | Shelli      |  2900.00 |
+|    117 | Sigal       |  2800.00 |
+|    118 | Guy         |  2600.00 |
+|    119 | Karen       |  2500.00 |
+|    120 | Matthew     |  8000.00 |
+|    121 | Adam        |  8200.00 |
+|    122 | Payam       |  7900.00 |
+|    123 | Shanta      |  6500.00 |
+|    124 | Kevin       |  5800.00 |
+|    125 | Julia       |  3200.00 |
+|    126 | Irene       |  2700.00 |
+|    127 | James       |  2400.00 |
+|    128 | Steven      |  2200.00 |
+|    129 | Laura       |  3300.00 |
+|    130 | Mozhe       |  2800.00 |
+|    131 | James       |  2500.00 |
+|    132 | TJ          |  2100.00 |
+|    133 | Jason       |  3300.00 |
+|    134 | Michael     |  2900.00 |
+|    135 | Ki          |  2400.00 |
+|    136 | Hazel       |  2200.00 |
+|    137 | Renske      |  3600.00 |
+|    138 | Stephen     |  3200.00 |
+|    139 | John        |  2700.00 |
+|    140 | Joshua      |  2500.00 |
+|    141 | Trenna      |  3500.00 |
+|    142 | Curtis      |  3100.00 |
+|    143 | Randall     |  2600.00 |
+|    144 | Peter       |  2500.00 |
+|    145 | John        | 14000.00 |
+|    146 | Karen       | 13500.00 |
+|    147 | Alberto     | 12000.00 |
+|    148 | Gerald      | 11000.00 |
+|    149 | Eleni       | 10500.00 |
+|    150 | Peter       | 10000.00 |
+|    151 | David       |  9500.00 |
+|    152 | Peter       |  9000.00 |
+|    153 | Christopher |  8000.00 |
+|    154 | Nanette     |  7500.00 |
+|    155 | Oliver      |  7000.00 |
+|    156 | Janette     | 10000.00 |
+|    157 | Patrick     |  9500.00 |
+|    158 | Allan       |  9000.00 |
+|    159 | Lindsey     |  8000.00 |
+|    160 | Louise      |  7500.00 |
+|    161 | Sarath      |  7000.00 |
+|    162 | Clara       | 10500.00 |
+|    163 | Danielle    |  9500.00 |
+|    164 | Mattea      |  7200.00 |
+|    165 | David       |  6800.00 |
+|    166 | Sundar      |  6400.00 |
+|    167 | Amit        |  6200.00 |
+|    168 | Lisa        | 11500.00 |
+|    169 | Harrison    | 10000.00 |
+|    170 | Tayler      |  9600.00 |
+|    171 | William     |  7400.00 |
+|    172 | Elizabeth   |  7300.00 |
+|    173 | Sundita     |  6100.00 |
+|    174 | Ellen       | 11000.00 |
+|    175 | Alyssa      |  8800.00 |
+|    176 | Jonathon    |  8600.00 |
+|    177 | Jack        |  8400.00 |
+|    179 | Charles     |  6200.00 |
+|    180 | Winston     |  3200.00 |
+|    181 | Jean        |  3100.00 |
+|    182 | Martha      |  2500.00 |
+|    183 | Girard      |  2800.00 |
+|    184 | Nandita     |  4200.00 |
+|    185 | Alexis      |  4100.00 |
+|    186 | Julia       |  3400.00 |
+|    187 | Anthony     |  3000.00 |
+|    188 | Kelly       |  3800.00 |
+|    189 | Jennifer    |  3600.00 |
+|    190 | Timothy     |  2900.00 |
+|    191 | Randall     |  2500.00 |
+|    192 | Sarah       |  4000.00 |
+|    193 | Britney     |  3900.00 |
+|    194 | Samuel      |  3200.00 |
+|    195 | Vance       |  2800.00 |
+|    196 | Alana       |  3100.00 |
+|    197 | Kevin       |  3000.00 |
+|    198 | Donald      |  2600.00 |
+|    199 | Douglas     |  2600.00 |
+|    200 | Jennifer    |  4400.00 |
+|    201 | Michael     | 13000.00 |
+|    202 | Pat         |  6000.00 |
+|    203 | Susan       |  6500.00 |
+|    204 | Hermann     | 10000.00 |
+|    205 | Shelley     | 12000.00 |
+|    206 | William     |  8300.00 |
++--------+-------------+----------+
+106 rows in set (0.02 sec)
+
+mysql> select * from movies;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.01 sec)
+
+mysql> select * from members;
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from movie left join members on id=movieid;
+ERROR 1146 (42S02): Table 'excelr_db.movie' doesn't exist
+mysql> select * from movies left join members on id=movieid;
++------+---------------------------+------------+-------+------------+-----------+---------+
+| id   | title                     | category   | memid | first_name | last_name | movieid |
++------+---------------------------+------------+-------+------------+-----------+---------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |     1 | Alicia     | Alarcon   |       1 |
+|    2 | Real Steel                | Animations |     2 | Don        | Draper    |       2 |
+|    3 | Alvin and the Chipmunks   | Animations |  NULL | NULL       | NULL      |    NULL |
+|    4 | The Adventures of Tin Tin | Animations |  NULL | NULL       | NULL      |    NULL |
+|    5 | Safe                      | Action     |     3 | Lizzie     | Moss      |       5 |
+|    6 | Safe House                | Action     |  NULL | NULL       | NULL      |    NULL |
+|    7 | GIA                       | 18+        |  NULL | NULL       | NULL      |    NULL |
+|    8 | Deadline 2009             | 18+        |     4 | Eldon      | Chance    |       8 |
+|    9 | The Dirty Picture         | 18+        |  NULL | NULL       | NULL      |    NULL |
+|   10 | Marley and me             | Romance    |     5 | Jenny      | Patterson |      10 |
++------+---------------------------+------------+-------+------------+-----------+---------+
+10 rows in set (0.01 sec)
+
+mysql> create view as full_outer as select id,title,category,ifnull(memid,"Not "
+    -> ^C
+mysql> create view as full_outer as select id,title,category,ifnull(memid,"Not Avaliable")as memid,ifnull(concat(first_name," ",last_name),"not avaliable") as name,if(movieid,"not avaliable") as movieid from movies left join members on id=movieid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as full_outer as select id,title,category,ifnull(memid,"Not Avaliable")as memid,' at line 1
+mysql> create view  full_outer as select id,title,category,ifnull(memid,"Not Avaliable")as memid,ifnull(concat(first_name," ",last_name),"not avaliable") as name,if(movieid,"not avaliable") as movieid from movies left join members on id=movieid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as movieid from movies left join members on id=movieid' at line 1
+mysql> CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies LEFT JOIN members ON id = movieid;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies LEFT JOIN members ON id = movieid
+    -> union
+    -> CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies rignt JOIN members ON id = movieid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Availab' at line 3
+mysql> CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies LEFT JOIN members ON id = movieid
+    -> union
+    -> SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies right JOIN members ON id = movieid;
+ERROR 1050 (42S01): Table 'full_outer' already exists
+mysql> CREATE VIEW full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies LEFT JOIN members ON id = movieid
+    -> ^C
+mysql> CREATE VIEW new_full_outer AS SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies LEFT JOIN members ON id = movieid
+    -> union
+    ->  SELECT id, title, category, IFNULL(memid, 'Not Available') AS memid, IFNULL(CONCAT(first_name, ' ', last_name), 'Not Available') AS name, IFNULL(movieid, 'Not Available') AS movieid FROM movies rignt JOIN members ON id = movieid;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select* from new_full_outer;
++------+---------------------------+------------+---------------+-----------------+---------------+
+| id   | title                     | category   | memid         | name            | movieid       |
++------+---------------------------+------------+---------------+-----------------+---------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations | 1             | Alicia Alarcon  | 1             |
+|    2 | Real Steel                | Animations | 2             | Don Draper      | 2             |
+|    3 | Alvin and the Chipmunks   | Animations | Not Available | Not Available   | Not Available |
+|    4 | The Adventures of Tin Tin | Animations | Not Available | Not Available   | Not Available |
+|    5 | Safe                      | Action     | 3             | Lizzie Moss     | 5             |
+|    6 | Safe House                | Action     | Not Available | Not Available   | Not Available |
+|    7 | GIA                       | 18+        | Not Available | Not Available   | Not Available |
+|    8 | Deadline 2009             | 18+        | 4             | Eldon Chance    | 8             |
+|    9 | The Dirty Picture         | 18+        | Not Available | Not Available   | Not Available |
+|   10 | Marley and me             | Romance    | 5             | Jenny Patterson | 10            |
++------+---------------------------+------------+---------------+-----------------+---------------+
+10 rows in set (0.02 sec)
+
+mysql> select* from student;
++------+---------+-------+
+| s_id | name    | marks |
++------+---------+-------+
+|    1 | mahesh  |    72 |
+|    2 | sagar   |    72 |
+|    3 | suchit  |    72 |
+|    4 | mahesh  |    72 |
+|    5 | tom     |    60 |
+|    6 | sagar   |    72 |
+|    8 | NULL    |    35 |
+|   10 | sam     |    95 |
+|   11 | ram     |    88 |
+|   12 | pixel   |    35 |
+|   13 | dinesh  |    55 |
+|   14 | dishant |    45 |
+|   15 | sushant |    45 |
++------+---------+-------+
+13 rows in set (0.01 sec)
+
+mysql> create view stuview as select s_id,name from student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from stuview;
++------+---------+
+| s_id | name    |
++------+---------+
+|    1 | mahesh  |
+|    2 | sagar   |
+|    3 | suchit  |
+|    4 | mahesh  |
+|    5 | tom     |
+|    6 | sagar   |
+|    8 | NULL    |
+|   10 | sam     |
+|   11 | ram     |
+|   12 | pixel   |
+|   13 | dinesh  |
+|   14 | dishant |
+|   15 | sushant |
++------+---------+
+13 rows in set (0.01 sec)
+
+mysql> insert into stuview values(17,"kunal");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from stuview;
++------+---------+
+| s_id | name    |
++------+---------+
+|    1 | mahesh  |
+|    2 | sagar   |
+|    3 | suchit  |
+|    4 | mahesh  |
+|    5 | tom     |
+|    6 | sagar   |
+|    8 | NULL    |
+|   10 | sam     |
+|   11 | ram     |
+|   12 | pixel   |
+|   13 | dinesh  |
+|   14 | dishant |
+|   15 | sushant |
+|   17 | kunal   |
++------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select* from student;
++------+---------+-------+
+| s_id | name    | marks |
++------+---------+-------+
+|    1 | mahesh  |    72 |
+|    2 | sagar   |    72 |
+|    3 | suchit  |    72 |
+|    4 | mahesh  |    72 |
+|    5 | tom     |    60 |
+|    6 | sagar   |    72 |
+|    8 | NULL    |    35 |
+|   10 | sam     |    95 |
+|   11 | ram     |    88 |
+|   12 | pixel   |    35 |
+|   13 | dinesh  |    55 |
+|   14 | dishant |    45 |
+|   15 | sushant |    45 |
+|   17 | kunal   |  NULL |
++------+---------+-------+
+14 rows in set (0.00 sec)
+
+mysql> create view aview as select * from authors where authorid<=10;
+ERROR 1054 (42S22): Unknown column 'authorid' in 'where clause'
+mysql> create view aview as select * from authors where authorsid<=10;
+ERROR 1054 (42S22): Unknown column 'authorsid' in 'where clause'
+mysql> select* from author;
+ERROR 1146 (42S02): Table 'excelr_db.author' doesn't exist
+mysql> select* from authors;
++-----------+------------------+
+| author_id | name             |
++-----------+------------------+
+|         2 | Thomas Hardy     |
+|         3 | Oscar Wilde      |
+|         4 | Sidney Sheldon   |
+|         5 | Alistair MacLean |
+|         6 | Jane Austen      |
+|         7 | Chetan Bhagat    |
+|        80 | Oscar Wilde      |
++-----------+------------------+
+7 rows in set (0.01 sec)
+
+mysql> create view aview as select * from authors where authors_id<=10;
+ERROR 1054 (42S22): Unknown column 'authors_id' in 'where clause'
+mysql> create view aview as select * from authors where author_id<=10;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into aview values(55,"sane gurugi");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from aview;
++-----------+------------------+
+| author_id | name             |
++-----------+------------------+
+|         2 | Thomas Hardy     |
+|         3 | Oscar Wilde      |
+|         4 | Sidney Sheldon   |
+|         5 | Alistair MacLean |
+|         6 | Jane Austen      |
+|         7 | Chetan Bhagat    |
++-----------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from authors;
++-----------+------------------+
+| author_id | name             |
++-----------+------------------+
+|         2 | Thomas Hardy     |
+|         3 | Oscar Wilde      |
+|         4 | Sidney Sheldon   |
+|         5 | Alistair MacLean |
+|         6 | Jane Austen      |
+|         7 | Chetan Bhagat    |
+|        55 | sane gurugi      |
+|        80 | Oscar Wilde      |
++-----------+------------------+
+8 rows in set (0.00 sec)
+
+mysql> create view aview as select * from authors where author_id<=10 with check option;
+ERROR 1050 (42S01): Table 'aview' already exists
+mysql> create view aview_2 as select * from authors where author_id<=10 with check option;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into aview_2 values(59,"vishwas nangare patil");
+ERROR 1369 (HY000): CHECK OPTION failed 'excelr_db.aview_2'
+mysql> insert into aview_2 values(59,"vishwas nangare patil");
+ERROR 1369 (HY000): CHECK OPTION failed 'excelr_db.aview_2'
+mysql> insert into aview_2 values(1,"vishwas nangare patil");
+Query OK, 1 row affected (0.02 sec)
+
+mysql>

@@ -1,0 +1,5 @@
+sum()=addition of all observation in specific column
+
+sumif()= add all value in specific column based on condition
+
+sumifs()=

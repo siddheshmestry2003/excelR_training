@@ -1,0 +1,5 @@
+power query 
+
+append query add data row wise
+
+merge query add data column wise

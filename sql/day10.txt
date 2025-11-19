@@ -1,0 +1,125 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> call procs;
+ERROR 1046 (3D000): No database selected
+mysql> use excelr_db
+Database changed
+mysql> call procs;
+ERROR 1305 (42000): PROCEDURE excelr_db.procs does not exist
+mysql> call proc;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.05 sec)
+
++-----------+-----------------------+
+| author_id | name                  |
++-----------+-----------------------+
+|         1 | vishwas nangare patil |
+|         2 | Thomas Hardy          |
+|         3 | Oscar Wilde           |
+|         4 | Sidney Sheldon        |
+|         5 | Alistair MacLean      |
+|         6 | Jane Austen           |
+|         7 | Chetan Bhagat         |
+|        55 | sane gurugi           |
+|        80 | Oscar Wilde           |
++-----------+-----------------------+
+9 rows in set (0.08 sec)
+
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.10 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> call proc_if(111);
++--------+---------------+--------+-------------+
+| emp_id | emp_name      | salary | status      |
++--------+---------------+--------+-------------+
+|    111 | IsmaelSciarra |   7700 | Good Income |
++--------+---------------+--------+-------------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> call proc_if(111);
++--------+----------------+--------+-------------+
+| emp_id | emp_name       | salary | status      |
++--------+----------------+--------+-------------+
+|    111 | Ismael Sciarra |   7700 | Good Income |
++--------+----------------+--------+-------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set global log_bin_trust_function_creators =1;
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> select Area_traingle(10,20) as are;
+ERROR 1305 (42000): FUNCTION excelr_db.Area_traingle does not exist
+mysql> select Area_triangle(10,20) as are;
++---------+
+| are     |
++---------+
+| 100.000 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select round(Area_triangle(10,20),1) as are;
++------+
+| are  |
++------+
+|  100 |
++------+
+1 row in set (0.02 sec)
+
+mysql> select round(Area_triangle(10,20),2) as are;
++------+
+| are  |
++------+
+|  100 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select round(Area_triangle(10.785,20.2222),2) as are;
++--------+
+| are    |
++--------+
+| 109.05 |
++--------+
+1 row in set (0.00 sec)
+
+mysql>

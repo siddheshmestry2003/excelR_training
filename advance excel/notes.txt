@@ -1,0 +1,1 @@
+count()=count only numeric value not string or text value

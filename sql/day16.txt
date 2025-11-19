@@ -1,0 +1,298 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 44
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> call proc_parameters(100);
+ERROR 1046 (3D000): No database selected
+mysql> use excler_db;
+ERROR 1049 (42000): Unknown database 'excler_db'
+mysql> use excelr_db;
+Database changed
+mysql> call proc_parameters(100);
+ERROR 1054 (42S22): Unknown column 'salart' in 'field list'
+mysql> call proc_parameters(100);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> call proc_parameters_in(100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> call proc_parameters_in(100);
++------+-------+-------------+
+| eid  | x     | y           |
++------+-------+-------------+
+|  100 | 24000 | Steven King |
++------+-------+-------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_parameter_out(100,@x);
++------+-------+-------------+
+| eid  | x     | y           |
++------+-------+-------------+
+|  100 | 24000 | Steven King |
++------+-------+-------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select @x;
++-------+
+| @x    |
++-------+
+| 24000 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> call proc_parameter_out(100,@x,@y);
++------+-------+-------------+
+| eid  | x     | y           |
++------+-------+-------------+
+|  100 | 24000 | Steven King |
++------+-------+-------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select @y;
++-------------+
+| @y          |
++-------------+
+| Steven King |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> call proc_parameter_inout(@100,@x,@y);
+ERROR 1054 (42S22): Unknown column 'eid' in 'where clause'
+mysql> call proc_parameter_inout(@100,@x,@y);
+ERROR 1054 (42S22): Unknown column 'eid' in 'where clause'
+mysql> call proc_parameter_inout(@100,@x,@y);
++------+------+------+
+| eid  | x    | y    |
++------+------+------+
+| NULL | NULL | NULL |
++------+------+------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call proc_parameter_inout(@eid,@x,@y);
++------+------+------+
+| eid  | x    | y    |
++------+------+------+
+| NULL | NULL | NULL |
++------+------+------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call proc_parameter_inout(@eid=100,@x,@y);
+ERROR 1414 (42000): OUT or INOUT argument 1 for routine excelr_db.proc_parameter_inout is not a variable or NEW pseudo-variable in BEFORE trigger
+mysql> call proc_parameter_inout(100,@x,@y);
+ERROR 1414 (42000): OUT or INOUT argument 1 for routine excelr_db.proc_parameter_inout is not a variable or NEW pseudo-variable in BEFORE trigger
+mysql> set @eid=110;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_parameter_inout(@eid,@x,@y);
++------+------+-----------+
+| eid  | x    | y         |
++------+------+-----------+
+|  110 | 8200 | John Chen |
++------+------+-----------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select @eid;
++------+
+| @eid |
++------+
+|  110 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select @x;
++------+
+| @x   |
++------+
+| 8200 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select @y;
++-----------+
+| @y        |
++-----------+
+| John Chen |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> set @eid=100;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_parameter_inout(@eid,@x,@y);
++------+-------+-------------+
+| eid  | x     | y           |
++------+-------+-------------+
+|  100 | 24000 | Steven King |
++------+-------+-------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select concat(@y," ",@x);
++-------------------+
+| concat(@y," ",@x) |
++-------------------+
+| Steven King 24000 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> create index myind on myemp(emp_id);
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from myemp;
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| myemp |          1 | myind    |            1 | EMP_ID      | A         |         106 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.03 sec)
+
+mysql> drop index myind on myemp;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from myemp where emp_id=200
+    -> select * from myemp where emp_id=200;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from myemp where emp_id=200' at line 2
+mysql> select * from myemp where emp_id=200;
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID  | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+|    200 | Jennifer   | Whalen    | JWHALEN | 1988-09-25 | AD_ASST | 4400.00 |           0.00 |    101 |     10 |
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> create index myind on myemp(emp_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from myemp where emp_id=200;
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID  | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+|    200 | Jennifer   | Whalen    | JWHALEN | 1988-09-25 | AD_ASST | 4400.00 |           0.00 |    101 |     10 |
++--------+------------+-----------+---------+------------+---------+---------+----------------+--------+--------+
+1 row in set (0.02 sec)
+
+mysql> select * from authors;
++-----------+-----------------------+
+| author_id | name                  |
++-----------+-----------------------+
+|         1 | vishwas nangare patil |
+|         2 | Thomas Hardy          |
+|         3 | Oscar Wilde           |
+|         4 | Sidney Sheldon        |
+|         5 | Alistair MacLean      |
+|         6 | Jane Austen           |
+|         7 | Chetan Bhagat         |
+|        55 | sane gurugi           |
+|        80 | Oscar Wilde           |
++-----------+-----------------------+
+9 rows in set (0.02 sec)
+
+mysql> select * from books;
++--------+-----------------------+------+-------+
+| bookid | title                 | aid  | sales |
++--------+-----------------------+------+-------+
+|      5 | Night Without End     |    5 |     0 |
+|      6 | Fear is the Key       |    5 |     8 |
+|      7 | Where Eagles Dare     |    5 |     0 |
+|      8 | Sense and Sensibility |    6 |     0 |
+|      9 | Pride and Prejudice   |    6 |     0 |
+|     10 | Emma                  |    6 |     0 |
+|     11 | Five Point Someone    |    7 |     0 |
+|     12 | Two States            |    7 |     0 |
+|     13 | Salome                |   80 |     0 |
+|     14 | The Happy Prince      |   80 |     0 |
++--------+-----------------------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select name from authores where authore_id=(select aid from books);
+ERROR 1146 (42S02): Table 'excelr_db.authores' doesn't exist
+mysql> select name from authtors where authore_id=(select aid from books);
+ERROR 1146 (42S02): Table 'excelr_db.authtors' doesn't exist
+mysql> select name from authors where authore_id=(select aid from books);
+ERROR 1054 (42S22): Unknown column 'authore_id' in 'where clause'
+mysql> select name from authors where author_id=(select aid from books);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select name from authors where author_id=(select aid from books);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select name from authors where author_id in (select aid from books where sales>1);
++------------------+
+| name             |
++------------------+
+| Alistair MacLean |
++------------------+
+1 row in set (0.02 sec)
+
+mysql> select name,title form(select * from authors left join books on author_id=aid union select * from authors right join books on author_id=aid) as x where sales>1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(select * from authors left join books on author_id=aid union select * from auth' at line 1
+mysql> select name,title from (select * from authors left join books on author_id=aid union select * from authors right join books on author_id=aid) as x where sales>1;
++------------------+-----------------+
+| name             | title           |
++------------------+-----------------+
+| Alistair MacLean | Fear is the Key |
++------------------+-----------------+
+1 row in set (0.02 sec)
+
+mysql> call proc_crusor;
++------+---------+
+| eid  | salary  |
++------+---------+
+|  103 | 9000.00 |
++------+---------+
+1 row in set (0.02 sec)
+
++------+---------+
+| eid  | salary  |
++------+---------+
+|  104 | 6000.00 |
++------+---------+
+1 row in set (0.02 sec)
+
++------+---------+
+| eid  | salary  |
++------+---------+
+|  105 | 4800.00 |
++------+---------+
+1 row in set (0.02 sec)
+
++------+---------+
+| eid  | salary  |
++------+---------+
+|  106 | 4800.00 |
++------+---------+
+1 row in set (0.02 sec)
+
++------+---------+
+| eid  | salary  |
++------+---------+
+|  107 | 4200.00 |
++------+---------+
+1 row in set (0.02 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql>

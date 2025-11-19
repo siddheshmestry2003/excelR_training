@@ -1,0 +1,435 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> use excelr_db;
+Database changed
+mysql> select * from movies;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.03 sec)
+
+mysql> select * from members;
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.02 sec)
+
+mysql> select * from members left join movies on movieid = id;
++-------+------------+-----------+---------+------+--------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                    | category   |
++-------+------------+-----------+---------+------+--------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel               | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                     | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009            | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me            | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                     | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                     | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                     | NULL       |
++-------+------------+-----------+---------+------+--------------------------+------------+
+8 rows in set (0.03 sec)
+
+mysql> select * from members right join movies on movieid = id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
++-------+------------+-----------+---------+------+---------------------------+------------+
+10 rows in set (0.02 sec)
+
+mysql> select * from members left join movies on movieid = id
+    -> union^C
+mysql> select * from members left join movies on movieid = id
+    -> union
+    -> select * from members right join movies on movieid = id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                      | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                      | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                      | NULL       |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
++-------+------------+-----------+---------+------+---------------------------+------------+
+13 rows in set (0.03 sec)
+
+mysql> select * from members left join movies on movieid = id
+    -> union
+    -> select * from members right join movies on movieid = id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                      | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                      | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                      | NULL       |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
++-------+------------+-----------+---------+------+---------------------------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select * from members right join movies on movieid = id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
++-------+------------+-----------+---------+------+---------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from members left join movies on movieid = id
+    -> union all
+    -> select * from members right join movies on movieid = id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                      | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                      | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                      | NULL       |
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
++-------+------------+-----------+---------+------+---------------------------+------------+
+18 rows in set (0.02 sec)
+
+mysql> select * from drinks;
++-----------+-------+
+| drinkname | rate  |
++-----------+-------+
+| Tea       |  5.00 |
+| Coffee    | 15.00 |
+| Pepsi     | 20.00 |
++-----------+-------+
+3 rows in set (0.02 sec)
+
+mysql> select * from meals;
++----------+-------+
+| mealname | rate  |
++----------+-------+
+| Omlet    | 10.50 |
+| Sausage  | 15.50 |
+| Pancake  | 40.75 |
++----------+-------+
+3 rows in set (0.02 sec)
+
+mysql> select * from drinks cross join meals;
++-----------+-------+----------+-------+
+| drinkname | rate  | mealname | rate  |
++-----------+-------+----------+-------+
+| Pepsi     | 20.00 | Omlet    | 10.50 |
+| Coffee    | 15.00 | Omlet    | 10.50 |
+| Tea       |  5.00 | Omlet    | 10.50 |
+| Pepsi     | 20.00 | Sausage  | 15.50 |
+| Coffee    | 15.00 | Sausage  | 15.50 |
+| Tea       |  5.00 | Sausage  | 15.50 |
+| Pepsi     | 20.00 | Pancake  | 40.75 |
+| Coffee    | 15.00 | Pancake  | 40.75 |
+| Tea       |  5.00 | Pancake  | 40.75 |
++-----------+-------+----------+-------+
+9 rows in set (0.02 sec)
+
+mysql> select concat(d.drinkname ," ",m.mealname) as dish,d.rate+m.rate from drinks as d cross join meals as m;
++----------------+---------------+
+| dish           | d.rate+m.rate |
++----------------+---------------+
+| Pepsi Omlet    |         30.50 |
+| Coffee Omlet   |         25.50 |
+| Tea Omlet      |         15.50 |
+| Pepsi Sausage  |         35.50 |
+| Coffee Sausage |         30.50 |
+| Tea Sausage    |         20.50 |
+| Pepsi Pancake  |         60.75 |
+| Coffee Pancake |         55.75 |
+| Tea Pancake    |         45.75 |
++----------------+---------------+
+9 rows in set (0.02 sec)
+
+mysql> select concat(d.drinkname ," ",m.mealname) as dish,d.rate+m.rate as total rate from drinks as d cross join meals as m;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rate from drinks as d cross join meals as m' at line 1
+mysql> select concat(d.drinkname ," ",m.mealname) as dish,d.rate+m.rate as total_rate from drinks as d cross join meals as m;
++----------------+------------+
+| dish           | total_rate |
++----------------+------------+
+| Pepsi Omlet    |      30.50 |
+| Coffee Omlet   |      25.50 |
+| Tea Omlet      |      15.50 |
+| Pepsi Sausage  |      35.50 |
+| Coffee Sausage |      30.50 |
+| Tea Sausage    |      20.50 |
+| Pepsi Pancake  |      60.75 |
+| Coffee Pancake |      55.75 |
+| Tea Pancake    |      45.75 |
++----------------+------------+
+9 rows in set (0.01 sec)
+
+mysql>
+
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> select * from meals;
++----------+-------+
+| mealname | rate  |
++----------+-------+
+| Omlet    | 10.50 |
+| Sausage  | 15.50 |
+| Pancake  | 40.75 |
++----------+-------+
+3 rows in set (0.08 sec)
+
+mysql> select * from drinks;
++-----------+-------+
+| drinkname | rate  |
++-----------+-------+
+| Tea       |  5.00 |
+| Coffee    | 15.00 |
+| Pepsi     | 20.00 |
++-----------+-------+
+3 rows in set (0.02 sec)
+
+mysql> select concat(m.mealname, " ", d.drinkname) as food ,  m.rate+ d.rate as total from meals as m cross join drinks as d ;
++----------------+-------+
+| food           | total |
++----------------+-------+
+| Pancake Tea    | 45.75 |
+| Sausage Tea    | 20.50 |
+| Omlet Tea      | 15.50 |
+| Pancake Coffee | 55.75 |
+| Sausage Coffee | 30.50 |
+| Omlet Coffee   | 25.50 |
+| Pancake Pepsi  | 60.75 |
+| Sausage Pepsi  | 35.50 |
+| Omlet Pepsi    | 30.50 |
++----------------+-------+
+9 rows in set (0.01 sec)
+
+mysql> create tabel student2 (s_id int unsigned UNIQUE ,name varchar(111) NOT NULL,course ENUM("Excel","python","1"), age int unsigned check(age>=18));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabel student2 (s_id int unsigned UNIQUE ,name varchar(111) NOT NULL,course ENUM' at line 1
+mysql> create table student2 (s_id int unsigned UNIQUE ,name varchar(111) NOT NULL,course ENUM("Excel","python","1"), age int unsigned check(age>=18));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc student2;
++--------+----------------------------+------+-----+---------+-------+
+| Field  | Type                       | Null | Key | Default | Extra |
++--------+----------------------------+------+-----+---------+-------+
+| s_id   | int unsigned               | YES  | UNI | NULL    |       |
+| name   | varchar(111)               | NO   |     | NULL    |       |
+| course | enum('Excel','python','1') | YES  |     | NULL    |       |
+| age    | int unsigned               | YES  |     | NULL    |       |
++--------+----------------------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+
+mysql> insert into student2 values(1,"siddhesh","Excel",27);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student2 values(1,"siddhesh","Excel",2);
+ERROR 3819 (HY000): Check constraint 'student2_chk_1' is violated.
+mysql> insert into student2 values(1,"siddhesh","Excel",27);
+ERROR 1062 (23000): Duplicate entry '1' for key 'student2.s_id'
+mysql> insert into student2 values(null,"siddhesh","Excel",27);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student2 values(null,"siddhi","Excel",27);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> alter table student2 modify name varchar(100) NOT NULL DEFAULT "Not Avaliable";
+Query OK, 3 rows affected (0.11 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student2 values(null,"sagar","3",37);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student2 values(null,"null","3",37);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student2;
++------+----------+--------+------+
+| s_id | name     | course | age  |
++------+----------+--------+------+
+|    1 | siddhesh | Excel  |   27 |
+| NULL | siddhesh | Excel  |   27 |
+| NULL | siddhi   | Excel  |   27 |
+| NULL | sagar    | 1      |   37 |
+| NULL | null     | 1      |   37 |
++------+----------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student2 values(null,null,"3",37);
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> insert into student2 (s_id,course,age) values(4,"python",20),(6,"Python",56),(7,"suchit",41);
+ERROR 1265 (01000): Data truncated for column 'course' at row 3
+mysql> select * from student2;
++------+----------+--------+------+
+| s_id | name     | course | age  |
++------+----------+--------+------+
+|    1 | siddhesh | Excel  |   27 |
+| NULL | siddhesh | Excel  |   27 |
+| NULL | siddhi   | Excel  |   27 |
+| NULL | sagar    | 1      |   37 |
+| NULL | null     | 1      |   37 |
++------+----------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student2 (s_id,course,age) values(4,"python",20);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student2;
++------+---------------+--------+------+
+| s_id | name          | course | age  |
++------+---------------+--------+------+
+|    1 | siddhesh      | Excel  |   27 |
+| NULL | siddhesh      | Excel  |   27 |
+| NULL | siddhi        | Excel  |   27 |
+| NULL | sagar         | 1      |   37 |
+| NULL | null          | 1      |   37 |
+|    4 | Not Avaliable | python |   20 |
++------+---------------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from department_333;
++------------+-----------+-------------------+----------------------+
+| first_namr | last_name | designation       | email_id             |
++------------+-----------+-------------------+----------------------+
+| Rehan      | Singh     | Project Manager   | rehansingh@gmail.com |
+| Daniel     | Brown     | Associate Manager | NULL                 |
+| Drake      | Hunold    | NULL              | NULL                 |
+| Tony       | NULL      | NULL              | NULL                 |
++------------+-----------+-------------------+----------------------+
+4 rows in set (0.04 sec)
+
+mysql> select * ,ifnull(designation,"Not Avaliable") as designaiton_new from department_333;
++------------+-----------+-------------------+----------------------+-------------------+
+| first_namr | last_name | designation       | email_id             | designaiton_new   |
++------------+-----------+-------------------+----------------------+-------------------+
+| Rehan      | Singh     | Project Manager   | rehansingh@gmail.com | Project Manager   |
+| Daniel     | Brown     | Associate Manager | NULL                 | Associate Manager |
+| Drake      | Hunold    | NULL              | NULL                 | Not Avaliable     |
+| Tony       | NULL      | NULL              | NULL                 | Not Avaliable     |
++------------+-----------+-------------------+----------------------+-------------------+
+4 rows in set (0.02 sec)
+
+mysql> select * ,ifnull(designation,"Not Avaliable")  from department_333;
++------------+-----------+-------------------+----------------------+-------------------------------------+
+| first_namr | last_name | designation       | email_id             | ifnull(designation,"Not Avaliable") |
++------------+-----------+-------------------+----------------------+-------------------------------------+
+| Rehan      | Singh     | Project Manager   | rehansingh@gmail.com | Project Manager                     |
+| Daniel     | Brown     | Associate Manager | NULL                 | Associate Manager                   |
+| Drake      | Hunold    | NULL              | NULL                 | Not Avaliable                       |
+| Tony       | NULL      | NULL              | NULL                 | Not Avaliable                       |
++------------+-----------+-------------------+----------------------+-------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * ,coalesce(designation,"Not Avaliable")  from department_333;
++------------+-----------+-------------------+----------------------+---------------------------------------+
+| first_namr | last_name | designation       | email_id             | coalesce(designation,"Not Avaliable") |
++------------+-----------+-------------------+----------------------+---------------------------------------+
+| Rehan      | Singh     | Project Manager   | rehansingh@gmail.com | Project Manager                       |
+| Daniel     | Brown     | Associate Manager | NULL                 | Associate Manager                     |
+| Drake      | Hunold    | NULL              | NULL                 | Not Avaliable                         |
+| Tony       | NULL      | NULL              | NULL                 | Not Avaliable                         |
++------------+-----------+-------------------+----------------------+---------------------------------------+
+4 rows in set (0.02 sec)
+
+ ysql> select * ,coalesce(emial_id,first_name,last_name, designation)  from department_333;
+ERROR 1054 (42S22): Unknown column 'emial_id' in 'field list'
+mysql> select * ,coalesce(email_id,first_name,last_name, designation)  from department_333;
+ERROR 1054 (42S22): Unknown column 'first_name' in 'field list'
+mysql> select * ,coalesce(email_id,first_namr,last_name, designation)  from department_333;
++------------+-----------+-------------------+----------------------+------------------------------------------------------+
+| first_namr | last_name | designation       | email_id             | coalesce(email_id,first_namr,last_name, designation) |
++------------+-----------+-------------------+----------------------+------------------------------------------------------+
+| Rehan      | Singh     | Project Manager   | rehansingh@gmail.com | rehansingh@gmail.com                                 |
+| Daniel     | Brown     | Associate Manager | NULL                 | Daniel                                               |
+| Drake      | Hunold    | NULL              | NULL                 | Drake                                                |
+| Tony       | NULL      | NULL              | NULL                 | Tony                                                 |
++------------+-----------+-------------------+----------------------+------------------------------------------------------+
+4 rows in set (0.00 sec)

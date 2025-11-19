@@ -1,0 +1,388 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use eclerr_db
+ERROR 1049 (42000): Unknown database 'eclerr_db'
+mysql> use excelr_db
+Database changed
+mysql> select cir(10);
++---------+
+| cir(10) |
++---------+
+|  314.00 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select experience(112);
+ERROR 1172 (42000): Result consisted of more than one row
+mysql> select * from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+106 rows in set (0.02 sec)
+
+mysql> select experience(100);
+ERROR 1172 (42000): Result consisted of more than one row
+mysql> select experience(100);
++-----------------+
+| experience(100) |
++-----------------+
+|              27 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select experience(112);
++-----------------+
+| experience(112) |
++-----------------+
+|              44 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name, experience(emp_id) as exp from myemp;
++--------+-------------------+------+
+| emp_id | emp_name          | exp  |
++--------+-------------------+------+
+|    100 | Steven King       |   27 |
+|    101 | Neena Kochhar     |   38 |
+|    102 | Lex De Haan       |   38 |
+|    103 | Alexander Hunold  |   49 |
+|    104 | Bruce Ernst       |   38 |
+|    105 | David Austin      |   38 |
+|    106 | Valli Pataballa   |   45 |
+|    107 | Diana Lorentz     |   38 |
+|    108 | Nancy Greenberg   |   38 |
+|    109 | Daniel Faviet     |   33 |
+|    110 | John Chen         |   38 |
+|    111 | Ismael Sciarra    |   38 |
+|    112 | Jose Manuel Urman |   44 |
+|    113 | Luis Popp         |   38 |
+|    114 | Den Raphaely      |   38 |
+|    115 | Alexander Khoo    |   42 |
+|    116 | Shelli Baida      |   38 |
+|    117 | Sigal Tobias      |   38 |
+|    118 | Guy Himuro        |   30 |
+|    119 | Karen Colmenares  |   38 |
+|    120 | Matthew Weiss     |   38 |
+|    121 | Adam Fripp        |   35 |
+|    122 | Payam Kaufling    |   38 |
+|    123 | Shanta Vollman    |   38 |
+|    124 | Kevin Mourgos     |   28 |
+|    125 | Julia Nayer       |   38 |
+|    126 | Irene Mikkilineni |   38 |
+|    127 | James Landry      |   47 |
+|    128 | Steven Markle     |   38 |
+|    129 | Laura Bissot      |   38 |
+|    130 | Mozhe Atkinson    |   42 |
+|    131 | James Marlow      |   38 |
+|    132 | TJ Olson          |   38 |
+|    133 | Jason Mallin      |   40 |
+|    134 | Michael Rogers    |   38 |
+|    135 | Ki Gee            |   38 |
+|    136 | Hazel Philtanker  |   35 |
+|    137 | Renske Ladwig     |   25 |
+|    138 | Stephen Stiles    |   38 |
+|    139 | John Seo          |   36 |
+|    140 | Joshua Patel      |   14 |
+|    141 | Trenna Rajs       |   38 |
+|    142 | Curtis Davies     |   39 |
+|    143 | Randall Matos     |   38 |
+|    144 | Peter Vargas      |   27 |
+|    145 | John Russell      |   34 |
+|    146 | Karen Partners    |    6 |
+|    147 | Alberto Errazuriz |   38 |
+|    148 | Gerald Cambrault  |   10 |
+|    149 | Eleni Zlotkey     |   38 |
+|    150 | Peter Tucker      |   38 |
+|    151 | David Bernstein   |   12 |
+|    152 | Peter Hall        |   38 |
+|    153 | Christopher Olsen |   38 |
+|    154 | Nanette Cambrault |   38 |
+|    155 | Oliver Tuvault    |   38 |
+|    156 | Janette King      |   38 |
+|    157 | Patrick Sully     |   23 |
+|    158 | Allan McEwen      |   38 |
+|    159 | Lindsey Smith     |   38 |
+|    160 | Louise Doran      |   22 |
+|    161 | Sarath Sewall     |   38 |
+|    162 | Clara Vishney     |   38 |
+|    163 | Danielle Greene   |   38 |
+|    164 | Mattea Marvins    |   18 |
+|    165 | David Lee         |   38 |
+|    166 | Sundar Ande       |   38 |
+|    167 | Amit Banda        |   38 |
+|    168 | Lisa Ozer         |   38 |
+|    169 | Harrison Bloom    |   26 |
+|    170 | Tayler Fox        |   38 |
+|    171 | William Smith     |   38 |
+|    172 | Elizabeth Bates   |   38 |
+|    173 | Sundita Kumar     |   38 |
+|    174 | Ellen Abel        |   38 |
+|    175 | Alyssa Hutton     |   29 |
+|    176 | Jonathon Taylor   |   38 |
+|    177 | Jack Livingston   |   38 |
+|    179 | Charles Johnson   |   26 |
+|    180 | Winston Taylor    |   38 |
+|    181 | Jean Fleaur       |   38 |
+|    182 | Martha Sullivan   |   38 |
+|    183 | Girard Geoni      |   38 |
+|    184 | Nandita Sarchand  |   13 |
+|    185 | Alexis Bull       |   38 |
+|    186 | Julia Dellinger   |   38 |
+|    187 | Anthony Cabrio    |   18 |
+|    188 | Kelly Chung       |   38 |
+|    189 | Jennifer Dilly    |   38 |
+|    190 | Timothy Gates     |   38 |
+|    191 | Randall Perkins   |   38 |
+|    192 | Sarah Bell        |   38 |
+|    193 | Britney Everett   |   38 |
+|    194 | Samuel McCain     |   25 |
+|    195 | Vance Jones       |   29 |
+|    196 | Alana Walsh       |   38 |
+|    197 | Kevin Feeney      |   38 |
+|    198 | Donald OConnell   |   28 |
+|    199 | Douglas Grant     |   38 |
+|    200 | Jennifer Whalen   |   37 |
+|    201 | Michael Hartstein |   38 |
+|    202 | Pat Fay           |   38 |
+|    203 | Susan Mavris      |   36 |
+|    204 | Hermann Baer      |   38 |
+|    205 | Shelley Higgins   |   38 |
+|    206 | William Gietz     |   28 |
++--------+-------------------+------+
+106 rows in set (0.03 sec)
+
+mysql> select * from books;
++--------+-----------------------+------+
+| bookid | title                 | aid  |
++--------+-----------------------+------+
+|      5 | Night Without End     |    5 |
+|      6 | Fear is the Key       |    5 |
+|      7 | Where Eagles Dare     |    5 |
+|      8 | Sense and Sensibility |    6 |
+|      9 | Pride and Prejudice   |    6 |
+|     10 | Emma                  |    6 |
+|     11 | Five Point Someone    |    7 |
+|     12 | Two States            |    7 |
+|     13 | Salome                |   80 |
+|     14 | The Happy Prince      |   80 |
++--------+-----------------------+------+
+10 rows in set (0.04 sec)
+
+mysql> select * from book_sales;
+Empty set (0.03 sec)
+
+mysql> alter table books add column sales int;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table books drop sales;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table books add column sales int default 0;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++--------+-----------------------+------+-------+
+| bookid | title                 | aid  | sales |
++--------+-----------------------+------+-------+
+|      5 | Night Without End     |    5 |     0 |
+|      6 | Fear is the Key       |    5 |     0 |
+|      7 | Where Eagles Dare     |    5 |     0 |
+|      8 | Sense and Sensibility |    6 |     0 |
+|      9 | Pride and Prejudice   |    6 |     0 |
+|     10 | Emma                  |    6 |     0 |
+|     11 | Five Point Someone    |    7 |     0 |
+|     12 | Two States            |    7 |     0 |
+|     13 | Salome                |   80 |     0 |
+|     14 | The Happy Prince      |   80 |     0 |
++--------+-----------------------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> update table books set sales=sales+8 where bookid=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table books set sales=sales+8 where bookid=6' at line 1
+mysql> update books set sales=sales+8 where bookid=6;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books_sales;
+ERROR 1146 (42S02): Table 'excelr_db.books_sales' doesn't exist
+mysql> select * from book_sales;
++---------+--------+-----------------+----------+---------------------+
+| sale_id | bookid | title           | qty_sold | tos                 |
++---------+--------+-----------------+----------+---------------------+
+|       1 |      6 | Fear is the Key |        8 | 2025-11-05 20:41:21 |
++---------+--------+-----------------+----------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> create table employee(empid int unsigned,nama varchar(111),salary float(12,3));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into employee values (100,'alex',90000),(101,'peter',45000),(102,'drak',65000),(103,'nikita',50000),(104,'tom',65000);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-------+--------+-----------+
+| empid | nama   | salary    |
++-------+--------+-----------+
+|   100 | alex   | 90000.000 |
+|   101 | peter  | 45000.000 |
+|   102 | drak   | 65000.000 |
+|   103 | nikita | 50000.000 |
+|   104 | tom    | 65000.000 |
++-------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table emp_del(emp_id int unsigned,name varchar(111), TOD datetime);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delete from employee where empid=105;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from emp_del;
+Empty set (0.00 sec)
+
+mysql> select * from employee;
++-------+--------+-----------+
+| empid | nama   | salary    |
++-------+--------+-----------+
+|   100 | alex   | 90000.000 |
+|   101 | peter  | 45000.000 |
+|   102 | drak   | 65000.000 |
+|   103 | nikita | 50000.000 |
+|   104 | tom    | 65000.000 |
++-------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> delete from employee where empid=102;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from emp_del;
++--------+------+---------------------+
+| emp_id | name | TOD                 |
++--------+------+---------------------+
+|    102 | drak | 2025-11-05 20:58:45 |
++--------+------+---------------------+
+1 row in set (0.00 sec)
+
+mysql>S

@@ -1,0 +1,645 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> create table wmp_working(emp_id int unsinged,name varchar(111),working_hrs int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unsinged,name varchar(111),working_hrs int)' at line 1
+mysql> create table wmp_working(emp_id int unsigned,name varchar(111),working_hrs int);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> drop table wmp_working;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table emp_working(emp_id int unsigned,name varchar(111),working_hrs int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc emp_working;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| emp_id      | int unsigned | YES  |     | NULL    |       |
+| name        | varchar(111) | YES  |     | NULL    |       |
+| working_hrs | int          | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into emp_working values(100,"sandip",-52);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select* from emp_working;
++--------+--------+-------------+
+| emp_id | name   | working_hrs |
++--------+--------+-------------+
+|    100 | sandip |          52 |
++--------+--------+-------------+
+1 row in set (0.01 sec)
+
+mysql> insert into emp_working values(101,"mahesh",-2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from emp_working;
++--------+--------+-------------+
+| emp_id | name   | working_hrs |
++--------+--------+-------------+
+|    100 | sandip |          52 |
+|    101 | mahesh |           2 |
++--------+--------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> call proc_except;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.02 sec)
+
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.03 sec)
+
++-----------------------------------------------------------------------------+
+| msg                                                                         |
++-----------------------------------------------------------------------------+
+| the table is not avaliable inside the database that we are trying to search |
++-----------------------------------------------------------------------------+
+1 row in set (0.04 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> call proc_except_continue;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.02 sec)
+
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.03 sec)
+
++------------------+
+| msg              |
++------------------+
+| check your query |
++------------------+
+1 row in set (0.04 sec)
+
++-----------+-------+
+| drinkname | rate  |
++-----------+-------+
+| Tea       |  5.00 |
+| Coffee    | 15.00 |
+| Pepsi     | 20.00 |
++-----------+-------+
+3 rows in set (0.04 sec)
+
++----------+-------+
+| mealname | rate  |
++----------+-------+
+| Omlet    | 10.50 |
+| Sausage  | 15.50 |
+| Pancake  | 40.75 |
++----------+-------+
+3 rows in set (0.05 sec)
+
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+| employeeNumber | lastName  | firstName | extension | email                           | officeCode | reportsTo | jobTitle             |
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+|           1002 | Murphy    | Diane     | x5800     | dmurphy@classicmodelcars.com    | 1          |      NULL | President            |
+|           1056 | Patterson | Mary      | x4611     | mpatterso@classicmodelcars.com  | 1          |      1002 | VP Sales             |
+|           1076 | Firrelli  | Jeff      | x9273     | jfirrelli@classicmodelcars.com  | 1          |      1002 | VP Marketing         |
+|           1088 | Patterson | William   | x4871     | wpatterson@classicmodelcars.com | 6          |      1056 | Sales Manager (APAC) |
+|           1102 | Bondur    | Gerard    | x5408     | gbondur@classicmodelcars.com    | 4          |      1056 | Sale Manager (EMEA)  |
+|           1143 | Bow       | Anthony   | x5428     | abow@classicmodelcars.com       | 1          |      1056 | Sales Manager (NA)   |
+|           1165 | Jennings  | Leslie    | x3291     | ljennings@classicmodelcars.com  | 1          |      1143 | Sales Rep            |
+|           1166 | Thompson  | Leslie    | x4065     | lthompson@classicmodelcars.com  | 1          |      1143 | Sales Rep            |
+|           1188 | Firrelli  | Julie     | x2173     | jfirrelli@classicmodelcars.com  | 2          |      1143 | Sales Rep            |
+|           1216 | Patterson | Steve     | x4334     | spatterson@classicmodelcars.com | 2          |      1143 | Sales Rep            |
+|           1286 | Tseng     | Foon Yue  | x2248     | ftseng@classicmodelcars.com     | 3          |      1143 | Sales Rep            |
+|           1323 | Vanauf    | George    | x4102     | gvanauf@classicmodelcars.com    | 3          |      1143 | Sales Rep            |
+|           1337 | Bondur    | Loui      | x6493     | lbondur@classicmodelcars.com    | 4          |      1102 | Sales Rep            |
+|           1370 | Hernandez | Gerard    | x2028     | ghernande@classicmodelcars.com  | 4          |      1102 | Sales Rep            |
+|           1401 | Castillo  | Pamela    | x2759     | pcastillo@classicmodelcars.com  | 4          |      1102 | Sales Rep            |
+|           1501 | Bott      | Larry     | x2311     | lbott@classicmodelcars.com      | 7          |      1102 | Sales Rep            |
+|           1504 | Jones     | Barry     | x102      | bjones@classicmodelcars.com     | 7          |      1102 | Sales Rep            |
+|           1611 | Fixter    | Andy      | x101      | afixter@classicmodelcars.com    | 6          |      1088 | Sales Rep            |
+|           1612 | Marsh     | Peter     | x102      | pmarsh@classicmodelcars.com     | 6          |      1088 | Sales Rep            |
+|           1619 | King      | Tom       | x103      | tking@classicmodelcars.com      | 6          |      1088 | Sales Rep            |
+|           1621 | Nishi     | Mami      | x101      | mnishi@classicmodelcars.com     | 5          |      1056 | Sales Rep            |
+|           1625 | Kato      | Yoshimi   | x102      | ykato@classicmodelcars.com      | 5          |      1621 | Sales Rep            |
+|           1702 | Gerard    | Martin    | x2312     | mgerard@classicmodelcars.com    | 4          |      1102 | Sales Rep            |
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+23 rows in set (0.07 sec)
+
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> select emp_id,condat(first_name," ",last_name) as emp_name,hired_date,job_id,dep_id,sum(salary) over(partition by dep_id order by dep_id desc) as total_sal from myemp;
+ERROR 1305 (42000): FUNCTION excelr_db.condat does not exist
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hired_date,job_id,dep_id,sum(salary) over(partition by dep_id order by dep_id desc) as total_sal from myemp;
+ERROR 1054 (42S22): Unknown column 'hired_date' in 'field list'
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hire_date,job_id,dep_id,sum(salary) over(partition by dep_id order by dep_id desc) as total_sal from myemp;
++--------+-------------------+------------+------------+--------+-----------+
+| emp_id | emp_name          | hire_date  | job_id     | dep_id | total_sal |
++--------+-------------------+------------+------------+--------+-----------+
+|    200 | Jennifer Whalen   | 1988-09-25 | AD_ASST    |     10 |   4400.00 |
+|    201 | Michael Hartstein | 1987-09-26 | MK_MAN     |     20 |  19000.00 |
+|    202 | Pat Fay           | 1987-09-27 | MK_REP     |     20 |  19000.00 |
+|    114 | Den Raphaely      | 1987-07-01 | PU_MAN     |     30 |  24900.00 |
+|    115 | Alexander Khoo    | 1983-07-02 | PU_CLERK   |     30 |  24900.00 |
+|    116 | Shelli Baida      | 1987-07-03 | PU_CLERK   |     30 |  24900.00 |
+|    117 | Sigal Tobias      | 1987-07-04 | PU_CLERK   |     30 |  24900.00 |
+|    118 | Guy Himuro        | 1995-07-05 | PU_CLERK   |     30 |  24900.00 |
+|    119 | Karen Colmenares  | 1987-07-06 | PU_CLERK   |     30 |  24900.00 |
+|    203 | Susan Mavris      | 1989-09-28 | HR_REP     |     40 |   6500.00 |
+|    120 | Matthew Weiss     | 1987-07-07 | ST_MAN     |     50 | 156400.00 |
+|    121 | Adam Fripp        | 1990-07-08 | ST_MAN     |     50 | 156400.00 |
+|    122 | Payam Kaufling    | 1987-07-09 | ST_MAN     |     50 | 156400.00 |
+|    123 | Shanta Vollman    | 1987-07-10 | ST_MAN     |     50 | 156400.00 |
+|    124 | Kevin Mourgos     | 1997-07-11 | ST_MAN     |     50 | 156400.00 |
+|    125 | Julia Nayer       | 1987-07-12 | ST_CLERK   |     50 | 156400.00 |
+|    126 | Irene Mikkilineni | 1987-07-13 | ST_CLERK   |     50 | 156400.00 |
+|    127 | James Landry      | 1978-07-14 | ST_CLERK   |     50 | 156400.00 |
+|    128 | Steven Markle     | 1987-07-15 | ST_CLERK   |     50 | 156400.00 |
+|    129 | Laura Bissot      | 1987-07-16 | ST_CLERK   |     50 | 156400.00 |
+|    130 | Mozhe Atkinson    | 1983-07-17 | ST_CLERK   |     50 | 156400.00 |
+|    131 | James Marlow      | 1987-07-18 | ST_CLERK   |     50 | 156400.00 |
+|    132 | TJ Olson          | 1987-07-19 | ST_CLERK   |     50 | 156400.00 |
+|    133 | Jason Mallin      | 1985-07-20 | ST_CLERK   |     50 | 156400.00 |
+|    134 | Michael Rogers    | 1987-07-21 | ST_CLERK   |     50 | 156400.00 |
+|    135 | Ki Gee            | 1987-07-22 | ST_CLERK   |     50 | 156400.00 |
+|    136 | Hazel Philtanker  | 1990-07-23 | ST_CLERK   |     50 | 156400.00 |
+|    137 | Renske Ladwig     | 2000-07-24 | ST_CLERK   |     50 | 156400.00 |
+|    138 | Stephen Stiles    | 1987-07-25 | ST_CLERK   |     50 | 156400.00 |
+|    139 | John Seo          | 1989-07-26 | ST_CLERK   |     50 | 156400.00 |
+|    140 | Joshua Patel      | 2011-07-27 | ST_CLERK   |     50 | 156400.00 |
+|    141 | Trenna Rajs       | 1987-07-28 | ST_CLERK   |     50 | 156400.00 |
+|    142 | Curtis Davies     | 1986-07-29 | ST_CLERK   |     50 | 156400.00 |
+|    143 | Randall Matos     | 1987-07-30 | ST_CLERK   |     50 | 156400.00 |
+|    144 | Peter Vargas      | 1998-07-31 | ST_CLERK   |     50 | 156400.00 |
+|    180 | Winston Taylor    | 1987-09-05 | SH_CLERK   |     50 | 156400.00 |
+|    181 | Jean Fleaur       | 1987-09-06 | SH_CLERK   |     50 | 156400.00 |
+|    182 | Martha Sullivan   | 1987-09-07 | SH_CLERK   |     50 | 156400.00 |
+|    183 | Girard Geoni      | 1987-09-08 | SH_CLERK   |     50 | 156400.00 |
+|    184 | Nandita Sarchand  | 2012-09-09 | SH_CLERK   |     50 | 156400.00 |
+|    185 | Alexis Bull       | 1987-09-10 | SH_CLERK   |     50 | 156400.00 |
+|    186 | Julia Dellinger   | 1987-09-11 | SH_CLERK   |     50 | 156400.00 |
+|    187 | Anthony Cabrio    | 2007-09-12 | SH_CLERK   |     50 | 156400.00 |
+|    188 | Kelly Chung       | 1987-09-13 | SH_CLERK   |     50 | 156400.00 |
+|    189 | Jennifer Dilly    | 1987-09-14 | SH_CLERK   |     50 | 156400.00 |
+|    190 | Timothy Gates     | 1987-09-15 | SH_CLERK   |     50 | 156400.00 |
+|    191 | Randall Perkins   | 1987-09-16 | SH_CLERK   |     50 | 156400.00 |
+|    192 | Sarah Bell        | 1987-09-17 | SH_CLERK   |     50 | 156400.00 |
+|    193 | Britney Everett   | 1987-09-18 | SH_CLERK   |     50 | 156400.00 |
+|    194 | Samuel McCain     | 2000-09-19 | SH_CLERK   |     50 | 156400.00 |
+|    195 | Vance Jones       | 1996-09-20 | SH_CLERK   |     50 | 156400.00 |
+|    196 | Alana Walsh       | 1987-09-21 | SH_CLERK   |     50 | 156400.00 |
+|    197 | Kevin Feeney      | 1987-09-22 | SH_CLERK   |     50 | 156400.00 |
+|    198 | Donald OConnell   | 1997-09-23 | SH_CLERK   |     50 | 156400.00 |
+|    199 | Douglas Grant     | 1987-09-24 | SH_CLERK   |     50 | 156400.00 |
+|    103 | Alexander Hunold  | 1976-06-20 | IT_PROG    |     60 |  28800.00 |
+|    104 | Bruce Ernst       | 1987-06-21 | IT_PROG    |     60 |  28800.00 |
+|    105 | David Austin      | 1987-06-22 | IT_PROG    |     60 |  28800.00 |
+|    106 | Valli Pataballa   | 1980-06-23 | IT_PROG    |     60 |  28800.00 |
+|    107 | Diana Lorentz     | 1987-06-24 | IT_PROG    |     60 |  28800.00 |
+|    204 | Hermann Baer      | 1987-09-29 | PR_REP     |     70 |  10000.00 |
+|    145 | John Russell      | 1991-08-01 | SA_MAN     |     80 | 304500.00 |
+|    146 | Karen Partners    | 2019-08-02 | SA_MAN     |     80 | 304500.00 |
+|    147 | Alberto Errazuriz | 1987-08-03 | SA_MAN     |     80 | 304500.00 |
+|    148 | Gerald Cambrault  | 2015-08-04 | SA_MAN     |     80 | 304500.00 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | SA_MAN     |     80 | 304500.00 |
+|    150 | Peter Tucker      | 1987-08-06 | SA_REP     |     80 | 304500.00 |
+|    151 | David Bernstein   | 2013-08-07 | SA_REP     |     80 | 304500.00 |
+|    152 | Peter Hall        | 1987-08-08 | SA_REP     |     80 | 304500.00 |
+|    153 | Christopher Olsen | 1987-08-09 | SA_REP     |     80 | 304500.00 |
+|    154 | Nanette Cambrault | 1987-08-10 | SA_REP     |     80 | 304500.00 |
+|    155 | Oliver Tuvault    | 1987-08-11 | SA_REP     |     80 | 304500.00 |
+|    156 | Janette King      | 1987-08-12 | SA_REP     |     80 | 304500.00 |
+|    157 | Patrick Sully     | 2002-08-13 | SA_REP     |     80 | 304500.00 |
+|    158 | Allan McEwen      | 1987-08-14 | SA_REP     |     80 | 304500.00 |
+|    159 | Lindsey Smith     | 1987-08-15 | SA_REP     |     80 | 304500.00 |
+|    160 | Louise Doran      | 2003-08-16 | SA_REP     |     80 | 304500.00 |
+|    161 | Sarath Sewall     | 1987-08-17 | SA_REP     |     80 | 304500.00 |
+|    162 | Clara Vishney     | 1987-08-18 | SA_REP     |     80 | 304500.00 |
+|    163 | Danielle Greene   | 1987-08-19 | SA_REP     |     80 | 304500.00 |
+|    164 | Mattea Marvins    | 2007-08-20 | SA_REP     |     80 | 304500.00 |
+|    165 | David Lee         | 1987-08-21 | SA_REP     |     80 | 304500.00 |
+|    166 | Sundar Ande       | 1987-08-22 | SA_REP     |     80 | 304500.00 |
+|    167 | Amit Banda        | 1987-08-23 | SA_REP     |     80 | 304500.00 |
+|    168 | Lisa Ozer         | 1987-08-24 | SA_REP     |     80 | 304500.00 |
+|    169 | Harrison Bloom    | 1999-08-25 | SA_REP     |     80 | 304500.00 |
+|    170 | Tayler Fox        | 1987-08-26 | SA_REP     |     80 | 304500.00 |
+|    171 | William Smith     | 1987-08-27 | SA_REP     |     80 | 304500.00 |
+|    172 | Elizabeth Bates   | 1987-08-28 | SA_REP     |     80 | 304500.00 |
+|    173 | Sundita Kumar     | 1987-08-29 | SA_REP     |     80 | 304500.00 |
+|    174 | Ellen Abel        | 1987-08-30 | SA_REP     |     80 | 304500.00 |
+|    175 | Alyssa Hutton     | 1996-08-31 | SA_REP     |     80 | 304500.00 |
+|    176 | Jonathon Taylor   | 1987-09-01 | SA_REP     |     80 | 304500.00 |
+|    177 | Jack Livingston   | 1987-09-02 | SA_REP     |     80 | 304500.00 |
+|    179 | Charles Johnson   | 1999-09-04 | SA_REP     |     80 | 304500.00 |
+|    100 | Steven King       | 1998-06-17 | AD_PRES    |     90 |  58000.00 |
+|    101 | Neena Kochhar     | 1987-06-18 | AD_VP      |     90 |  58000.00 |
+|    102 | Lex De Haan       | 1987-06-19 | AD_VP      |     90 |  58000.00 |
+|    108 | Nancy Greenberg   | 1987-06-25 | FI_MGR     |    100 |  51600.00 |
+|    109 | Daniel Faviet     | 1992-06-26 | FI_ACCOUNT |    100 |  51600.00 |
+|    110 | John Chen         | 1987-06-27 | FI_ACCOUNT |    100 |  51600.00 |
+|    111 | Ismael Sciarra    | 1987-06-28 | FI_ACCOUNT |    100 |  51600.00 |
+|    112 | Jose Manuel Urman | 1981-06-29 | FI_ACCOUNT |    100 |  51600.00 |
+|    113 | Luis Popp         | 1987-06-30 | FI_ACCOUNT |    100 |  51600.00 |
+|    205 | Shelley Higgins   | 1987-09-30 | AC_MGR     |    110 |  20300.00 |
+|    206 | William Gietz     | 1997-10-01 | AC_ACCOUNT |    110 |  20300.00 |
++--------+-------------------+------------+------------+--------+-----------+
+106 rows in set (0.01 sec)
+
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hire_date,job_id,dep_id,sum(salary) over(partition by dep_id ) as total_sal from myemp order by dep_id ;
++--------+-------------------+------------+------------+--------+-----------+
+| emp_id | emp_name          | hire_date  | job_id     | dep_id | total_sal |
++--------+-------------------+------------+------------+--------+-----------+
+|    200 | Jennifer Whalen   | 1988-09-25 | AD_ASST    |     10 |   4400.00 |
+|    201 | Michael Hartstein | 1987-09-26 | MK_MAN     |     20 |  19000.00 |
+|    202 | Pat Fay           | 1987-09-27 | MK_REP     |     20 |  19000.00 |
+|    114 | Den Raphaely      | 1987-07-01 | PU_MAN     |     30 |  24900.00 |
+|    115 | Alexander Khoo    | 1983-07-02 | PU_CLERK   |     30 |  24900.00 |
+|    116 | Shelli Baida      | 1987-07-03 | PU_CLERK   |     30 |  24900.00 |
+|    117 | Sigal Tobias      | 1987-07-04 | PU_CLERK   |     30 |  24900.00 |
+|    118 | Guy Himuro        | 1995-07-05 | PU_CLERK   |     30 |  24900.00 |
+|    119 | Karen Colmenares  | 1987-07-06 | PU_CLERK   |     30 |  24900.00 |
+|    203 | Susan Mavris      | 1989-09-28 | HR_REP     |     40 |   6500.00 |
+|    120 | Matthew Weiss     | 1987-07-07 | ST_MAN     |     50 | 156400.00 |
+|    121 | Adam Fripp        | 1990-07-08 | ST_MAN     |     50 | 156400.00 |
+|    122 | Payam Kaufling    | 1987-07-09 | ST_MAN     |     50 | 156400.00 |
+|    123 | Shanta Vollman    | 1987-07-10 | ST_MAN     |     50 | 156400.00 |
+|    124 | Kevin Mourgos     | 1997-07-11 | ST_MAN     |     50 | 156400.00 |
+|    125 | Julia Nayer       | 1987-07-12 | ST_CLERK   |     50 | 156400.00 |
+|    126 | Irene Mikkilineni | 1987-07-13 | ST_CLERK   |     50 | 156400.00 |
+|    127 | James Landry      | 1978-07-14 | ST_CLERK   |     50 | 156400.00 |
+|    128 | Steven Markle     | 1987-07-15 | ST_CLERK   |     50 | 156400.00 |
+|    129 | Laura Bissot      | 1987-07-16 | ST_CLERK   |     50 | 156400.00 |
+|    130 | Mozhe Atkinson    | 1983-07-17 | ST_CLERK   |     50 | 156400.00 |
+|    131 | James Marlow      | 1987-07-18 | ST_CLERK   |     50 | 156400.00 |
+|    132 | TJ Olson          | 1987-07-19 | ST_CLERK   |     50 | 156400.00 |
+|    133 | Jason Mallin      | 1985-07-20 | ST_CLERK   |     50 | 156400.00 |
+|    134 | Michael Rogers    | 1987-07-21 | ST_CLERK   |     50 | 156400.00 |
+|    135 | Ki Gee            | 1987-07-22 | ST_CLERK   |     50 | 156400.00 |
+|    136 | Hazel Philtanker  | 1990-07-23 | ST_CLERK   |     50 | 156400.00 |
+|    137 | Renske Ladwig     | 2000-07-24 | ST_CLERK   |     50 | 156400.00 |
+|    138 | Stephen Stiles    | 1987-07-25 | ST_CLERK   |     50 | 156400.00 |
+|    139 | John Seo          | 1989-07-26 | ST_CLERK   |     50 | 156400.00 |
+|    140 | Joshua Patel      | 2011-07-27 | ST_CLERK   |     50 | 156400.00 |
+|    141 | Trenna Rajs       | 1987-07-28 | ST_CLERK   |     50 | 156400.00 |
+|    142 | Curtis Davies     | 1986-07-29 | ST_CLERK   |     50 | 156400.00 |
+|    143 | Randall Matos     | 1987-07-30 | ST_CLERK   |     50 | 156400.00 |
+|    144 | Peter Vargas      | 1998-07-31 | ST_CLERK   |     50 | 156400.00 |
+|    180 | Winston Taylor    | 1987-09-05 | SH_CLERK   |     50 | 156400.00 |
+|    181 | Jean Fleaur       | 1987-09-06 | SH_CLERK   |     50 | 156400.00 |
+|    182 | Martha Sullivan   | 1987-09-07 | SH_CLERK   |     50 | 156400.00 |
+|    183 | Girard Geoni      | 1987-09-08 | SH_CLERK   |     50 | 156400.00 |
+|    184 | Nandita Sarchand  | 2012-09-09 | SH_CLERK   |     50 | 156400.00 |
+|    185 | Alexis Bull       | 1987-09-10 | SH_CLERK   |     50 | 156400.00 |
+|    186 | Julia Dellinger   | 1987-09-11 | SH_CLERK   |     50 | 156400.00 |
+|    187 | Anthony Cabrio    | 2007-09-12 | SH_CLERK   |     50 | 156400.00 |
+|    188 | Kelly Chung       | 1987-09-13 | SH_CLERK   |     50 | 156400.00 |
+|    189 | Jennifer Dilly    | 1987-09-14 | SH_CLERK   |     50 | 156400.00 |
+|    190 | Timothy Gates     | 1987-09-15 | SH_CLERK   |     50 | 156400.00 |
+|    191 | Randall Perkins   | 1987-09-16 | SH_CLERK   |     50 | 156400.00 |
+|    192 | Sarah Bell        | 1987-09-17 | SH_CLERK   |     50 | 156400.00 |
+|    193 | Britney Everett   | 1987-09-18 | SH_CLERK   |     50 | 156400.00 |
+|    194 | Samuel McCain     | 2000-09-19 | SH_CLERK   |     50 | 156400.00 |
+|    195 | Vance Jones       | 1996-09-20 | SH_CLERK   |     50 | 156400.00 |
+|    196 | Alana Walsh       | 1987-09-21 | SH_CLERK   |     50 | 156400.00 |
+|    197 | Kevin Feeney      | 1987-09-22 | SH_CLERK   |     50 | 156400.00 |
+|    198 | Donald OConnell   | 1997-09-23 | SH_CLERK   |     50 | 156400.00 |
+|    199 | Douglas Grant     | 1987-09-24 | SH_CLERK   |     50 | 156400.00 |
+|    103 | Alexander Hunold  | 1976-06-20 | IT_PROG    |     60 |  28800.00 |
+|    104 | Bruce Ernst       | 1987-06-21 | IT_PROG    |     60 |  28800.00 |
+|    105 | David Austin      | 1987-06-22 | IT_PROG    |     60 |  28800.00 |
+|    106 | Valli Pataballa   | 1980-06-23 | IT_PROG    |     60 |  28800.00 |
+|    107 | Diana Lorentz     | 1987-06-24 | IT_PROG    |     60 |  28800.00 |
+|    204 | Hermann Baer      | 1987-09-29 | PR_REP     |     70 |  10000.00 |
+|    145 | John Russell      | 1991-08-01 | SA_MAN     |     80 | 304500.00 |
+|    146 | Karen Partners    | 2019-08-02 | SA_MAN     |     80 | 304500.00 |
+|    147 | Alberto Errazuriz | 1987-08-03 | SA_MAN     |     80 | 304500.00 |
+|    148 | Gerald Cambrault  | 2015-08-04 | SA_MAN     |     80 | 304500.00 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | SA_MAN     |     80 | 304500.00 |
+|    150 | Peter Tucker      | 1987-08-06 | SA_REP     |     80 | 304500.00 |
+|    151 | David Bernstein   | 2013-08-07 | SA_REP     |     80 | 304500.00 |
+|    152 | Peter Hall        | 1987-08-08 | SA_REP     |     80 | 304500.00 |
+|    153 | Christopher Olsen | 1987-08-09 | SA_REP     |     80 | 304500.00 |
+|    154 | Nanette Cambrault | 1987-08-10 | SA_REP     |     80 | 304500.00 |
+|    155 | Oliver Tuvault    | 1987-08-11 | SA_REP     |     80 | 304500.00 |
+|    156 | Janette King      | 1987-08-12 | SA_REP     |     80 | 304500.00 |
+|    157 | Patrick Sully     | 2002-08-13 | SA_REP     |     80 | 304500.00 |
+|    158 | Allan McEwen      | 1987-08-14 | SA_REP     |     80 | 304500.00 |
+|    159 | Lindsey Smith     | 1987-08-15 | SA_REP     |     80 | 304500.00 |
+|    160 | Louise Doran      | 2003-08-16 | SA_REP     |     80 | 304500.00 |
+|    161 | Sarath Sewall     | 1987-08-17 | SA_REP     |     80 | 304500.00 |
+|    162 | Clara Vishney     | 1987-08-18 | SA_REP     |     80 | 304500.00 |
+|    163 | Danielle Greene   | 1987-08-19 | SA_REP     |     80 | 304500.00 |
+|    164 | Mattea Marvins    | 2007-08-20 | SA_REP     |     80 | 304500.00 |
+|    165 | David Lee         | 1987-08-21 | SA_REP     |     80 | 304500.00 |
+|    166 | Sundar Ande       | 1987-08-22 | SA_REP     |     80 | 304500.00 |
+|    167 | Amit Banda        | 1987-08-23 | SA_REP     |     80 | 304500.00 |
+|    168 | Lisa Ozer         | 1987-08-24 | SA_REP     |     80 | 304500.00 |
+|    169 | Harrison Bloom    | 1999-08-25 | SA_REP     |     80 | 304500.00 |
+|    170 | Tayler Fox        | 1987-08-26 | SA_REP     |     80 | 304500.00 |
+|    171 | William Smith     | 1987-08-27 | SA_REP     |     80 | 304500.00 |
+|    172 | Elizabeth Bates   | 1987-08-28 | SA_REP     |     80 | 304500.00 |
+|    173 | Sundita Kumar     | 1987-08-29 | SA_REP     |     80 | 304500.00 |
+|    174 | Ellen Abel        | 1987-08-30 | SA_REP     |     80 | 304500.00 |
+|    175 | Alyssa Hutton     | 1996-08-31 | SA_REP     |     80 | 304500.00 |
+|    176 | Jonathon Taylor   | 1987-09-01 | SA_REP     |     80 | 304500.00 |
+|    177 | Jack Livingston   | 1987-09-02 | SA_REP     |     80 | 304500.00 |
+|    179 | Charles Johnson   | 1999-09-04 | SA_REP     |     80 | 304500.00 |
+|    100 | Steven King       | 1998-06-17 | AD_PRES    |     90 |  58000.00 |
+|    101 | Neena Kochhar     | 1987-06-18 | AD_VP      |     90 |  58000.00 |
+|    102 | Lex De Haan       | 1987-06-19 | AD_VP      |     90 |  58000.00 |
+|    108 | Nancy Greenberg   | 1987-06-25 | FI_MGR     |    100 |  51600.00 |
+|    109 | Daniel Faviet     | 1992-06-26 | FI_ACCOUNT |    100 |  51600.00 |
+|    110 | John Chen         | 1987-06-27 | FI_ACCOUNT |    100 |  51600.00 |
+|    111 | Ismael Sciarra    | 1987-06-28 | FI_ACCOUNT |    100 |  51600.00 |
+|    112 | Jose Manuel Urman | 1981-06-29 | FI_ACCOUNT |    100 |  51600.00 |
+|    113 | Luis Popp         | 1987-06-30 | FI_ACCOUNT |    100 |  51600.00 |
+|    205 | Shelley Higgins   | 1987-09-30 | AC_MGR     |    110 |  20300.00 |
+|    206 | William Gietz     | 1997-10-01 | AC_ACCOUNT |    110 |  20300.00 |
++--------+-------------------+------------+------------+--------+-----------+
+106 rows in set (0.00 sec)
+
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hire_date,job_id,dep_id,row_number() over() as serial_number from myemp;
++--------+-------------------+------------+------------+--------+---------------+
+| emp_id | emp_name          | hire_date  | job_id     | dep_id | serial_number |
++--------+-------------------+------------+------------+--------+---------------+
+|    100 | Steven King       | 1998-06-17 | AD_PRES    |     90 |             1 |
+|    101 | Neena Kochhar     | 1987-06-18 | AD_VP      |     90 |             2 |
+|    102 | Lex De Haan       | 1987-06-19 | AD_VP      |     90 |             3 |
+|    103 | Alexander Hunold  | 1976-06-20 | IT_PROG    |     60 |             4 |
+|    104 | Bruce Ernst       | 1987-06-21 | IT_PROG    |     60 |             5 |
+|    105 | David Austin      | 1987-06-22 | IT_PROG    |     60 |             6 |
+|    106 | Valli Pataballa   | 1980-06-23 | IT_PROG    |     60 |             7 |
+|    107 | Diana Lorentz     | 1987-06-24 | IT_PROG    |     60 |             8 |
+|    108 | Nancy Greenberg   | 1987-06-25 | FI_MGR     |    100 |             9 |
+|    109 | Daniel Faviet     | 1992-06-26 | FI_ACCOUNT |    100 |            10 |
+|    110 | John Chen         | 1987-06-27 | FI_ACCOUNT |    100 |            11 |
+|    111 | Ismael Sciarra    | 1987-06-28 | FI_ACCOUNT |    100 |            12 |
+|    112 | Jose Manuel Urman | 1981-06-29 | FI_ACCOUNT |    100 |            13 |
+|    113 | Luis Popp         | 1987-06-30 | FI_ACCOUNT |    100 |            14 |
+|    114 | Den Raphaely      | 1987-07-01 | PU_MAN     |     30 |            15 |
+|    115 | Alexander Khoo    | 1983-07-02 | PU_CLERK   |     30 |            16 |
+|    116 | Shelli Baida      | 1987-07-03 | PU_CLERK   |     30 |            17 |
+|    117 | Sigal Tobias      | 1987-07-04 | PU_CLERK   |     30 |            18 |
+|    118 | Guy Himuro        | 1995-07-05 | PU_CLERK   |     30 |            19 |
+|    119 | Karen Colmenares  | 1987-07-06 | PU_CLERK   |     30 |            20 |
+|    120 | Matthew Weiss     | 1987-07-07 | ST_MAN     |     50 |            21 |
+|    121 | Adam Fripp        | 1990-07-08 | ST_MAN     |     50 |            22 |
+|    122 | Payam Kaufling    | 1987-07-09 | ST_MAN     |     50 |            23 |
+|    123 | Shanta Vollman    | 1987-07-10 | ST_MAN     |     50 |            24 |
+|    124 | Kevin Mourgos     | 1997-07-11 | ST_MAN     |     50 |            25 |
+|    125 | Julia Nayer       | 1987-07-12 | ST_CLERK   |     50 |            26 |
+|    126 | Irene Mikkilineni | 1987-07-13 | ST_CLERK   |     50 |            27 |
+|    127 | James Landry      | 1978-07-14 | ST_CLERK   |     50 |            28 |
+|    128 | Steven Markle     | 1987-07-15 | ST_CLERK   |     50 |            29 |
+|    129 | Laura Bissot      | 1987-07-16 | ST_CLERK   |     50 |            30 |
+|    130 | Mozhe Atkinson    | 1983-07-17 | ST_CLERK   |     50 |            31 |
+|    131 | James Marlow      | 1987-07-18 | ST_CLERK   |     50 |            32 |
+|    132 | TJ Olson          | 1987-07-19 | ST_CLERK   |     50 |            33 |
+|    133 | Jason Mallin      | 1985-07-20 | ST_CLERK   |     50 |            34 |
+|    134 | Michael Rogers    | 1987-07-21 | ST_CLERK   |     50 |            35 |
+|    135 | Ki Gee            | 1987-07-22 | ST_CLERK   |     50 |            36 |
+|    136 | Hazel Philtanker  | 1990-07-23 | ST_CLERK   |     50 |            37 |
+|    137 | Renske Ladwig     | 2000-07-24 | ST_CLERK   |     50 |            38 |
+|    138 | Stephen Stiles    | 1987-07-25 | ST_CLERK   |     50 |            39 |
+|    139 | John Seo          | 1989-07-26 | ST_CLERK   |     50 |            40 |
+|    140 | Joshua Patel      | 2011-07-27 | ST_CLERK   |     50 |            41 |
+|    141 | Trenna Rajs       | 1987-07-28 | ST_CLERK   |     50 |            42 |
+|    142 | Curtis Davies     | 1986-07-29 | ST_CLERK   |     50 |            43 |
+|    143 | Randall Matos     | 1987-07-30 | ST_CLERK   |     50 |            44 |
+|    144 | Peter Vargas      | 1998-07-31 | ST_CLERK   |     50 |            45 |
+|    145 | John Russell      | 1991-08-01 | SA_MAN     |     80 |            46 |
+|    146 | Karen Partners    | 2019-08-02 | SA_MAN     |     80 |            47 |
+|    147 | Alberto Errazuriz | 1987-08-03 | SA_MAN     |     80 |            48 |
+|    148 | Gerald Cambrault  | 2015-08-04 | SA_MAN     |     80 |            49 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | SA_MAN     |     80 |            50 |
+|    150 | Peter Tucker      | 1987-08-06 | SA_REP     |     80 |            51 |
+|    151 | David Bernstein   | 2013-08-07 | SA_REP     |     80 |            52 |
+|    152 | Peter Hall        | 1987-08-08 | SA_REP     |     80 |            53 |
+|    153 | Christopher Olsen | 1987-08-09 | SA_REP     |     80 |            54 |
+|    154 | Nanette Cambrault | 1987-08-10 | SA_REP     |     80 |            55 |
+|    155 | Oliver Tuvault    | 1987-08-11 | SA_REP     |     80 |            56 |
+|    156 | Janette King      | 1987-08-12 | SA_REP     |     80 |            57 |
+|    157 | Patrick Sully     | 2002-08-13 | SA_REP     |     80 |            58 |
+|    158 | Allan McEwen      | 1987-08-14 | SA_REP     |     80 |            59 |
+|    159 | Lindsey Smith     | 1987-08-15 | SA_REP     |     80 |            60 |
+|    160 | Louise Doran      | 2003-08-16 | SA_REP     |     80 |            61 |
+|    161 | Sarath Sewall     | 1987-08-17 | SA_REP     |     80 |            62 |
+|    162 | Clara Vishney     | 1987-08-18 | SA_REP     |     80 |            63 |
+|    163 | Danielle Greene   | 1987-08-19 | SA_REP     |     80 |            64 |
+|    164 | Mattea Marvins    | 2007-08-20 | SA_REP     |     80 |            65 |
+|    165 | David Lee         | 1987-08-21 | SA_REP     |     80 |            66 |
+|    166 | Sundar Ande       | 1987-08-22 | SA_REP     |     80 |            67 |
+|    167 | Amit Banda        | 1987-08-23 | SA_REP     |     80 |            68 |
+|    168 | Lisa Ozer         | 1987-08-24 | SA_REP     |     80 |            69 |
+|    169 | Harrison Bloom    | 1999-08-25 | SA_REP     |     80 |            70 |
+|    170 | Tayler Fox        | 1987-08-26 | SA_REP     |     80 |            71 |
+|    171 | William Smith     | 1987-08-27 | SA_REP     |     80 |            72 |
+|    172 | Elizabeth Bates   | 1987-08-28 | SA_REP     |     80 |            73 |
+|    173 | Sundita Kumar     | 1987-08-29 | SA_REP     |     80 |            74 |
+|    174 | Ellen Abel        | 1987-08-30 | SA_REP     |     80 |            75 |
+|    175 | Alyssa Hutton     | 1996-08-31 | SA_REP     |     80 |            76 |
+|    176 | Jonathon Taylor   | 1987-09-01 | SA_REP     |     80 |            77 |
+|    177 | Jack Livingston   | 1987-09-02 | SA_REP     |     80 |            78 |
+|    179 | Charles Johnson   | 1999-09-04 | SA_REP     |     80 |            79 |
+|    180 | Winston Taylor    | 1987-09-05 | SH_CLERK   |     50 |            80 |
+|    181 | Jean Fleaur       | 1987-09-06 | SH_CLERK   |     50 |            81 |
+|    182 | Martha Sullivan   | 1987-09-07 | SH_CLERK   |     50 |            82 |
+|    183 | Girard Geoni      | 1987-09-08 | SH_CLERK   |     50 |            83 |
+|    184 | Nandita Sarchand  | 2012-09-09 | SH_CLERK   |     50 |            84 |
+|    185 | Alexis Bull       | 1987-09-10 | SH_CLERK   |     50 |            85 |
+|    186 | Julia Dellinger   | 1987-09-11 | SH_CLERK   |     50 |            86 |
+|    187 | Anthony Cabrio    | 2007-09-12 | SH_CLERK   |     50 |            87 |
+|    188 | Kelly Chung       | 1987-09-13 | SH_CLERK   |     50 |            88 |
+|    189 | Jennifer Dilly    | 1987-09-14 | SH_CLERK   |     50 |            89 |
+|    190 | Timothy Gates     | 1987-09-15 | SH_CLERK   |     50 |            90 |
+|    191 | Randall Perkins   | 1987-09-16 | SH_CLERK   |     50 |            91 |
+|    192 | Sarah Bell        | 1987-09-17 | SH_CLERK   |     50 |            92 |
+|    193 | Britney Everett   | 1987-09-18 | SH_CLERK   |     50 |            93 |
+|    194 | Samuel McCain     | 2000-09-19 | SH_CLERK   |     50 |            94 |
+|    195 | Vance Jones       | 1996-09-20 | SH_CLERK   |     50 |            95 |
+|    196 | Alana Walsh       | 1987-09-21 | SH_CLERK   |     50 |            96 |
+|    197 | Kevin Feeney      | 1987-09-22 | SH_CLERK   |     50 |            97 |
+|    198 | Donald OConnell   | 1997-09-23 | SH_CLERK   |     50 |            98 |
+|    199 | Douglas Grant     | 1987-09-24 | SH_CLERK   |     50 |            99 |
+|    200 | Jennifer Whalen   | 1988-09-25 | AD_ASST    |     10 |           100 |
+|    201 | Michael Hartstein | 1987-09-26 | MK_MAN     |     20 |           101 |
+|    202 | Pat Fay           | 1987-09-27 | MK_REP     |     20 |           102 |
+|    203 | Susan Mavris      | 1989-09-28 | HR_REP     |     40 |           103 |
+|    204 | Hermann Baer      | 1987-09-29 | PR_REP     |     70 |           104 |
+|    205 | Shelley Higgins   | 1987-09-30 | AC_MGR     |    110 |           105 |
+|    206 | William Gietz     | 1997-10-01 | AC_ACCOUNT |    110 |           106 |
++--------+-------------------+------------+------------+--------+---------------+
+106 rows in set (0.00 sec)
+
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hire_date,job_id,dep_id,row_number() over(partion by dep_id) as serial_number from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by dep_id) as serial_number from myemp' at line 1
+mysql> select emp_id,concat(first_name," ",last_name) as emp_name,hire_date,job_id,dep_id,row_number() over(partition by dep_id) as serial_number from myemp;
++--------+-------------------+------------+------------+--------+---------------+
+| emp_id | emp_name          | hire_date  | job_id     | dep_id | serial_number |
++--------+-------------------+------------+------------+--------+---------------+
+|    200 | Jennifer Whalen   | 1988-09-25 | AD_ASST    |     10 |             1 |
+|    201 | Michael Hartstein | 1987-09-26 | MK_MAN     |     20 |             1 |
+|    202 | Pat Fay           | 1987-09-27 | MK_REP     |     20 |             2 |
+|    114 | Den Raphaely      | 1987-07-01 | PU_MAN     |     30 |             1 |
+|    115 | Alexander Khoo    | 1983-07-02 | PU_CLERK   |     30 |             2 |
+|    116 | Shelli Baida      | 1987-07-03 | PU_CLERK   |     30 |             3 |
+|    117 | Sigal Tobias      | 1987-07-04 | PU_CLERK   |     30 |             4 |
+|    118 | Guy Himuro        | 1995-07-05 | PU_CLERK   |     30 |             5 |
+|    119 | Karen Colmenares  | 1987-07-06 | PU_CLERK   |     30 |             6 |
+|    203 | Susan Mavris      | 1989-09-28 | HR_REP     |     40 |             1 |
+|    120 | Matthew Weiss     | 1987-07-07 | ST_MAN     |     50 |             1 |
+|    121 | Adam Fripp        | 1990-07-08 | ST_MAN     |     50 |             2 |
+|    122 | Payam Kaufling    | 1987-07-09 | ST_MAN     |     50 |             3 |
+|    123 | Shanta Vollman    | 1987-07-10 | ST_MAN     |     50 |             4 |
+|    124 | Kevin Mourgos     | 1997-07-11 | ST_MAN     |     50 |             5 |
+|    125 | Julia Nayer       | 1987-07-12 | ST_CLERK   |     50 |             6 |
+|    126 | Irene Mikkilineni | 1987-07-13 | ST_CLERK   |     50 |             7 |
+|    127 | James Landry      | 1978-07-14 | ST_CLERK   |     50 |             8 |
+|    128 | Steven Markle     | 1987-07-15 | ST_CLERK   |     50 |             9 |
+|    129 | Laura Bissot      | 1987-07-16 | ST_CLERK   |     50 |            10 |
+|    130 | Mozhe Atkinson    | 1983-07-17 | ST_CLERK   |     50 |            11 |
+|    131 | James Marlow      | 1987-07-18 | ST_CLERK   |     50 |            12 |
+|    132 | TJ Olson          | 1987-07-19 | ST_CLERK   |     50 |            13 |
+|    133 | Jason Mallin      | 1985-07-20 | ST_CLERK   |     50 |            14 |
+|    134 | Michael Rogers    | 1987-07-21 | ST_CLERK   |     50 |            15 |
+|    135 | Ki Gee            | 1987-07-22 | ST_CLERK   |     50 |            16 |
+|    136 | Hazel Philtanker  | 1990-07-23 | ST_CLERK   |     50 |            17 |
+|    137 | Renske Ladwig     | 2000-07-24 | ST_CLERK   |     50 |            18 |
+|    138 | Stephen Stiles    | 1987-07-25 | ST_CLERK   |     50 |            19 |
+|    139 | John Seo          | 1989-07-26 | ST_CLERK   |     50 |            20 |
+|    140 | Joshua Patel      | 2011-07-27 | ST_CLERK   |     50 |            21 |
+|    141 | Trenna Rajs       | 1987-07-28 | ST_CLERK   |     50 |            22 |
+|    142 | Curtis Davies     | 1986-07-29 | ST_CLERK   |     50 |            23 |
+|    143 | Randall Matos     | 1987-07-30 | ST_CLERK   |     50 |            24 |
+|    144 | Peter Vargas      | 1998-07-31 | ST_CLERK   |     50 |            25 |
+|    180 | Winston Taylor    | 1987-09-05 | SH_CLERK   |     50 |            26 |
+|    181 | Jean Fleaur       | 1987-09-06 | SH_CLERK   |     50 |            27 |
+|    182 | Martha Sullivan   | 1987-09-07 | SH_CLERK   |     50 |            28 |
+|    183 | Girard Geoni      | 1987-09-08 | SH_CLERK   |     50 |            29 |
+|    184 | Nandita Sarchand  | 2012-09-09 | SH_CLERK   |     50 |            30 |
+|    185 | Alexis Bull       | 1987-09-10 | SH_CLERK   |     50 |            31 |
+|    186 | Julia Dellinger   | 1987-09-11 | SH_CLERK   |     50 |            32 |
+|    187 | Anthony Cabrio    | 2007-09-12 | SH_CLERK   |     50 |            33 |
+|    188 | Kelly Chung       | 1987-09-13 | SH_CLERK   |     50 |            34 |
+|    189 | Jennifer Dilly    | 1987-09-14 | SH_CLERK   |     50 |            35 |
+|    190 | Timothy Gates     | 1987-09-15 | SH_CLERK   |     50 |            36 |
+|    191 | Randall Perkins   | 1987-09-16 | SH_CLERK   |     50 |            37 |
+|    192 | Sarah Bell        | 1987-09-17 | SH_CLERK   |     50 |            38 |
+|    193 | Britney Everett   | 1987-09-18 | SH_CLERK   |     50 |            39 |
+|    194 | Samuel McCain     | 2000-09-19 | SH_CLERK   |     50 |            40 |
+|    195 | Vance Jones       | 1996-09-20 | SH_CLERK   |     50 |            41 |
+|    196 | Alana Walsh       | 1987-09-21 | SH_CLERK   |     50 |            42 |
+|    197 | Kevin Feeney      | 1987-09-22 | SH_CLERK   |     50 |            43 |
+|    198 | Donald OConnell   | 1997-09-23 | SH_CLERK   |     50 |            44 |
+|    199 | Douglas Grant     | 1987-09-24 | SH_CLERK   |     50 |            45 |
+|    103 | Alexander Hunold  | 1976-06-20 | IT_PROG    |     60 |             1 |
+|    104 | Bruce Ernst       | 1987-06-21 | IT_PROG    |     60 |             2 |
+|    105 | David Austin      | 1987-06-22 | IT_PROG    |     60 |             3 |
+|    106 | Valli Pataballa   | 1980-06-23 | IT_PROG    |     60 |             4 |
+|    107 | Diana Lorentz     | 1987-06-24 | IT_PROG    |     60 |             5 |
+|    204 | Hermann Baer      | 1987-09-29 | PR_REP     |     70 |             1 |
+|    145 | John Russell      | 1991-08-01 | SA_MAN     |     80 |             1 |
+|    146 | Karen Partners    | 2019-08-02 | SA_MAN     |     80 |             2 |
+|    147 | Alberto Errazuriz | 1987-08-03 | SA_MAN     |     80 |             3 |
+|    148 | Gerald Cambrault  | 2015-08-04 | SA_MAN     |     80 |             4 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | SA_MAN     |     80 |             5 |
+|    150 | Peter Tucker      | 1987-08-06 | SA_REP     |     80 |             6 |
+|    151 | David Bernstein   | 2013-08-07 | SA_REP     |     80 |             7 |
+|    152 | Peter Hall        | 1987-08-08 | SA_REP     |     80 |             8 |
+|    153 | Christopher Olsen | 1987-08-09 | SA_REP     |     80 |             9 |
+|    154 | Nanette Cambrault | 1987-08-10 | SA_REP     |     80 |            10 |
+|    155 | Oliver Tuvault    | 1987-08-11 | SA_REP     |     80 |            11 |
+|    156 | Janette King      | 1987-08-12 | SA_REP     |     80 |            12 |
+|    157 | Patrick Sully     | 2002-08-13 | SA_REP     |     80 |            13 |
+|    158 | Allan McEwen      | 1987-08-14 | SA_REP     |     80 |            14 |
+|    159 | Lindsey Smith     | 1987-08-15 | SA_REP     |     80 |            15 |
+|    160 | Louise Doran      | 2003-08-16 | SA_REP     |     80 |            16 |
+|    161 | Sarath Sewall     | 1987-08-17 | SA_REP     |     80 |            17 |
+|    162 | Clara Vishney     | 1987-08-18 | SA_REP     |     80 |            18 |
+|    163 | Danielle Greene   | 1987-08-19 | SA_REP     |     80 |            19 |
+|    164 | Mattea Marvins    | 2007-08-20 | SA_REP     |     80 |            20 |
+|    165 | David Lee         | 1987-08-21 | SA_REP     |     80 |            21 |
+|    166 | Sundar Ande       | 1987-08-22 | SA_REP     |     80 |            22 |
+|    167 | Amit Banda        | 1987-08-23 | SA_REP     |     80 |            23 |
+|    168 | Lisa Ozer         | 1987-08-24 | SA_REP     |     80 |            24 |
+|    169 | Harrison Bloom    | 1999-08-25 | SA_REP     |     80 |            25 |
+|    170 | Tayler Fox        | 1987-08-26 | SA_REP     |     80 |            26 |
+|    171 | William Smith     | 1987-08-27 | SA_REP     |     80 |            27 |
+|    172 | Elizabeth Bates   | 1987-08-28 | SA_REP     |     80 |            28 |
+|    173 | Sundita Kumar     | 1987-08-29 | SA_REP     |     80 |            29 |
+|    174 | Ellen Abel        | 1987-08-30 | SA_REP     |     80 |            30 |
+|    175 | Alyssa Hutton     | 1996-08-31 | SA_REP     |     80 |            31 |
+|    176 | Jonathon Taylor   | 1987-09-01 | SA_REP     |     80 |            32 |
+|    177 | Jack Livingston   | 1987-09-02 | SA_REP     |     80 |            33 |
+|    179 | Charles Johnson   | 1999-09-04 | SA_REP     |     80 |            34 |
+|    100 | Steven King       | 1998-06-17 | AD_PRES    |     90 |             1 |
+|    101 | Neena Kochhar     | 1987-06-18 | AD_VP      |     90 |             2 |
+|    102 | Lex De Haan       | 1987-06-19 | AD_VP      |     90 |             3 |
+|    108 | Nancy Greenberg   | 1987-06-25 | FI_MGR     |    100 |             1 |
+|    109 | Daniel Faviet     | 1992-06-26 | FI_ACCOUNT |    100 |             2 |
+|    110 | John Chen         | 1987-06-27 | FI_ACCOUNT |    100 |             3 |
+|    111 | Ismael Sciarra    | 1987-06-28 | FI_ACCOUNT |    100 |             4 |
+|    112 | Jose Manuel Urman | 1981-06-29 | FI_ACCOUNT |    100 |             5 |
+|    113 | Luis Popp         | 1987-06-30 | FI_ACCOUNT |    100 |             6 |
+|    205 | Shelley Higgins   | 1987-09-30 | AC_MGR     |    110 |             1 |
+|    206 | William Gietz     | 1997-10-01 | AC_ACCOUNT |    110 |             2 |
++--------+-------------------+------------+------------+--------+---------------+
+106 rows in set (0.00 sec)
+
+mysql>

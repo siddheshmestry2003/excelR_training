@@ -1,0 +1,370 @@
+https://leetcode.com/studyplan/top-sql-50/
+
+
+
+
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 43
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> desc products;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| pcode       | varchar(15)  | YES  |     | NULL    |       |
+| pname       | varchar(70)  | YES  |     | NULL    |       |
+| productLine | varchar(50)  | NO   |     | NULL    |       |
+| pvendor     | varchar(50)  | YES  |     | NULL    |       |
+| qtyInStock  | smallint     | YES  |     | NULL    |       |
+| MRP         | decimal(7,2) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+6 rows in set (0.06 sec)
+
+mysql> select pname from products where qtyinstock=(select max(qtyinstock) from products where productline="classic cars");
++------------------+
+| pname            |
++------------------+
+| 1995 Honda Civic |
++------------------+
+1 row in set (0.02 sec)
+
+mysql> select procuctline,max(qtyinstock) form products group by productline;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'products group by productline' at line 1
+mysql> select procuctline,max(qtyinstock) from products group by productline;
+ERROR 1054 (42S22): Unknown column 'procuctline' in 'field list'
+mysql> select productline,max(qtyinstock) from products group by productline;
++------------------+-----------------+
+| productline      | max(qtyinstock) |
++------------------+-----------------+
+| Motorcycles      |            9997 |
+| Classic Cars     |            9772 |
+| Trucks and Buses |            8258 |
+| Vintage Cars     |            9354 |
+| Planes           |            9653 |
+| Ships            |            7083 |
+| Trains           |            8601 |
++------------------+-----------------+
+7 rows in set (0.02 sec)
+
+mysql> select productline,max(qtyinstock) from products group by productline productline in ("classic cars,"trucks and busse","planes");
+    ">
+    "> ^C
+mysql> select productline,max(qtyinstock) from products group by productline productline in ("classic cars,"trucks and busse","planes");
+    "> ^C
+mysql> select productline,max(qtyinstock) from products group by productline having productline in ("classic cars,"trucks and busse","planes");
+    ">
+    ">
+    "> ^C
+mysql> select productline,max(qtyinstock) from products group by productline having productline in ("classic cars","trucks and busse","planes");
++--------------+-----------------+
+| productline  | max(qtyinstock) |
++--------------+-----------------+
+| Classic Cars |            9772 |
+| Planes       |            9653 |
++--------------+-----------------+
+2 rows in set (0.02 sec)
+
+mysql> select pname,productline from products where qtyinstock in (select max(qtyinstock) from products group by productline having productline in ("ships","trains","classic cars","planes"));
++----------------------------------------+--------------+
+| pname                                  | productline  |
++----------------------------------------+--------------+
+| 1995 Honda Civic                       | Classic Cars |
+| 1950's Chicago Surface Lines Streetcar | Trains       |
+| America West Airlines B757-200         | Planes       |
+| The USS Constitution Ship              | Ships        |
++----------------------------------------+--------------+
+4 rows in set (0.02 sec)
+
+mysql> select * from movies;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.02 sec)
+
+mysql> select title from movies where id not in(select movieid from members);
+Empty set (0.03 sec)
+
+mysql> select title from movies where id not in (select movieid from members where movieid is not null);
++---------------------------+
+| title                     |
++---------------------------+
+| Alvin and the Chipmunks   |
+| The Adventures of Tin Tin |
+| Safe House                |
+| GIA                       |
+| The Dirty Picture         |
++---------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select authors;
+ERROR 1054 (42S22): Unknown column 'authors' in 'field list'
+mysql> select * from authors;
++-----------+-----------------------+
+| author_id | name                  |
++-----------+-----------------------+
+|         1 | vishwas nangare patil |
+|         2 | Thomas Hardy          |
+|         3 | Oscar Wilde           |
+|         4 | Sidney Sheldon        |
+|         5 | Alistair MacLean      |
+|         6 | Jane Austen           |
+|         7 | Chetan Bhagat         |
+|        55 | sane gurugi           |
+|        80 | Oscar Wilde           |
++-----------+-----------------------+
+9 rows in set (0.01 sec)
+
+mysql> select * from books;
++--------+-----------------------+------+-------+
+| bookid | title                 | aid  | sales |
++--------+-----------------------+------+-------+
+|      5 | Night Without End     |    5 |     0 |
+|      6 | Fear is the Key       |    5 |     8 |
+|      7 | Where Eagles Dare     |    5 |     0 |
+|      8 | Sense and Sensibility |    6 |     0 |
+|      9 | Pride and Prejudice   |    6 |     0 |
+|     10 | Emma                  |    6 |     0 |
+|     11 | Five Point Someone    |    7 |     0 |
+|     12 | Two States            |    7 |     0 |
+|     13 | Salome                |   80 |     0 |
+|     14 | The Happy Prince      |   80 |     0 |
++--------+-----------------------+------+-------+
+10 rows in set (0.01 sec)
+
+mysql> slect name form authors where authorid in(select aid from books where sales>1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect name form authors where authorid in(select aid from books where sales>1)' at line 1
+mysql> select name form authors where authorid in(select aid from books where sales>1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'authors where authorid in(select aid from books where sales>1)' at line 1
+mysql> select name from authors where authorid in(select aid from books where sales>1);
+ERROR 1054 (42S22): Unknown column 'authorid' in 'IN/ALL/ANY subquery'
+mysql> select name from authors where author_id in(select aid from books where sales>1);
++------------------+
+| name             |
++------------------+
+| Alistair MacLean |
++------------------+
+1 row in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name,salary from myemp limit 12;
++--------+------------+-----------+----------+
+| emp_id | first_name | last_name | salary   |
++--------+------------+-----------+----------+
+|    100 | Steven     | King      | 24000.00 |
+|    101 | Neena      | Kochhar   | 17000.00 |
+|    102 | Lex        | De Haan   | 17000.00 |
+|    103 | Alexander  | Hunold    |  9000.00 |
+|    104 | Bruce      | Ernst     |  6000.00 |
+|    105 | David      | Austin    |  4800.00 |
+|    106 | Valli      | Pataballa |  4800.00 |
+|    107 | Diana      | Lorentz   |  4200.00 |
+|    108 | Nancy      | Greenberg | 12000.00 |
+|    109 | Daniel     | Faviet    |  9000.00 |
+|    110 | John       | Chen      |  8200.00 |
+|    111 | Ismael     | Sciarra   |  7700.00 |
++--------+------------+-----------+----------+
+12 rows in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name,mgr_id from myemp limit 12;
++--------+------------+-----------+--------+
+| emp_id | first_name | last_name | mgr_id |
++--------+------------+-----------+--------+
+|    100 | Steven     | King      |      0 |
+|    101 | Neena      | Kochhar   |    100 |
+|    102 | Lex        | De Haan   |    100 |
+|    103 | Alexander  | Hunold    |    102 |
+|    104 | Bruce      | Ernst     |    103 |
+|    105 | David      | Austin    |    103 |
+|    106 | Valli      | Pataballa |    103 |
+|    107 | Diana      | Lorentz   |    103 |
+|    108 | Nancy      | Greenberg |    101 |
+|    109 | Daniel     | Faviet    |    108 |
+|    110 | John       | Chen      |    108 |
+|    111 | Ismael     | Sciarra   |    108 |
++--------+------------+-----------+--------+
+12 rows in set (0.01 sec)
+
+mysql> select emp.concat(first_name," ",last_name) as emp_name,mgr.concat(first_name," ",last_name) as manager_name fomr myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fomr myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id' at line 1
+mysql> select emp.concat(first_name," ",last_name) as emp_name,mgr.concat(first_name," ",last_name) as manager_name form myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id' at line 1
+mysql> select emp.concat(first_name," ",last_name) as emp_name,mgr.concat(first_name," ",last_name) as manager_name from myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id;
+ERROR 1305 (42000): FUNCTION emp.concat does not exist
+mysql> select concat(emp.first_name," ",emp.last_name) as emp_name,concat(mgr.first_name," ",mgr.last_name) as manager_name from myemp as emp inner join myemp as mgr on emp.mgr_id=mgr.emp_id;
++-------------------+-------------------+
+| emp_name          | manager_name      |
++-------------------+-------------------+
+| Michael Hartstein | Steven King       |
+| Eleni Zlotkey     | Steven King       |
+| Gerald Cambrault  | Steven King       |
+| Alberto Errazuriz | Steven King       |
+| Karen Partners    | Steven King       |
+| John Russell      | Steven King       |
+| Kevin Mourgos     | Steven King       |
+| Shanta Vollman    | Steven King       |
+| Payam Kaufling    | Steven King       |
+| Adam Fripp        | Steven King       |
+| Matthew Weiss     | Steven King       |
+| Den Raphaely      | Steven King       |
+| Lex De Haan       | Steven King       |
+| Neena Kochhar     | Steven King       |
+| Shelley Higgins   | Neena Kochhar     |
+| Hermann Baer      | Neena Kochhar     |
+| Susan Mavris      | Neena Kochhar     |
+| Jennifer Whalen   | Neena Kochhar     |
+| Nancy Greenberg   | Neena Kochhar     |
+| Alexander Hunold  | Lex De Haan       |
+| Diana Lorentz     | Alexander Hunold  |
+| Valli Pataballa   | Alexander Hunold  |
+| David Austin      | Alexander Hunold  |
+| Bruce Ernst       | Alexander Hunold  |
+| Luis Popp         | Nancy Greenberg   |
+| Jose Manuel Urman | Nancy Greenberg   |
+| Ismael Sciarra    | Nancy Greenberg   |
+| John Chen         | Nancy Greenberg   |
+| Daniel Faviet     | Nancy Greenberg   |
+| Karen Colmenares  | Den Raphaely      |
+| Guy Himuro        | Den Raphaely      |
+| Sigal Tobias      | Den Raphaely      |
+| Shelli Baida      | Den Raphaely      |
+| Alexander Khoo    | Den Raphaely      |
+| Girard Geoni      | Matthew Weiss     |
+| Martha Sullivan   | Matthew Weiss     |
+| Jean Fleaur       | Matthew Weiss     |
+| Winston Taylor    | Matthew Weiss     |
+| Steven Markle     | Matthew Weiss     |
+| James Landry      | Matthew Weiss     |
+| Irene Mikkilineni | Matthew Weiss     |
+| Julia Nayer       | Matthew Weiss     |
+| Anthony Cabrio    | Adam Fripp        |
+| Julia Dellinger   | Adam Fripp        |
+| Alexis Bull       | Adam Fripp        |
+| Nandita Sarchand  | Adam Fripp        |
+| TJ Olson          | Adam Fripp        |
+| James Marlow      | Adam Fripp        |
+| Mozhe Atkinson    | Adam Fripp        |
+| Laura Bissot      | Adam Fripp        |
+| Randall Perkins   | Payam Kaufling    |
+| Timothy Gates     | Payam Kaufling    |
+| Jennifer Dilly    | Payam Kaufling    |
+| Kelly Chung       | Payam Kaufling    |
+| Hazel Philtanker  | Payam Kaufling    |
+| Ki Gee            | Payam Kaufling    |
+| Michael Rogers    | Payam Kaufling    |
+| Jason Mallin      | Payam Kaufling    |
+| Vance Jones       | Shanta Vollman    |
+| Samuel McCain     | Shanta Vollman    |
+| Britney Everett   | Shanta Vollman    |
+| Sarah Bell        | Shanta Vollman    |
+| Joshua Patel      | Shanta Vollman    |
+| John Seo          | Shanta Vollman    |
+| Stephen Stiles    | Shanta Vollman    |
+| Renske Ladwig     | Shanta Vollman    |
+| Douglas Grant     | Kevin Mourgos     |
+| Donald OConnell   | Kevin Mourgos     |
+| Kevin Feeney      | Kevin Mourgos     |
+| Alana Walsh       | Kevin Mourgos     |
+| Peter Vargas      | Kevin Mourgos     |
+| Randall Matos     | Kevin Mourgos     |
+| Curtis Davies     | Kevin Mourgos     |
+| Trenna Rajs       | Kevin Mourgos     |
+| Oliver Tuvault    | John Russell      |
+| Nanette Cambrault | John Russell      |
+| Christopher Olsen | John Russell      |
+| Peter Hall        | John Russell      |
+| David Bernstein   | John Russell      |
+| Peter Tucker      | John Russell      |
+| Sarath Sewall     | Karen Partners    |
+| Louise Doran      | Karen Partners    |
+| Lindsey Smith     | Karen Partners    |
+| Allan McEwen      | Karen Partners    |
+| Patrick Sully     | Karen Partners    |
+| Janette King      | Karen Partners    |
+| Amit Banda        | Alberto Errazuriz |
+| Sundar Ande       | Alberto Errazuriz |
+| David Lee         | Alberto Errazuriz |
+| Mattea Marvins    | Alberto Errazuriz |
+| Danielle Greene   | Alberto Errazuriz |
+| Clara Vishney     | Alberto Errazuriz |
+| Sundita Kumar     | Gerald Cambrault  |
+| Elizabeth Bates   | Gerald Cambrault  |
+| William Smith     | Gerald Cambrault  |
+| Tayler Fox        | Gerald Cambrault  |
+| Harrison Bloom    | Gerald Cambrault  |
+| Lisa Ozer         | Gerald Cambrault  |
+| Charles Johnson   | Eleni Zlotkey     |
+| Jack Livingston   | Eleni Zlotkey     |
+| Jonathon Taylor   | Eleni Zlotkey     |
+| Alyssa Hutton     | Eleni Zlotkey     |
+| Ellen Abel        | Eleni Zlotkey     |
+| Pat Fay           | Michael Hartstein |
+| William Gietz     | Shelley Higgins   |
++-------------------+-------------------+
+105 rows in set (0.02 sec)
+
+mysql> select * from temperature;
++------+-------------+------+
+| id   | record_date | temp |
++------+-------------+------+
+|    1 | 2015-01-01  |   10 |
+|    2 | 2015-01-02  |   25 |
+|    3 | 2015-01-03  |   20 |
+|    4 | 2015-01-04  |   30 |
++------+-------------+------+
+4 rows in set (0.07 sec)
+
+mysql> select * from temperature as tp inner join temperatue as tq on tp.id =tq.id+1
+    -> select * from temperature as tp inner join temperatue as tq on tp.id =tq.id+1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from temperature as tp inner join temperatue as tq on tp.id =tq.id+1' at line 2
+mysql> select * from temperature as tp inner join temperatue as tq on tp.id = tq.id+1;
+ERROR 1146 (42S02): Table 'excelr_db.temperatue' doesn't exist
+mysql> select * from temperature as tp inner join temperature as tq on tp.id = tq.id+1;
++------+-------------+------+------+-------------+------+
+| id   | record_date | temp | id   | record_date | temp |
++------+-------------+------+------+-------------+------+
+|    2 | 2015-01-02  |   25 |    1 | 2015-01-01  |   10 |
+|    3 | 2015-01-03  |   20 |    2 | 2015-01-02  |   25 |
+|    4 | 2015-01-04  |   30 |    3 | 2015-01-03  |   20 |
++------+-------------+------+------+-------------+------+
+3 rows in set (0.02 sec)
+
+mysql> select * from temperature as tp inner join temperature as tq on tp.id = tq.id+1 where tp.temp>tq.temp;
++------+-------------+------+------+-------------+------+
+| id   | record_date | temp | id   | record_date | temp |
++------+-------------+------+------+-------------+------+
+|    2 | 2015-01-02  |   25 |    1 | 2015-01-01  |   10 |
+|    4 | 2015-01-04  |   30 |    3 | 2015-01-03  |   20 |
++------+-------------+------+------+-------------+------+
+2 rows in set (0.02 sec)
+
+mysql> select tp.id from temperature as tp inner join temperature as tq on tp.id = tq.id+1 where tp.temp>tq.temp;
++------+
+| id   |
++------+
+|    2 |
+|    4 |
++------+
+2 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,882 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excler_db
+ERROR 1049 (42000): Unknown database 'excler_db'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| awesome chocolates |
+| college            |
+| colleges           |
+| excelr_db          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| rooms_detail       |
+| sakila             |
+| sidd_infotech      |
+| sys                |
+| world              |
+| xyz                |
++--------------------+
+13 rows in set (0.03 sec)
+
+mysql> use excelr_db;
+Database changed
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+11 rows in set (0.02 sec)
+
+mysql> delete student where s_id=20;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where s_id=20' at line 1
+mysql> delete from student where s_id=20;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
++------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_excelr_db |
++---------------------+
+| authors             |
+| book_sales          |
+| books               |
+| customers           |
+| dep_1               |
+| department_3        |
+| department_333      |
+| dept_11             |
+| drinks              |
+| emp_1               |
+| emp_99              |
+| employees           |
+| fraud               |
+| meals               |
+| members             |
+| movies              |
+| myclass_1           |
+| myclass_2           |
+| myemp               |
+| offices             |
+| orders              |
+| patients            |
+| payments            |
+| person              |
+| product_sold        |
+| products            |
+| sales               |
+| secretsanta         |
+| student             |
+| students_d          |
+| t                   |
+| temperature         |
+| trains              |
++---------------------+
+33 rows in set (0.02 sec)
+
+mysql> select * from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+106 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp;
++--------+-------------+-------------+----------+------------+--------+
+| emp_id | first_name  | last_name   | salary   | hire_date  | dep_id |
++--------+-------------+-------------+----------+------------+--------+
+|    100 | Steven      | King        | 24000.00 | 1998-06-17 |     90 |
+|    101 | Neena       | Kochhar     | 17000.00 | 1987-06-18 |     90 |
+|    102 | Lex         | De Haan     | 17000.00 | 1987-06-19 |     90 |
+|    103 | Alexander   | Hunold      |  9000.00 | 1976-06-20 |     60 |
+|    104 | Bruce       | Ernst       |  6000.00 | 1987-06-21 |     60 |
+|    105 | David       | Austin      |  4800.00 | 1987-06-22 |     60 |
+|    106 | Valli       | Pataballa   |  4800.00 | 1980-06-23 |     60 |
+|    107 | Diana       | Lorentz     |  4200.00 | 1987-06-24 |     60 |
+|    108 | Nancy       | Greenberg   | 12000.00 | 1987-06-25 |    100 |
+|    109 | Daniel      | Faviet      |  9000.00 | 1992-06-26 |    100 |
+|    110 | John        | Chen        |  8200.00 | 1987-06-27 |    100 |
+|    111 | Ismael      | Sciarra     |  7700.00 | 1987-06-28 |    100 |
+|    112 | Jose Manuel | Urman       |  7800.00 | 1981-06-29 |    100 |
+|    113 | Luis        | Popp        |  6900.00 | 1987-06-30 |    100 |
+|    114 | Den         | Raphaely    | 11000.00 | 1987-07-01 |     30 |
+|    115 | Alexander   | Khoo        |  3100.00 | 1983-07-02 |     30 |
+|    116 | Shelli      | Baida       |  2900.00 | 1987-07-03 |     30 |
+|    117 | Sigal       | Tobias      |  2800.00 | 1987-07-04 |     30 |
+|    118 | Guy         | Himuro      |  2600.00 | 1995-07-05 |     30 |
+|    119 | Karen       | Colmenares  |  2500.00 | 1987-07-06 |     30 |
+|    120 | Matthew     | Weiss       |  8000.00 | 1987-07-07 |     50 |
+|    121 | Adam        | Fripp       |  8200.00 | 1990-07-08 |     50 |
+|    122 | Payam       | Kaufling    |  7900.00 | 1987-07-09 |     50 |
+|    123 | Shanta      | Vollman     |  6500.00 | 1987-07-10 |     50 |
+|    124 | Kevin       | Mourgos     |  5800.00 | 1997-07-11 |     50 |
+|    125 | Julia       | Nayer       |  3200.00 | 1987-07-12 |     50 |
+|    126 | Irene       | Mikkilineni |  2700.00 | 1987-07-13 |     50 |
+|    127 | James       | Landry      |  2400.00 | 1978-07-14 |     50 |
+|    128 | Steven      | Markle      |  2200.00 | 1987-07-15 |     50 |
+|    129 | Laura       | Bissot      |  3300.00 | 1987-07-16 |     50 |
+|    130 | Mozhe       | Atkinson    |  2800.00 | 1983-07-17 |     50 |
+|    131 | James       | Marlow      |  2500.00 | 1987-07-18 |     50 |
+|    132 | TJ          | Olson       |  2100.00 | 1987-07-19 |     50 |
+|    133 | Jason       | Mallin      |  3300.00 | 1985-07-20 |     50 |
+|    134 | Michael     | Rogers      |  2900.00 | 1987-07-21 |     50 |
+|    135 | Ki          | Gee         |  2400.00 | 1987-07-22 |     50 |
+|    136 | Hazel       | Philtanker  |  2200.00 | 1990-07-23 |     50 |
+|    137 | Renske      | Ladwig      |  3600.00 | 2000-07-24 |     50 |
+|    138 | Stephen     | Stiles      |  3200.00 | 1987-07-25 |     50 |
+|    139 | John        | Seo         |  2700.00 | 1989-07-26 |     50 |
+|    140 | Joshua      | Patel       |  2500.00 | 2011-07-27 |     50 |
+|    141 | Trenna      | Rajs        |  3500.00 | 1987-07-28 |     50 |
+|    142 | Curtis      | Davies      |  3100.00 | 1986-07-29 |     50 |
+|    143 | Randall     | Matos       |  2600.00 | 1987-07-30 |     50 |
+|    144 | Peter       | Vargas      |  2500.00 | 1998-07-31 |     50 |
+|    145 | John        | Russell     | 14000.00 | 1991-08-01 |     80 |
+|    146 | Karen       | Partners    | 13500.00 | 2019-08-02 |     80 |
+|    147 | Alberto     | Errazuriz   | 12000.00 | 1987-08-03 |     80 |
+|    148 | Gerald      | Cambrault   | 11000.00 | 2015-08-04 |     80 |
+|    149 | Eleni       | Zlotkey     | 10500.00 | 1987-08-05 |     80 |
+|    150 | Peter       | Tucker      | 10000.00 | 1987-08-06 |     80 |
+|    151 | David       | Bernstein   |  9500.00 | 2013-08-07 |     80 |
+|    152 | Peter       | Hall        |  9000.00 | 1987-08-08 |     80 |
+|    153 | Christopher | Olsen       |  8000.00 | 1987-08-09 |     80 |
+|    154 | Nanette     | Cambrault   |  7500.00 | 1987-08-10 |     80 |
+|    155 | Oliver      | Tuvault     |  7000.00 | 1987-08-11 |     80 |
+|    156 | Janette     | King        | 10000.00 | 1987-08-12 |     80 |
+|    157 | Patrick     | Sully       |  9500.00 | 2002-08-13 |     80 |
+|    158 | Allan       | McEwen      |  9000.00 | 1987-08-14 |     80 |
+|    159 | Lindsey     | Smith       |  8000.00 | 1987-08-15 |     80 |
+|    160 | Louise      | Doran       |  7500.00 | 2003-08-16 |     80 |
+|    161 | Sarath      | Sewall      |  7000.00 | 1987-08-17 |     80 |
+|    162 | Clara       | Vishney     | 10500.00 | 1987-08-18 |     80 |
+|    163 | Danielle    | Greene      |  9500.00 | 1987-08-19 |     80 |
+|    164 | Mattea      | Marvins     |  7200.00 | 2007-08-20 |     80 |
+|    165 | David       | Lee         |  6800.00 | 1987-08-21 |     80 |
+|    166 | Sundar      | Ande        |  6400.00 | 1987-08-22 |     80 |
+|    167 | Amit        | Banda       |  6200.00 | 1987-08-23 |     80 |
+|    168 | Lisa        | Ozer        | 11500.00 | 1987-08-24 |     80 |
+|    169 | Harrison    | Bloom       | 10000.00 | 1999-08-25 |     80 |
+|    170 | Tayler      | Fox         |  9600.00 | 1987-08-26 |     80 |
+|    171 | William     | Smith       |  7400.00 | 1987-08-27 |     80 |
+|    172 | Elizabeth   | Bates       |  7300.00 | 1987-08-28 |     80 |
+|    173 | Sundita     | Kumar       |  6100.00 | 1987-08-29 |     80 |
+|    174 | Ellen       | Abel        | 11000.00 | 1987-08-30 |     80 |
+|    175 | Alyssa      | Hutton      |  8800.00 | 1996-08-31 |     80 |
+|    176 | Jonathon    | Taylor      |  8600.00 | 1987-09-01 |     80 |
+|    177 | Jack        | Livingston  |  8400.00 | 1987-09-02 |     80 |
+|    179 | Charles     | Johnson     |  6200.00 | 1999-09-04 |     80 |
+|    180 | Winston     | Taylor      |  3200.00 | 1987-09-05 |     50 |
+|    181 | Jean        | Fleaur      |  3100.00 | 1987-09-06 |     50 |
+|    182 | Martha      | Sullivan    |  2500.00 | 1987-09-07 |     50 |
+|    183 | Girard      | Geoni       |  2800.00 | 1987-09-08 |     50 |
+|    184 | Nandita     | Sarchand    |  4200.00 | 2012-09-09 |     50 |
+|    185 | Alexis      | Bull        |  4100.00 | 1987-09-10 |     50 |
+|    186 | Julia       | Dellinger   |  3400.00 | 1987-09-11 |     50 |
+|    187 | Anthony     | Cabrio      |  3000.00 | 2007-09-12 |     50 |
+|    188 | Kelly       | Chung       |  3800.00 | 1987-09-13 |     50 |
+|    189 | Jennifer    | Dilly       |  3600.00 | 1987-09-14 |     50 |
+|    190 | Timothy     | Gates       |  2900.00 | 1987-09-15 |     50 |
+|    191 | Randall     | Perkins     |  2500.00 | 1987-09-16 |     50 |
+|    192 | Sarah       | Bell        |  4000.00 | 1987-09-17 |     50 |
+|    193 | Britney     | Everett     |  3900.00 | 1987-09-18 |     50 |
+|    194 | Samuel      | McCain      |  3200.00 | 2000-09-19 |     50 |
+|    195 | Vance       | Jones       |  2800.00 | 1996-09-20 |     50 |
+|    196 | Alana       | Walsh       |  3100.00 | 1987-09-21 |     50 |
+|    197 | Kevin       | Feeney      |  3000.00 | 1987-09-22 |     50 |
+|    198 | Donald      | OConnell    |  2600.00 | 1997-09-23 |     50 |
+|    199 | Douglas     | Grant       |  2600.00 | 1987-09-24 |     50 |
+|    200 | Jennifer    | Whalen      |  4400.00 | 1988-09-25 |     10 |
+|    201 | Michael     | Hartstein   | 13000.00 | 1987-09-26 |     20 |
+|    202 | Pat         | Fay         |  6000.00 | 1987-09-27 |     20 |
+|    203 | Susan       | Mavris      |  6500.00 | 1989-09-28 |     40 |
+|    204 | Hermann     | Baer        | 10000.00 | 1987-09-29 |     70 |
+|    205 | Shelley     | Higgins     | 12000.00 | 1987-09-30 |    110 |
+|    206 | William     | Gietz       |  8300.00 | 1997-10-01 |    110 |
++--------+-------------+-------------+----------+------------+--------+
+106 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp limit 12;
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    100 | Steven     | King      | 24000.00 | 1998-06-17 |     90 |
+|    101 | Neena      | Kochhar   | 17000.00 | 1987-06-18 |     90 |
+|    102 | Lex        | De Haan   | 17000.00 | 1987-06-19 |     90 |
+|    103 | Alexander  | Hunold    |  9000.00 | 1976-06-20 |     60 |
+|    104 | Bruce      | Ernst     |  6000.00 | 1987-06-21 |     60 |
+|    105 | David      | Austin    |  4800.00 | 1987-06-22 |     60 |
+|    106 | Valli      | Pataballa |  4800.00 | 1980-06-23 |     60 |
+|    107 | Diana      | Lorentz   |  4200.00 | 1987-06-24 |     60 |
+|    108 | Nancy      | Greenberg | 12000.00 | 1987-06-25 |    100 |
+|    109 | Daniel     | Faviet    |  9000.00 | 1992-06-26 |    100 |
+|    110 | John       | Chen      |  8200.00 | 1987-06-27 |    100 |
+|    111 | Ismael     | Sciarra   |  7700.00 | 1987-06-28 |    100 |
++--------+------------+-----------+----------+------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp top 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10' at line 1
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp top 6,3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6,3' at line 1
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp top 6,3;^C
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp limit 6,8;
++--------+-------------+-----------+----------+------------+--------+
+| emp_id | first_name  | last_name | salary   | hire_date  | dep_id |
++--------+-------------+-----------+----------+------------+--------+
+|    106 | Valli       | Pataballa |  4800.00 | 1980-06-23 |     60 |
+|    107 | Diana       | Lorentz   |  4200.00 | 1987-06-24 |     60 |
+|    108 | Nancy       | Greenberg | 12000.00 | 1987-06-25 |    100 |
+|    109 | Daniel      | Faviet    |  9000.00 | 1992-06-26 |    100 |
+|    110 | John        | Chen      |  8200.00 | 1987-06-27 |    100 |
+|    111 | Ismael      | Sciarra   |  7700.00 | 1987-06-28 |    100 |
+|    112 | Jose Manuel | Urman     |  7800.00 | 1981-06-29 |    100 |
+|    113 | Luis        | Popp      |  6900.00 | 1987-06-30 |    100 |
++--------+-------------+-----------+----------+------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp order by hire_datee limit 6,8;
+ERROR 1054 (42S22): Unknown column 'hire_datee' in 'order clause'
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp order by hire_date desc limit 6,8;
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    164 | Mattea     | Marvins   |  7200.00 | 2007-08-20 |     80 |
+|    160 | Louise     | Doran     |  7500.00 | 2003-08-16 |     80 |
+|    157 | Patrick    | Sully     |  9500.00 | 2002-08-13 |     80 |
+|    194 | Samuel     | McCain    |  3200.00 | 2000-09-19 |     50 |
+|    137 | Renske     | Ladwig    |  3600.00 | 2000-07-24 |     50 |
+|    179 | Charles    | Johnson   |  6200.00 | 1999-09-04 |     80 |
+|    169 | Harrison   | Bloom     | 10000.00 | 1999-08-25 |     80 |
+|    144 | Peter      | Vargas    |  2500.00 | 1998-07-31 |     50 |
++--------+------------+-----------+----------+------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=30;
++--------+------------+------------+----------+------------+--------+
+| emp_id | first_name | last_name  | salary   | hire_date  | dep_id |
++--------+------------+------------+----------+------------+--------+
+|    114 | Den        | Raphaely   | 11000.00 | 1987-07-01 |     30 |
+|    115 | Alexander  | Khoo       |  3100.00 | 1983-07-02 |     30 |
+|    116 | Shelli     | Baida      |  2900.00 | 1987-07-03 |     30 |
+|    117 | Sigal      | Tobias     |  2800.00 | 1987-07-04 |     30 |
+|    118 | Guy        | Himuro     |  2600.00 | 1995-07-05 |     30 |
+|    119 | Karen      | Colmenares |  2500.00 | 1987-07-06 |     30 |
++--------+------------+------------+----------+------------+--------+
+6 rows in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=30 order by first_name desc;
++--------+------------+------------+----------+------------+--------+
+| emp_id | first_name | last_name  | salary   | hire_date  | dep_id |
++--------+------------+------------+----------+------------+--------+
+|    117 | Sigal      | Tobias     |  2800.00 | 1987-07-04 |     30 |
+|    116 | Shelli     | Baida      |  2900.00 | 1987-07-03 |     30 |
+|    119 | Karen      | Colmenares |  2500.00 | 1987-07-06 |     30 |
+|    118 | Guy        | Himuro     |  2600.00 | 1995-07-05 |     30 |
+|    114 | Den        | Raphaely   | 11000.00 | 1987-07-01 |     30 |
+|    115 | Alexander  | Khoo       |  3100.00 | 1983-07-02 |     30 |
++--------+------------+------------+----------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "%a";
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    101 | Neena      | Kochhar   | 17000.00 | 1987-06-18 |     90 |
+|    107 | Diana      | Lorentz   |  4200.00 | 1987-06-24 |     60 |
+|    123 | Shanta     | Vollman   |  6500.00 | 1987-07-10 |     50 |
+|    125 | Julia      | Nayer     |  3200.00 | 1987-07-12 |     50 |
+|    129 | Laura      | Bissot    |  3300.00 | 1987-07-16 |     50 |
+|    140 | Joshua     | Patel     |  2500.00 | 2011-07-27 |     50 |
+|    141 | Trenna     | Rajs      |  3500.00 | 1987-07-28 |     50 |
+|    162 | Clara      | Vishney   | 10500.00 | 1987-08-18 |     80 |
+|    164 | Mattea     | Marvins   |  7200.00 | 2007-08-20 |     80 |
+|    168 | Lisa       | Ozer      | 11500.00 | 1987-08-24 |     80 |
+|    173 | Sundita    | Kumar     |  6100.00 | 1987-08-29 |     80 |
+|    175 | Alyssa     | Hutton    |  8800.00 | 1996-08-31 |     80 |
+|    182 | Martha     | Sullivan  |  2500.00 | 1987-09-07 |     50 |
+|    184 | Nandita    | Sarchand  |  4200.00 | 2012-09-09 |     50 |
+|    186 | Julia      | Dellinger |  3400.00 | 1987-09-11 |     50 |
+|    196 | Alana      | Walsh     |  3100.00 | 1987-09-21 |     50 |
++--------+------------+-----------+----------+------------+--------+
+16 rows in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "a%a";
++--------+------------+-----------+---------+------------+--------+
+| emp_id | first_name | last_name | salary  | hire_date  | dep_id |
++--------+------------+-----------+---------+------------+--------+
+|    175 | Alyssa     | Hutton    | 8800.00 | 1996-08-31 |     80 |
+|    196 | Alana      | Walsh     | 3100.00 | 1987-09-21 |     50 |
++--------+------------+-----------+---------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "a%";
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    103 | Alexander  | Hunold    |  9000.00 | 1976-06-20 |     60 |
+|    115 | Alexander  | Khoo      |  3100.00 | 1983-07-02 |     30 |
+|    121 | Adam       | Fripp     |  8200.00 | 1990-07-08 |     50 |
+|    147 | Alberto    | Errazuriz | 12000.00 | 1987-08-03 |     80 |
+|    158 | Allan      | McEwen    |  9000.00 | 1987-08-14 |     80 |
+|    167 | Amit       | Banda     |  6200.00 | 1987-08-23 |     80 |
+|    175 | Alyssa     | Hutton    |  8800.00 | 1996-08-31 |     80 |
+|    185 | Alexis     | Bull      |  4100.00 | 1987-09-10 |     50 |
+|    187 | Anthony    | Cabrio    |  3000.00 | 2007-09-12 |     50 |
+|    196 | Alana      | Walsh     |  3100.00 | 1987-09-21 |     50 |
++--------+------------+-----------+----------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "a____";
++--------+------------+-----------+---------+------------+--------+
+| emp_id | first_name | last_name | salary  | hire_date  | dep_id |
++--------+------------+-----------+---------+------------+--------+
+|    158 | Allan      | McEwen    | 9000.00 | 1987-08-14 |     80 |
+|    196 | Alana      | Walsh     | 3100.00 | 1987-09-21 |     50 |
++--------+------------+-----------+---------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "a----";
+Empty set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where first_name like "a_____";
++--------+------------+-----------+---------+------------+--------+
+| emp_id | first_name | last_name | salary  | hire_date  | dep_id |
++--------+------------+-----------+---------+------------+--------+
+|    175 | Alyssa     | Hutton    | 8800.00 | 1996-08-31 |     80 |
+|    185 | Alexis     | Bull      | 4100.00 | 1987-09-10 |     50 |
++--------+------------+-----------+---------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=10 or dep_id=13 or dep_id=9;
++--------+------------+-----------+---------+------------+--------+
+| emp_id | first_name | last_name | salary  | hire_date  | dep_id |
++--------+------------+-----------+---------+------------+--------+
+|    200 | Jennifer   | Whalen    | 4400.00 | 1988-09-25 |     10 |
++--------+------------+-----------+---------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=10 or dep_id=3 or dep_id=9;
++--------+------------+-----------+---------+------------+--------+
+| emp_id | first_name | last_name | salary  | hire_date  | dep_id |
++--------+------------+-----------+---------+------------+--------+
+|    200 | Jennifer   | Whalen    | 4400.00 | 1988-09-25 |     10 |
++--------+------------+-----------+---------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=10 or dep_id=3 or dep_id=90;
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    100 | Steven     | King      | 24000.00 | 1998-06-17 |     90 |
+|    101 | Neena      | Kochhar   | 17000.00 | 1987-06-18 |     90 |
+|    102 | Lex        | De Haan   | 17000.00 | 1987-06-19 |     90 |
+|    200 | Jennifer   | Whalen    |  4400.00 | 1988-09-25 |     10 |
++--------+------------+-----------+----------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id=10 or dep_id=30 or dep_id=90;
++--------+------------+------------+----------+------------+--------+
+| emp_id | first_name | last_name  | salary   | hire_date  | dep_id |
++--------+------------+------------+----------+------------+--------+
+|    100 | Steven     | King       | 24000.00 | 1998-06-17 |     90 |
+|    101 | Neena      | Kochhar    | 17000.00 | 1987-06-18 |     90 |
+|    102 | Lex        | De Haan    | 17000.00 | 1987-06-19 |     90 |
+|    114 | Den        | Raphaely   | 11000.00 | 1987-07-01 |     30 |
+|    115 | Alexander  | Khoo       |  3100.00 | 1983-07-02 |     30 |
+|    116 | Shelli     | Baida      |  2900.00 | 1987-07-03 |     30 |
+|    117 | Sigal      | Tobias     |  2800.00 | 1987-07-04 |     30 |
+|    118 | Guy        | Himuro     |  2600.00 | 1995-07-05 |     30 |
+|    119 | Karen      | Colmenares |  2500.00 | 1987-07-06 |     30 |
+|    200 | Jennifer   | Whalen     |  4400.00 | 1988-09-25 |     10 |
++--------+------------+------------+----------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id in (10,30,90);
++--------+------------+------------+----------+------------+--------+
+| emp_id | first_name | last_name  | salary   | hire_date  | dep_id |
++--------+------------+------------+----------+------------+--------+
+|    100 | Steven     | King       | 24000.00 | 1998-06-17 |     90 |
+|    101 | Neena      | Kochhar    | 17000.00 | 1987-06-18 |     90 |
+|    102 | Lex        | De Haan    | 17000.00 | 1987-06-19 |     90 |
+|    114 | Den        | Raphaely   | 11000.00 | 1987-07-01 |     30 |
+|    115 | Alexander  | Khoo       |  3100.00 | 1983-07-02 |     30 |
+|    116 | Shelli     | Baida      |  2900.00 | 1987-07-03 |     30 |
+|    117 | Sigal      | Tobias     |  2800.00 | 1987-07-04 |     30 |
+|    118 | Guy        | Himuro     |  2600.00 | 1995-07-05 |     30 |
+|    119 | Karen      | Colmenares |  2500.00 | 1987-07-06 |     30 |
+|    200 | Jennifer   | Whalen     |  4400.00 | 1988-09-25 |     10 |
++--------+------------+------------+----------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id not in (10,30,90);
++--------+-------------+-------------+----------+------------+--------+
+| emp_id | first_name  | last_name   | salary   | hire_date  | dep_id |
++--------+-------------+-------------+----------+------------+--------+
+|    103 | Alexander   | Hunold      |  9000.00 | 1976-06-20 |     60 |
+|    104 | Bruce       | Ernst       |  6000.00 | 1987-06-21 |     60 |
+|    105 | David       | Austin      |  4800.00 | 1987-06-22 |     60 |
+|    106 | Valli       | Pataballa   |  4800.00 | 1980-06-23 |     60 |
+|    107 | Diana       | Lorentz     |  4200.00 | 1987-06-24 |     60 |
+|    108 | Nancy       | Greenberg   | 12000.00 | 1987-06-25 |    100 |
+|    109 | Daniel      | Faviet      |  9000.00 | 1992-06-26 |    100 |
+|    110 | John        | Chen        |  8200.00 | 1987-06-27 |    100 |
+|    111 | Ismael      | Sciarra     |  7700.00 | 1987-06-28 |    100 |
+|    112 | Jose Manuel | Urman       |  7800.00 | 1981-06-29 |    100 |
+|    113 | Luis        | Popp        |  6900.00 | 1987-06-30 |    100 |
+|    120 | Matthew     | Weiss       |  8000.00 | 1987-07-07 |     50 |
+|    121 | Adam        | Fripp       |  8200.00 | 1990-07-08 |     50 |
+|    122 | Payam       | Kaufling    |  7900.00 | 1987-07-09 |     50 |
+|    123 | Shanta      | Vollman     |  6500.00 | 1987-07-10 |     50 |
+|    124 | Kevin       | Mourgos     |  5800.00 | 1997-07-11 |     50 |
+|    125 | Julia       | Nayer       |  3200.00 | 1987-07-12 |     50 |
+|    126 | Irene       | Mikkilineni |  2700.00 | 1987-07-13 |     50 |
+|    127 | James       | Landry      |  2400.00 | 1978-07-14 |     50 |
+|    128 | Steven      | Markle      |  2200.00 | 1987-07-15 |     50 |
+|    129 | Laura       | Bissot      |  3300.00 | 1987-07-16 |     50 |
+|    130 | Mozhe       | Atkinson    |  2800.00 | 1983-07-17 |     50 |
+|    131 | James       | Marlow      |  2500.00 | 1987-07-18 |     50 |
+|    132 | TJ          | Olson       |  2100.00 | 1987-07-19 |     50 |
+|    133 | Jason       | Mallin      |  3300.00 | 1985-07-20 |     50 |
+|    134 | Michael     | Rogers      |  2900.00 | 1987-07-21 |     50 |
+|    135 | Ki          | Gee         |  2400.00 | 1987-07-22 |     50 |
+|    136 | Hazel       | Philtanker  |  2200.00 | 1990-07-23 |     50 |
+|    137 | Renske      | Ladwig      |  3600.00 | 2000-07-24 |     50 |
+|    138 | Stephen     | Stiles      |  3200.00 | 1987-07-25 |     50 |
+|    139 | John        | Seo         |  2700.00 | 1989-07-26 |     50 |
+|    140 | Joshua      | Patel       |  2500.00 | 2011-07-27 |     50 |
+|    141 | Trenna      | Rajs        |  3500.00 | 1987-07-28 |     50 |
+|    142 | Curtis      | Davies      |  3100.00 | 1986-07-29 |     50 |
+|    143 | Randall     | Matos       |  2600.00 | 1987-07-30 |     50 |
+|    144 | Peter       | Vargas      |  2500.00 | 1998-07-31 |     50 |
+|    145 | John        | Russell     | 14000.00 | 1991-08-01 |     80 |
+|    146 | Karen       | Partners    | 13500.00 | 2019-08-02 |     80 |
+|    147 | Alberto     | Errazuriz   | 12000.00 | 1987-08-03 |     80 |
+|    148 | Gerald      | Cambrault   | 11000.00 | 2015-08-04 |     80 |
+|    149 | Eleni       | Zlotkey     | 10500.00 | 1987-08-05 |     80 |
+|    150 | Peter       | Tucker      | 10000.00 | 1987-08-06 |     80 |
+|    151 | David       | Bernstein   |  9500.00 | 2013-08-07 |     80 |
+|    152 | Peter       | Hall        |  9000.00 | 1987-08-08 |     80 |
+|    153 | Christopher | Olsen       |  8000.00 | 1987-08-09 |     80 |
+|    154 | Nanette     | Cambrault   |  7500.00 | 1987-08-10 |     80 |
+|    155 | Oliver      | Tuvault     |  7000.00 | 1987-08-11 |     80 |
+|    156 | Janette     | King        | 10000.00 | 1987-08-12 |     80 |
+|    157 | Patrick     | Sully       |  9500.00 | 2002-08-13 |     80 |
+|    158 | Allan       | McEwen      |  9000.00 | 1987-08-14 |     80 |
+|    159 | Lindsey     | Smith       |  8000.00 | 1987-08-15 |     80 |
+|    160 | Louise      | Doran       |  7500.00 | 2003-08-16 |     80 |
+|    161 | Sarath      | Sewall      |  7000.00 | 1987-08-17 |     80 |
+|    162 | Clara       | Vishney     | 10500.00 | 1987-08-18 |     80 |
+|    163 | Danielle    | Greene      |  9500.00 | 1987-08-19 |     80 |
+|    164 | Mattea      | Marvins     |  7200.00 | 2007-08-20 |     80 |
+|    165 | David       | Lee         |  6800.00 | 1987-08-21 |     80 |
+|    166 | Sundar      | Ande        |  6400.00 | 1987-08-22 |     80 |
+|    167 | Amit        | Banda       |  6200.00 | 1987-08-23 |     80 |
+|    168 | Lisa        | Ozer        | 11500.00 | 1987-08-24 |     80 |
+|    169 | Harrison    | Bloom       | 10000.00 | 1999-08-25 |     80 |
+|    170 | Tayler      | Fox         |  9600.00 | 1987-08-26 |     80 |
+|    171 | William     | Smith       |  7400.00 | 1987-08-27 |     80 |
+|    172 | Elizabeth   | Bates       |  7300.00 | 1987-08-28 |     80 |
+|    173 | Sundita     | Kumar       |  6100.00 | 1987-08-29 |     80 |
+|    174 | Ellen       | Abel        | 11000.00 | 1987-08-30 |     80 |
+|    175 | Alyssa      | Hutton      |  8800.00 | 1996-08-31 |     80 |
+|    176 | Jonathon    | Taylor      |  8600.00 | 1987-09-01 |     80 |
+|    177 | Jack        | Livingston  |  8400.00 | 1987-09-02 |     80 |
+|    179 | Charles     | Johnson     |  6200.00 | 1999-09-04 |     80 |
+|    180 | Winston     | Taylor      |  3200.00 | 1987-09-05 |     50 |
+|    181 | Jean        | Fleaur      |  3100.00 | 1987-09-06 |     50 |
+|    182 | Martha      | Sullivan    |  2500.00 | 1987-09-07 |     50 |
+|    183 | Girard      | Geoni       |  2800.00 | 1987-09-08 |     50 |
+|    184 | Nandita     | Sarchand    |  4200.00 | 2012-09-09 |     50 |
+|    185 | Alexis      | Bull        |  4100.00 | 1987-09-10 |     50 |
+|    186 | Julia       | Dellinger   |  3400.00 | 1987-09-11 |     50 |
+|    187 | Anthony     | Cabrio      |  3000.00 | 2007-09-12 |     50 |
+|    188 | Kelly       | Chung       |  3800.00 | 1987-09-13 |     50 |
+|    189 | Jennifer    | Dilly       |  3600.00 | 1987-09-14 |     50 |
+|    190 | Timothy     | Gates       |  2900.00 | 1987-09-15 |     50 |
+|    191 | Randall     | Perkins     |  2500.00 | 1987-09-16 |     50 |
+|    192 | Sarah       | Bell        |  4000.00 | 1987-09-17 |     50 |
+|    193 | Britney     | Everett     |  3900.00 | 1987-09-18 |     50 |
+|    194 | Samuel      | McCain      |  3200.00 | 2000-09-19 |     50 |
+|    195 | Vance       | Jones       |  2800.00 | 1996-09-20 |     50 |
+|    196 | Alana       | Walsh       |  3100.00 | 1987-09-21 |     50 |
+|    197 | Kevin       | Feeney      |  3000.00 | 1987-09-22 |     50 |
+|    198 | Donald      | OConnell    |  2600.00 | 1997-09-23 |     50 |
+|    199 | Douglas     | Grant       |  2600.00 | 1987-09-24 |     50 |
+|    201 | Michael     | Hartstein   | 13000.00 | 1987-09-26 |     20 |
+|    202 | Pat         | Fay         |  6000.00 | 1987-09-27 |     20 |
+|    203 | Susan       | Mavris      |  6500.00 | 1989-09-28 |     40 |
+|    204 | Hermann     | Baer        | 10000.00 | 1987-09-29 |     70 |
+|    205 | Shelley     | Higgins     | 12000.00 | 1987-09-30 |    110 |
+|    206 | William     | Gietz       |  8300.00 | 1997-10-01 |    110 |
++--------+-------------+-------------+----------+------------+--------+
+96 rows in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where salary between 20000 and 50000;
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    100 | Steven     | King      | 24000.00 | 1998-06-17 |     90 |
++--------+------------+-----------+----------+------------+--------+
+1 row in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where salary >10000 and salary<15000;
++--------+------------+-----------+----------+------------+--------+
+| emp_id | first_name | last_name | salary   | hire_date  | dep_id |
++--------+------------+-----------+----------+------------+--------+
+|    108 | Nancy      | Greenberg | 12000.00 | 1987-06-25 |    100 |
+|    114 | Den        | Raphaely  | 11000.00 | 1987-07-01 |     30 |
+|    145 | John       | Russell   | 14000.00 | 1991-08-01 |     80 |
+|    146 | Karen      | Partners  | 13500.00 | 2019-08-02 |     80 |
+|    147 | Alberto    | Errazuriz | 12000.00 | 1987-08-03 |     80 |
+|    148 | Gerald     | Cambrault | 11000.00 | 2015-08-04 |     80 |
+|    149 | Eleni      | Zlotkey   | 10500.00 | 1987-08-05 |     80 |
+|    162 | Clara      | Vishney   | 10500.00 | 1987-08-18 |     80 |
+|    168 | Lisa       | Ozer      | 11500.00 | 1987-08-24 |     80 |
+|    174 | Ellen      | Abel      | 11000.00 | 1987-08-30 |     80 |
+|    201 | Michael    | Hartstein | 13000.00 | 1987-09-26 |     20 |
+|    205 | Shelley    | Higgins   | 12000.00 | 1987-09-30 |    110 |
++--------+------------+-----------+----------+------------+--------+
+12 rows in set (0.02 sec)
+
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id not in(30,60,90,100,110,999999) adn salary between 1000 and 15000 order by first_name desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adn salary between 1000 and 15000 order by first_name desc' at line 1
+mysql> select emp_id,first_name,last_name, salary,hire_date,dep_id from myemp where dep_id not in(30,60,90,100,110,999999) and salary between 1000 and 15000 order by first_name desc;
++--------+-------------+-------------+----------+------------+--------+
+| emp_id | first_name  | last_name   | salary   | hire_date  | dep_id |
++--------+-------------+-------------+----------+------------+--------+
+|    180 | Winston     | Taylor      |  3200.00 | 1987-09-05 |     50 |
+|    171 | William     | Smith       |  7400.00 | 1987-08-27 |     80 |
+|    195 | Vance       | Jones       |  2800.00 | 1996-09-20 |     50 |
+|    141 | Trenna      | Rajs        |  3500.00 | 1987-07-28 |     50 |
+|    132 | TJ          | Olson       |  2100.00 | 1987-07-19 |     50 |
+|    190 | Timothy     | Gates       |  2900.00 | 1987-09-15 |     50 |
+|    170 | Tayler      | Fox         |  9600.00 | 1987-08-26 |     80 |
+|    203 | Susan       | Mavris      |  6500.00 | 1989-09-28 |     40 |
+|    173 | Sundita     | Kumar       |  6100.00 | 1987-08-29 |     80 |
+|    166 | Sundar      | Ande        |  6400.00 | 1987-08-22 |     80 |
+|    128 | Steven      | Markle      |  2200.00 | 1987-07-15 |     50 |
+|    138 | Stephen     | Stiles      |  3200.00 | 1987-07-25 |     50 |
+|    123 | Shanta      | Vollman     |  6500.00 | 1987-07-10 |     50 |
+|    161 | Sarath      | Sewall      |  7000.00 | 1987-08-17 |     80 |
+|    192 | Sarah       | Bell        |  4000.00 | 1987-09-17 |     50 |
+|    194 | Samuel      | McCain      |  3200.00 | 2000-09-19 |     50 |
+|    137 | Renske      | Ladwig      |  3600.00 | 2000-07-24 |     50 |
+|    143 | Randall     | Matos       |  2600.00 | 1987-07-30 |     50 |
+|    191 | Randall     | Perkins     |  2500.00 | 1987-09-16 |     50 |
+|    152 | Peter       | Hall        |  9000.00 | 1987-08-08 |     80 |
+|    144 | Peter       | Vargas      |  2500.00 | 1998-07-31 |     50 |
+|    150 | Peter       | Tucker      | 10000.00 | 1987-08-06 |     80 |
+|    122 | Payam       | Kaufling    |  7900.00 | 1987-07-09 |     50 |
+|    157 | Patrick     | Sully       |  9500.00 | 2002-08-13 |     80 |
+|    202 | Pat         | Fay         |  6000.00 | 1987-09-27 |     20 |
+|    155 | Oliver      | Tuvault     |  7000.00 | 1987-08-11 |     80 |
+|    154 | Nanette     | Cambrault   |  7500.00 | 1987-08-10 |     80 |
+|    184 | Nandita     | Sarchand    |  4200.00 | 2012-09-09 |     50 |
+|    130 | Mozhe       | Atkinson    |  2800.00 | 1983-07-17 |     50 |
+|    134 | Michael     | Rogers      |  2900.00 | 1987-07-21 |     50 |
+|    201 | Michael     | Hartstein   | 13000.00 | 1987-09-26 |     20 |
+|    120 | Matthew     | Weiss       |  8000.00 | 1987-07-07 |     50 |
+|    164 | Mattea      | Marvins     |  7200.00 | 2007-08-20 |     80 |
+|    182 | Martha      | Sullivan    |  2500.00 | 1987-09-07 |     50 |
+|    160 | Louise      | Doran       |  7500.00 | 2003-08-16 |     80 |
+|    168 | Lisa        | Ozer        | 11500.00 | 1987-08-24 |     80 |
+|    159 | Lindsey     | Smith       |  8000.00 | 1987-08-15 |     80 |
+|    129 | Laura       | Bissot      |  3300.00 | 1987-07-16 |     50 |
+|    135 | Ki          | Gee         |  2400.00 | 1987-07-22 |     50 |
+|    124 | Kevin       | Mourgos     |  5800.00 | 1997-07-11 |     50 |
+|    197 | Kevin       | Feeney      |  3000.00 | 1987-09-22 |     50 |
+|    188 | Kelly       | Chung       |  3800.00 | 1987-09-13 |     50 |
+|    146 | Karen       | Partners    | 13500.00 | 2019-08-02 |     80 |
+|    125 | Julia       | Nayer       |  3200.00 | 1987-07-12 |     50 |
+|    186 | Julia       | Dellinger   |  3400.00 | 1987-09-11 |     50 |
+|    140 | Joshua      | Patel       |  2500.00 | 2011-07-27 |     50 |
+|    176 | Jonathon    | Taylor      |  8600.00 | 1987-09-01 |     80 |
+|    139 | John        | Seo         |  2700.00 | 1989-07-26 |     50 |
+|    145 | John        | Russell     | 14000.00 | 1991-08-01 |     80 |
+|    189 | Jennifer    | Dilly       |  3600.00 | 1987-09-14 |     50 |
+|    200 | Jennifer    | Whalen      |  4400.00 | 1988-09-25 |     10 |
+|    181 | Jean        | Fleaur      |  3100.00 | 1987-09-06 |     50 |
+|    133 | Jason       | Mallin      |  3300.00 | 1985-07-20 |     50 |
+|    156 | Janette     | King        | 10000.00 | 1987-08-12 |     80 |
+|    127 | James       | Landry      |  2400.00 | 1978-07-14 |     50 |
+|    131 | James       | Marlow      |  2500.00 | 1987-07-18 |     50 |
+|    177 | Jack        | Livingston  |  8400.00 | 1987-09-02 |     80 |
+|    126 | Irene       | Mikkilineni |  2700.00 | 1987-07-13 |     50 |
+|    204 | Hermann     | Baer        | 10000.00 | 1987-09-29 |     70 |
+|    136 | Hazel       | Philtanker  |  2200.00 | 1990-07-23 |     50 |
+|    169 | Harrison    | Bloom       | 10000.00 | 1999-08-25 |     80 |
+|    183 | Girard      | Geoni       |  2800.00 | 1987-09-08 |     50 |
+|    148 | Gerald      | Cambrault   | 11000.00 | 2015-08-04 |     80 |
+|    174 | Ellen       | Abel        | 11000.00 | 1987-08-30 |     80 |
+|    172 | Elizabeth   | Bates       |  7300.00 | 1987-08-28 |     80 |
+|    149 | Eleni       | Zlotkey     | 10500.00 | 1987-08-05 |     80 |
+|    199 | Douglas     | Grant       |  2600.00 | 1987-09-24 |     50 |
+|    198 | Donald      | OConnell    |  2600.00 | 1997-09-23 |     50 |
+|    151 | David       | Bernstein   |  9500.00 | 2013-08-07 |     80 |
+|    165 | David       | Lee         |  6800.00 | 1987-08-21 |     80 |
+|    163 | Danielle    | Greene      |  9500.00 | 1987-08-19 |     80 |
+|    142 | Curtis      | Davies      |  3100.00 | 1986-07-29 |     50 |
+|    162 | Clara       | Vishney     | 10500.00 | 1987-08-18 |     80 |
+|    153 | Christopher | Olsen       |  8000.00 | 1987-08-09 |     80 |
+|    179 | Charles     | Johnson     |  6200.00 | 1999-09-04 |     80 |
+|    193 | Britney     | Everett     |  3900.00 | 1987-09-18 |     50 |
+|    187 | Anthony     | Cabrio      |  3000.00 | 2007-09-12 |     50 |
+|    167 | Amit        | Banda       |  6200.00 | 1987-08-23 |     80 |
+|    175 | Alyssa      | Hutton      |  8800.00 | 1996-08-31 |     80 |
+|    158 | Allan       | McEwen      |  9000.00 | 1987-08-14 |     80 |
+|    185 | Alexis      | Bull        |  4100.00 | 1987-09-10 |     50 |
+|    147 | Alberto     | Errazuriz   | 12000.00 | 1987-08-03 |     80 |
+|    196 | Alana       | Walsh       |  3100.00 | 1987-09-21 |     50 |
+|    121 | Adam        | Fripp       |  8200.00 | 1990-07-08 |     50 |
++--------+-------------+-------------+----------+------------+--------+
+84 rows in set (0.00 sec)
+
+mysql> curdate();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'curdate()' at line 1
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2025-10-22 |
++------------+
+1 row in set (0.02 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 20:49:11  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2025-10-22 20:49:21 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from patients;
++------+----------+------------+---------------------+
+| p_id | p_name   | DOB        | TOA                 |
++------+----------+------------+---------------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 |
++------+----------+------------+---------------------+
+3 rows in set (0.02 sec)
+
+mysql> select *, adddate(DOB,interval 60 day) as add_DOB from patients;
++------+----------+------------+---------------------+------------+
+| p_id | p_name   | DOB        | TOA                 | add_DOB    |
++------+----------+------------+---------------------+------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 2003-08-15 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 2007-10-15 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 2003-01-24 |
++------+----------+------------+---------------------+------------+
+3 rows in set (0.02 sec)
+
+mysql> select *, adddate(DOB,interval 6 month) as add_month_DOB from patients;
++------+----------+------------+---------------------+---------------+
+| p_id | p_name   | DOB        | TOA                 | add_month_DOB |
++------+----------+------------+---------------------+---------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 2003-12-16    |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 2008-02-16    |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 2003-05-25    |
++------+----------+------------+---------------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select *, adddate(DOB,interval 6 quater) as add_month_DOB from patients;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'quater) as add_month_DOB from patients' at line 1
+mysql> select *, adddate(DOB,interval 6 quarter) as add_month_DOB from patients;
++------+----------+------------+---------------------+---------------+
+| p_id | p_name   | DOB        | TOA                 | add_month_DOB |
++------+----------+------------+---------------------+---------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 2004-12-16    |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 2009-02-16    |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 2004-05-25    |
++------+----------+------------+---------------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select *, adddate(DOB,interval 6 quarter) as add_quarter_DOB from patients;
++------+----------+------------+---------------------+-----------------+
+| p_id | p_name   | DOB        | TOA                 | add_quarter_DOB |
++------+----------+------------+---------------------+-----------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 2004-12-16      |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 2009-02-16      |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 2004-05-25      |
++------+----------+------------+---------------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table patients_2 select *, adddate(DOB,interval 6 quarter) as add_quarter_DOB from patients;
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from patients_2
+    -> select * from patients_2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from patients_2' at line 2
+mysql> select * from patients_2;
++------+----------+------------+---------------------+-----------------+
+| p_id | p_name   | DOB        | TOA                 | add_quarter_DOB |
++------+----------+------------+---------------------+-----------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 2004-12-16      |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 2009-02-16      |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 2004-05-25      |
++------+----------+------------+---------------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql>tensorflow==2.15.0
+pandas 
+numpy 
+scikit-learn
+tensorboard
+matplotlib
+streamlit
+scikeras

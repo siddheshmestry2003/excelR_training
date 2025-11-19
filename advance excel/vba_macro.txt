@@ -1,0 +1,8 @@
+to use  vba function in excel sheet :- first write function -then In developer cick insert- select button-then you see all you created macro 
+then you use user define function at there.
+
+
+macro :- macro is used to reduce repetitive task.
+once write one macro and then use it where it is ricuried
+
+process :- developer tool,macro, record macro, then give name and then ok,then do task on excel, stop recording macor ,save.

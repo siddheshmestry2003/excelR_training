@@ -1,0 +1,531 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excer_db;
+ERROR 1049 (42000): Unknown database 'excer_db'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| awesome chocolates |
+| college            |
+| colleges           |
+| excelr_db          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| rooms_detail       |
+| sakila             |
+| sidd_infotech      |
+| sys                |
+| world              |
+| xyz                |
++--------------------+
+13 rows in set (0.05 sec)
+
+mysql> ude excelr_db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ude excelr_db' at line 1
+mysql> use excelr_db;
+Database changed
+mysql> select * from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+106 rows in set (0.02 sec)
+
+mysql> select sum(salary) form myemp group by job_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'myemp group by job_id' at line 1
+mysql> select sum(salary) from myemp group by job_id;
++-------------+
+| sum(salary) |
++-------------+
+|    24000.00 |
+|    34000.00 |
+|    28800.00 |
+|    12000.00 |
+|    39600.00 |
+|    11000.00 |
+|    13900.00 |
+|    36400.00 |
+|    55700.00 |
+|    61000.00 |
+|   243500.00 |
+|    64300.00 |
+|     4400.00 |
+|    13000.00 |
+|     6000.00 |
+|     6500.00 |
+|    10000.00 |
+|    12000.00 |
+|     8300.00 |
++-------------+
+19 rows in set (0.01 sec)
+
+mysql> select job_id as dept,sum(salary) from myemp group by job_id;
++------------+-------------+
+| dept       | sum(salary) |
++------------+-------------+
+| AD_PRES    |    24000.00 |
+| AD_VP      |    34000.00 |
+| IT_PROG    |    28800.00 |
+| FI_MGR     |    12000.00 |
+| FI_ACCOUNT |    39600.00 |
+| PU_MAN     |    11000.00 |
+| PU_CLERK   |    13900.00 |
+| ST_MAN     |    36400.00 |
+| ST_CLERK   |    55700.00 |
+| SA_MAN     |    61000.00 |
+| SA_REP     |   243500.00 |
+| SH_CLERK   |    64300.00 |
+| AD_ASST    |     4400.00 |
+| MK_MAN     |    13000.00 |
+| MK_REP     |     6000.00 |
+| HR_REP     |     6500.00 |
+| PR_REP     |    10000.00 |
+| AC_MGR     |    12000.00 |
+| AC_ACCOUNT |     8300.00 |
++------------+-------------+
+19 rows in set (0.00 sec)
+
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having dep_id in (50,60,40);
+ERROR 1054 (42S22): Unknown column 'dep_id' in 'having clause'
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having DEP_ID in (50,60,40);
+ERROR 1054 (42S22): Unknown column 'DEP_ID' in 'having clause'
+mysql> ^C
+mysql> ^C
+mysql> select job_id as dept, sum(salary)
+    -> from myemp
+    -> group by job_id
+    -> having dep_id in (50,60,40);
+ERROR 1054 (42S22): Unknown column 'dep_id' in 'having clause'
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having dep_id in (50,60,40);
+ERROR 1054 (42S22): Unknown column 'dep_id' in 'having clause'
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having DEP_ID in (50,60,40);
+ERROR 1054 (42S22): Unknown column 'DEP_ID' in 'having clause'
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having DEP_ID in ('50','60','40');
+ERROR 1054 (42S22): Unknown column 'DEP_ID' in 'having clause'
+mysql> select job_id as dept,sum(salary),dep_id from myemp group by job_id having DEP_ID in ('50','60','40');
+ERROR 1055 (42000): Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'excelr_db.myemp.DEP_ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select dep_id ,sum(salary) from myemp group by dep_id;
++--------+-------------+
+| dep_id | sum(salary) |
++--------+-------------+
+|     90 |    58000.00 |
+|     60 |    28800.00 |
+|    100 |    51600.00 |
+|     30 |    24900.00 |
+|     50 |   156400.00 |
+|     80 |   304500.00 |
+|     10 |     4400.00 |
+|     20 |    19000.00 |
+|     40 |     6500.00 |
+|     70 |    10000.00 |
+|    110 |    20300.00 |
++--------+-------------+
+11 rows in set (0.01 sec)
+
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having dep_id=30;
++--------+-------------+
+| dep_id | sum(salary) |
++--------+-------------+
+|     30 |    24900.00 |
++--------+-------------+
+1 row in set (0.01 sec)
+
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having DEP_ID =30;
+ERROR 1054 (42S22): Unknown column 'DEP_ID' in 'having clause'
+mysql> select job_id as dept,sum(salary) from myemp group by job_id having DEP_ID =30;
+ERROR 1054 (42S22): Unknown column 'DEP_ID' in 'having clause'
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having salary<50000;
+ERROR 1054 (42S22): Unknown column 'salary' in 'having clause'
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having salary)<50000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')<50000' at line 1
+mysql> s
+    -> s
+    -> ^C
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having sum(salary)<50000;
++--------+-------------+
+| dep_id | sum(salary) |
++--------+-------------+
+|     60 |    28800.00 |
+|     30 |    24900.00 |
+|     10 |     4400.00 |
+|     20 |    19000.00 |
+|     40 |     6500.00 |
+|     70 |    10000.00 |
+|    110 |    20300.00 |
++--------+-------------+
+7 rows in set (0.01 sec)
+
+mysql> select job_id as dept,sum(salary),dep_id from myemp group by job_id having dep_id in ('50','60','40');
+ERROR 1055 (42000): Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'excelr_db.myemp.DEP_ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having dep_id in (30,50,80,70) and sum(salary) between 20000 and 50000 ;
++--------+-------------+
+| dep_id | sum(salary) |
++--------+-------------+
+|     30 |    24900.00 |
++--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dep_id ,sum(salary) from myemp group by dep_id having dep_id in (30,50,80,70,60) and sum(salary) between 20000 and 50000 order by dep_id desc ;
++--------+-------------+
+| dep_id | sum(salary) |
++--------+-------------+
+|     60 |    28800.00 |
+|     30 |    24900.00 |
++--------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from members;
++-------+------------+-----------+---------+
+| memid | first_name | last_name | movieid |
++-------+------------+-----------+---------+
+|     1 | Alicia     | Alarcon   |       1 |
+|     2 | Don        | Draper    |       2 |
+|     3 | Lizzie     | Moss      |       5 |
+|     4 | Eldon      | Chance    |       8 |
+|     5 | Jenny      | Patterson |      10 |
+|     6 | Craig      | Daniels   |    NULL |
+|     7 | Denny      | Peters    |    NULL |
+|     8 | Patty      | Pattinson |    NULL |
++-------+------------+-----------+---------+
+8 rows in set (0.01 sec)
+
+mysql> select * from movies;
++------+---------------------------+------------+
+| id   | title                     | category   |
++------+---------------------------+------------+
+|    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|    2 | Real Steel                | Animations |
+|    3 | Alvin and the Chipmunks   | Animations |
+|    4 | The Adventures of Tin Tin | Animations |
+|    5 | Safe                      | Action     |
+|    6 | Safe House                | Action     |
+|    7 | GIA                       | 18+        |
+|    8 | Deadline 2009             | 18+        |
+|    9 | The Dirty Picture         | 18+        |
+|   10 | Marley and me             | Romance    |
++------+---------------------------+------------+
+10 rows in set (0.02 sec)
+
+mysql> select me.first_name, mo.category from members as me  inner join movies as mo on me.movieid=mo.id;
++------------+------------+
+| first_name | category   |
++------------+------------+
+| Alicia     | Animations |
+| Don        | Animations |
+| Lizzie     | Action     |
+| Eldon      | 18+        |
+| Jenny      | Romance    |
++------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from members as me  inner join movies as mo on me.movieid=mo.id;
++-------+------------+-----------+---------+------+--------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                    | category   |
++-------+------------+-----------+---------+------+--------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel               | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                     | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009            | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me            | Romance    |
++-------+------------+-----------+---------+------+--------------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from members as me  inner join movies as mo on me.movieid=mo.id;
++-------+------------+-----------+---------+------+--------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                    | category   |
++-------+------------+-----------+---------+------+--------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel               | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                     | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009            | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me            | Romance    |
++-------+------------+-----------+---------+------+--------------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from members as me  left join movies as mo on me.movieid=mo.id;
++-------+------------+-----------+---------+------+--------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                    | category   |
++-------+------------+-----------+---------+------+--------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel               | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                     | Action     |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009            | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me            | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                     | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                     | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                     | NULL       |
++-------+------------+-----------+---------+------+--------------------------+------------+
+8 rows in set (0.02 sec)
+
+mysql> select * from members as me  right join movies as mo on me.movieid=mo.id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
++-------+------------+-----------+---------+------+---------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from members as me  right join movies as mo on me.movieid=mo.id union select * from members as me  left join movies as mo on me.movieid=mo.id;
++-------+------------+-----------+---------+------+---------------------------+------------+
+| memid | first_name | last_name | movieid | id   | title                     | category   |
++-------+------------+-----------+---------+------+---------------------------+------------+
+|     1 | Alicia     | Alarcon   |       1 |    1 | ASSASSIN'S CREED: EMBERS  | Animations |
+|     2 | Don        | Draper    |       2 |    2 | Real Steel                | Animations |
+|  NULL | NULL       | NULL      |    NULL |    3 | Alvin and the Chipmunks   | Animations |
+|  NULL | NULL       | NULL      |    NULL |    4 | The Adventures of Tin Tin | Animations |
+|     3 | Lizzie     | Moss      |       5 |    5 | Safe                      | Action     |
+|  NULL | NULL       | NULL      |    NULL |    6 | Safe House                | Action     |
+|  NULL | NULL       | NULL      |    NULL |    7 | GIA                       | 18+        |
+|     4 | Eldon      | Chance    |       8 |    8 | Deadline 2009             | 18+        |
+|  NULL | NULL       | NULL      |    NULL |    9 | The Dirty Picture         | 18+        |
+|     5 | Jenny      | Patterson |      10 |   10 | Marley and me             | Romance    |
+|     6 | Craig      | Daniels   |    NULL | NULL | NULL                      | NULL       |
+|     7 | Denny      | Peters    |    NULL | NULL | NULL                      | NULL       |
+|     8 | Patty      | Pattinson |    NULL | NULL | NULL                      | NULL       |
++-------+------------+-----------+---------+------+---------------------------+------------+
+13 rows in set (0.02 sec)
+
+mysql> select * from myclas_1;
+ERROR 1146 (42S02): Table 'excelr_db.myclas_1' doesn't exist
+mysql> select * from myclass_1;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    1 | Tom    |   27 |
+|    2 | Peter  |   66 |
+|    3 | Rehan  |   75 |
+|    4 | Drake  |   55 |
++------+--------+------+
+4 rows in set (0.02 sec)
+
+mysql> select * from myclass_2;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
++------+--------+------+
+4 rows in set (0.02 sec)
+
+mysql> select * from myclass_2 union select * from myclass_2;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
++------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from myclass_2 union all select * from myclass_2;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
++------+--------+------+
+8 rows in set (0.02 sec)
+
+mysql> select * from myclass_2 union select * from myclass_1;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
+|    1 | Tom    |   27 |
+|    2 | Peter  |   66 |
+|    3 | Rehan  |   75 |
++------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from myclass_2 union all select * from myclass_1;
++------+--------+------+
+| s_id | s_name | age  |
++------+--------+------+
+|    4 | Drake  |   55 |
+|    5 | Sally  |   45 |
+|    6 | Jerry  |   75 |
+|    7 | Mike   |   55 |
+|    1 | Tom    |   27 |
+|    2 | Peter  |   66 |
+|    3 | Rehan  |   75 |
+|    4 | Drake  |   55 |
++------+--------+------+
+8 rows in set (0.00 sec)
+
+mysql> alter tabel myclass_2 drop age;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabel myclass_2 drop age' at line 1
+mysql> alter table myclass_2 drop age;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from myclass_2 union all select * from myclass_1;
+ERROR 1222 (21000): The used SELECT statements have a different number of columns
+mysql> select * from myclass_2 union all select * from myclass_1;
+ERROR 1222 (21000): The used SELECT statements have a different number of columns
+mysql> alter table myclass_2 add course varchar(120);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update myclass_2 set couuse="Python";
+ERROR 1054 (42S22): Unknown column 'couuse' in 'field list'
+mysql> update myclass_2 set course="Python";
+Query OK, 4 rows affected (0.02 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from myclass_2 union all select * from myclass_1;
++------+--------+--------+
+| s_id | s_name | course |
++------+--------+--------+
+|    4 | Drake  | Python |
+|    5 | Sally  | Python |
+|    6 | Jerry  | Python |
+|    7 | Mike   | Python |
+|    1 | Tom    | 27     |
+|    2 | Peter  | 66     |
+|    3 | Rehan  | 75     |
+|    4 | Drake  | 55     |
++------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql>

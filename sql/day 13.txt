@@ -1,0 +1,868 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db;
+Database changed
+mysql> desc myemp;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| EMP_ID         | decimal(6,0) | NO   |     | 0       |       |
+| FIRST_NAME     | varchar(20)  | YES  |     | NULL    |       |
+| LAST_NAME      | varchar(25)  | NO   |     | NULL    |       |
+| EMAIL          | varchar(25)  | NO   |     | NULL    |       |
+| HIRE_DATE      | date         | NO   |     | NULL    |       |
+| JOB_ID         | varchar(10)  | NO   |     | NULL    |       |
+| SALARY         | decimal(8,2) | YES  |     | NULL    |       |
+| COMMISSION_PCT | decimal(2,2) | YES  |     | NULL    |       |
+| MGR_ID         | decimal(6,0) | YES  |     | NULL    |       |
+| DEP_ID         | decimal(4,0) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+10 rows in set (0.04 sec)
+
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partion by dep_id) as avg_sal from myemp where salary>avg_sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partion by dep_id) as avg_sal from myemp where salary>avg_sal' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partion by dep_id) as avg_sal from myemp having salary>avg_sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partion by dep_id) as avg_sal from myemp having salary>avg_sal' at line 1
+mysql> with x as (select emp_id,first_name,last_name,hire_date from myemp)
+    -> select *  from x limit 12;
++--------+------------+-----------+------------+
+| emp_id | first_name | last_name | hire_date  |
++--------+------------+-----------+------------+
+|    100 | Steven     | King      | 1998-06-17 |
+|    101 | Neena      | Kochhar   | 1987-06-18 |
+|    102 | Lex        | De Haan   | 1987-06-19 |
+|    103 | Alexander  | Hunold    | 1976-06-20 |
+|    104 | Bruce      | Ernst     | 1987-06-21 |
+|    105 | David      | Austin    | 1987-06-22 |
+|    106 | Valli      | Pataballa | 1980-06-23 |
+|    107 | Diana      | Lorentz   | 1987-06-24 |
+|    108 | Nancy      | Greenberg | 1987-06-25 |
+|    109 | Daniel     | Faviet    | 1992-06-26 |
+|    110 | John       | Chen      | 1987-06-27 |
+|    111 | Ismael     | Sciarra   | 1987-06-28 |
++--------+------------+-----------+------------+
+12 rows in set (0.02 sec)
+
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partion by dep_id) as avg_sal from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partion by dep_id) as avg_sal from myemp' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partation by dep_id) as avg_sal from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partation by dep_id) as avg_sal from myemp' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partition by dep_id) as avg_sal from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partition by dep_id) as avg_sal from myemp' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary)over(partition by dep_id)  from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partition by dep_id)  from myemp' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,ave(salary) over(partition by dep_id)  from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over(partition by dep_id)  from myemp' at line 1
+mysql> select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,avg(salary) over(partition by dep_id) as total_avg_salary  from myemp;
++--------+-------------------+------------+----------+------------+------------------+
+| emp_id | full_name         | hire_date  | salary   | job_id     | total_avg_salary |
++--------+-------------------+------------+----------+------------+------------------+
+|    200 | Jennifer Whalen   | 1988-09-25 |  4400.00 | AD_ASST    |      4400.000000 |
+|    201 | Michael Hartstein | 1987-09-26 | 13000.00 | MK_MAN     |      9500.000000 |
+|    202 | Pat Fay           | 1987-09-27 |  6000.00 | MK_REP     |      9500.000000 |
+|    114 | Den Raphaely      | 1987-07-01 | 11000.00 | PU_MAN     |      4150.000000 |
+|    115 | Alexander Khoo    | 1983-07-02 |  3100.00 | PU_CLERK   |      4150.000000 |
+|    116 | Shelli Baida      | 1987-07-03 |  2900.00 | PU_CLERK   |      4150.000000 |
+|    117 | Sigal Tobias      | 1987-07-04 |  2800.00 | PU_CLERK   |      4150.000000 |
+|    118 | Guy Himuro        | 1995-07-05 |  2600.00 | PU_CLERK   |      4150.000000 |
+|    119 | Karen Colmenares  | 1987-07-06 |  2500.00 | PU_CLERK   |      4150.000000 |
+|    203 | Susan Mavris      | 1989-09-28 |  6500.00 | HR_REP     |      6500.000000 |
+|    120 | Matthew Weiss     | 1987-07-07 |  8000.00 | ST_MAN     |      3475.555556 |
+|    121 | Adam Fripp        | 1990-07-08 |  8200.00 | ST_MAN     |      3475.555556 |
+|    122 | Payam Kaufling    | 1987-07-09 |  7900.00 | ST_MAN     |      3475.555556 |
+|    123 | Shanta Vollman    | 1987-07-10 |  6500.00 | ST_MAN     |      3475.555556 |
+|    124 | Kevin Mourgos     | 1997-07-11 |  5800.00 | ST_MAN     |      3475.555556 |
+|    125 | Julia Nayer       | 1987-07-12 |  3200.00 | ST_CLERK   |      3475.555556 |
+|    126 | Irene Mikkilineni | 1987-07-13 |  2700.00 | ST_CLERK   |      3475.555556 |
+|    127 | James Landry      | 1978-07-14 |  2400.00 | ST_CLERK   |      3475.555556 |
+|    128 | Steven Markle     | 1987-07-15 |  2200.00 | ST_CLERK   |      3475.555556 |
+|    129 | Laura Bissot      | 1987-07-16 |  3300.00 | ST_CLERK   |      3475.555556 |
+|    130 | Mozhe Atkinson    | 1983-07-17 |  2800.00 | ST_CLERK   |      3475.555556 |
+|    131 | James Marlow      | 1987-07-18 |  2500.00 | ST_CLERK   |      3475.555556 |
+|    132 | TJ Olson          | 1987-07-19 |  2100.00 | ST_CLERK   |      3475.555556 |
+|    133 | Jason Mallin      | 1985-07-20 |  3300.00 | ST_CLERK   |      3475.555556 |
+|    134 | Michael Rogers    | 1987-07-21 |  2900.00 | ST_CLERK   |      3475.555556 |
+|    135 | Ki Gee            | 1987-07-22 |  2400.00 | ST_CLERK   |      3475.555556 |
+|    136 | Hazel Philtanker  | 1990-07-23 |  2200.00 | ST_CLERK   |      3475.555556 |
+|    137 | Renske Ladwig     | 2000-07-24 |  3600.00 | ST_CLERK   |      3475.555556 |
+|    138 | Stephen Stiles    | 1987-07-25 |  3200.00 | ST_CLERK   |      3475.555556 |
+|    139 | John Seo          | 1989-07-26 |  2700.00 | ST_CLERK   |      3475.555556 |
+|    140 | Joshua Patel      | 2011-07-27 |  2500.00 | ST_CLERK   |      3475.555556 |
+|    141 | Trenna Rajs       | 1987-07-28 |  3500.00 | ST_CLERK   |      3475.555556 |
+|    142 | Curtis Davies     | 1986-07-29 |  3100.00 | ST_CLERK   |      3475.555556 |
+|    143 | Randall Matos     | 1987-07-30 |  2600.00 | ST_CLERK   |      3475.555556 |
+|    144 | Peter Vargas      | 1998-07-31 |  2500.00 | ST_CLERK   |      3475.555556 |
+|    180 | Winston Taylor    | 1987-09-05 |  3200.00 | SH_CLERK   |      3475.555556 |
+|    181 | Jean Fleaur       | 1987-09-06 |  3100.00 | SH_CLERK   |      3475.555556 |
+|    182 | Martha Sullivan   | 1987-09-07 |  2500.00 | SH_CLERK   |      3475.555556 |
+|    183 | Girard Geoni      | 1987-09-08 |  2800.00 | SH_CLERK   |      3475.555556 |
+|    184 | Nandita Sarchand  | 2012-09-09 |  4200.00 | SH_CLERK   |      3475.555556 |
+|    185 | Alexis Bull       | 1987-09-10 |  4100.00 | SH_CLERK   |      3475.555556 |
+|    186 | Julia Dellinger   | 1987-09-11 |  3400.00 | SH_CLERK   |      3475.555556 |
+|    187 | Anthony Cabrio    | 2007-09-12 |  3000.00 | SH_CLERK   |      3475.555556 |
+|    188 | Kelly Chung       | 1987-09-13 |  3800.00 | SH_CLERK   |      3475.555556 |
+|    189 | Jennifer Dilly    | 1987-09-14 |  3600.00 | SH_CLERK   |      3475.555556 |
+|    190 | Timothy Gates     | 1987-09-15 |  2900.00 | SH_CLERK   |      3475.555556 |
+|    191 | Randall Perkins   | 1987-09-16 |  2500.00 | SH_CLERK   |      3475.555556 |
+|    192 | Sarah Bell        | 1987-09-17 |  4000.00 | SH_CLERK   |      3475.555556 |
+|    193 | Britney Everett   | 1987-09-18 |  3900.00 | SH_CLERK   |      3475.555556 |
+|    194 | Samuel McCain     | 2000-09-19 |  3200.00 | SH_CLERK   |      3475.555556 |
+|    195 | Vance Jones       | 1996-09-20 |  2800.00 | SH_CLERK   |      3475.555556 |
+|    196 | Alana Walsh       | 1987-09-21 |  3100.00 | SH_CLERK   |      3475.555556 |
+|    197 | Kevin Feeney      | 1987-09-22 |  3000.00 | SH_CLERK   |      3475.555556 |
+|    198 | Donald OConnell   | 1997-09-23 |  2600.00 | SH_CLERK   |      3475.555556 |
+|    199 | Douglas Grant     | 1987-09-24 |  2600.00 | SH_CLERK   |      3475.555556 |
+|    103 | Alexander Hunold  | 1976-06-20 |  9000.00 | IT_PROG    |      5760.000000 |
+|    104 | Bruce Ernst       | 1987-06-21 |  6000.00 | IT_PROG    |      5760.000000 |
+|    105 | David Austin      | 1987-06-22 |  4800.00 | IT_PROG    |      5760.000000 |
+|    106 | Valli Pataballa   | 1980-06-23 |  4800.00 | IT_PROG    |      5760.000000 |
+|    107 | Diana Lorentz     | 1987-06-24 |  4200.00 | IT_PROG    |      5760.000000 |
+|    204 | Hermann Baer      | 1987-09-29 | 10000.00 | PR_REP     |     10000.000000 |
+|    145 | John Russell      | 1991-08-01 | 14000.00 | SA_MAN     |      8955.882353 |
+|    146 | Karen Partners    | 2019-08-02 | 13500.00 | SA_MAN     |      8955.882353 |
+|    147 | Alberto Errazuriz | 1987-08-03 | 12000.00 | SA_MAN     |      8955.882353 |
+|    148 | Gerald Cambrault  | 2015-08-04 | 11000.00 | SA_MAN     |      8955.882353 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | 10500.00 | SA_MAN     |      8955.882353 |
+|    150 | Peter Tucker      | 1987-08-06 | 10000.00 | SA_REP     |      8955.882353 |
+|    151 | David Bernstein   | 2013-08-07 |  9500.00 | SA_REP     |      8955.882353 |
+|    152 | Peter Hall        | 1987-08-08 |  9000.00 | SA_REP     |      8955.882353 |
+|    153 | Christopher Olsen | 1987-08-09 |  8000.00 | SA_REP     |      8955.882353 |
+|    154 | Nanette Cambrault | 1987-08-10 |  7500.00 | SA_REP     |      8955.882353 |
+|    155 | Oliver Tuvault    | 1987-08-11 |  7000.00 | SA_REP     |      8955.882353 |
+|    156 | Janette King      | 1987-08-12 | 10000.00 | SA_REP     |      8955.882353 |
+|    157 | Patrick Sully     | 2002-08-13 |  9500.00 | SA_REP     |      8955.882353 |
+|    158 | Allan McEwen      | 1987-08-14 |  9000.00 | SA_REP     |      8955.882353 |
+|    159 | Lindsey Smith     | 1987-08-15 |  8000.00 | SA_REP     |      8955.882353 |
+|    160 | Louise Doran      | 2003-08-16 |  7500.00 | SA_REP     |      8955.882353 |
+|    161 | Sarath Sewall     | 1987-08-17 |  7000.00 | SA_REP     |      8955.882353 |
+|    162 | Clara Vishney     | 1987-08-18 | 10500.00 | SA_REP     |      8955.882353 |
+|    163 | Danielle Greene   | 1987-08-19 |  9500.00 | SA_REP     |      8955.882353 |
+|    164 | Mattea Marvins    | 2007-08-20 |  7200.00 | SA_REP     |      8955.882353 |
+|    165 | David Lee         | 1987-08-21 |  6800.00 | SA_REP     |      8955.882353 |
+|    166 | Sundar Ande       | 1987-08-22 |  6400.00 | SA_REP     |      8955.882353 |
+|    167 | Amit Banda        | 1987-08-23 |  6200.00 | SA_REP     |      8955.882353 |
+|    168 | Lisa Ozer         | 1987-08-24 | 11500.00 | SA_REP     |      8955.882353 |
+|    169 | Harrison Bloom    | 1999-08-25 | 10000.00 | SA_REP     |      8955.882353 |
+|    170 | Tayler Fox        | 1987-08-26 |  9600.00 | SA_REP     |      8955.882353 |
+|    171 | William Smith     | 1987-08-27 |  7400.00 | SA_REP     |      8955.882353 |
+|    172 | Elizabeth Bates   | 1987-08-28 |  7300.00 | SA_REP     |      8955.882353 |
+|    173 | Sundita Kumar     | 1987-08-29 |  6100.00 | SA_REP     |      8955.882353 |
+|    174 | Ellen Abel        | 1987-08-30 | 11000.00 | SA_REP     |      8955.882353 |
+|    175 | Alyssa Hutton     | 1996-08-31 |  8800.00 | SA_REP     |      8955.882353 |
+|    176 | Jonathon Taylor   | 1987-09-01 |  8600.00 | SA_REP     |      8955.882353 |
+|    177 | Jack Livingston   | 1987-09-02 |  8400.00 | SA_REP     |      8955.882353 |
+|    179 | Charles Johnson   | 1999-09-04 |  6200.00 | SA_REP     |      8955.882353 |
+|    100 | Steven King       | 1998-06-17 | 24000.00 | AD_PRES    |     19333.333333 |
+|    101 | Neena Kochhar     | 1987-06-18 | 17000.00 | AD_VP      |     19333.333333 |
+|    102 | Lex De Haan       | 1987-06-19 | 17000.00 | AD_VP      |     19333.333333 |
+|    108 | Nancy Greenberg   | 1987-06-25 | 12000.00 | FI_MGR     |      8600.000000 |
+|    109 | Daniel Faviet     | 1992-06-26 |  9000.00 | FI_ACCOUNT |      8600.000000 |
+|    110 | John Chen         | 1987-06-27 |  8200.00 | FI_ACCOUNT |      8600.000000 |
+|    111 | Ismael Sciarra    | 1987-06-28 |  7700.00 | FI_ACCOUNT |      8600.000000 |
+|    112 | Jose Manuel Urman | 1981-06-29 |  7800.00 | FI_ACCOUNT |      8600.000000 |
+|    113 | Luis Popp         | 1987-06-30 |  6900.00 | FI_ACCOUNT |      8600.000000 |
+|    205 | Shelley Higgins   | 1987-09-30 | 12000.00 | AC_MGR     |     10150.000000 |
+|    206 | William Gietz     | 1997-10-01 |  8300.00 | AC_ACCOUNT |     10150.000000 |
++--------+-------------------+------------+----------+------------+------------------+
+106 rows in set (0.02 sec)
+
+mysql> with x as (select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,avg(salary) over(partition by dep_id) as total_avg_salary  from myemp)
+    -> select * from x where salary>total_avg_salary;
++--------+-------------------+------------+----------+------------+------------------+
+| emp_id | full_name         | hire_date  | salary   | job_id     | total_avg_salary |
++--------+-------------------+------------+----------+------------+------------------+
+|    201 | Michael Hartstein | 1987-09-26 | 13000.00 | MK_MAN     |      9500.000000 |
+|    114 | Den Raphaely      | 1987-07-01 | 11000.00 | PU_MAN     |      4150.000000 |
+|    120 | Matthew Weiss     | 1987-07-07 |  8000.00 | ST_MAN     |      3475.555556 |
+|    121 | Adam Fripp        | 1990-07-08 |  8200.00 | ST_MAN     |      3475.555556 |
+|    122 | Payam Kaufling    | 1987-07-09 |  7900.00 | ST_MAN     |      3475.555556 |
+|    123 | Shanta Vollman    | 1987-07-10 |  6500.00 | ST_MAN     |      3475.555556 |
+|    124 | Kevin Mourgos     | 1997-07-11 |  5800.00 | ST_MAN     |      3475.555556 |
+|    137 | Renske Ladwig     | 2000-07-24 |  3600.00 | ST_CLERK   |      3475.555556 |
+|    141 | Trenna Rajs       | 1987-07-28 |  3500.00 | ST_CLERK   |      3475.555556 |
+|    184 | Nandita Sarchand  | 2012-09-09 |  4200.00 | SH_CLERK   |      3475.555556 |
+|    185 | Alexis Bull       | 1987-09-10 |  4100.00 | SH_CLERK   |      3475.555556 |
+|    188 | Kelly Chung       | 1987-09-13 |  3800.00 | SH_CLERK   |      3475.555556 |
+|    189 | Jennifer Dilly    | 1987-09-14 |  3600.00 | SH_CLERK   |      3475.555556 |
+|    192 | Sarah Bell        | 1987-09-17 |  4000.00 | SH_CLERK   |      3475.555556 |
+|    193 | Britney Everett   | 1987-09-18 |  3900.00 | SH_CLERK   |      3475.555556 |
+|    103 | Alexander Hunold  | 1976-06-20 |  9000.00 | IT_PROG    |      5760.000000 |
+|    104 | Bruce Ernst       | 1987-06-21 |  6000.00 | IT_PROG    |      5760.000000 |
+|    145 | John Russell      | 1991-08-01 | 14000.00 | SA_MAN     |      8955.882353 |
+|    146 | Karen Partners    | 2019-08-02 | 13500.00 | SA_MAN     |      8955.882353 |
+|    147 | Alberto Errazuriz | 1987-08-03 | 12000.00 | SA_MAN     |      8955.882353 |
+|    148 | Gerald Cambrault  | 2015-08-04 | 11000.00 | SA_MAN     |      8955.882353 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | 10500.00 | SA_MAN     |      8955.882353 |
+|    150 | Peter Tucker      | 1987-08-06 | 10000.00 | SA_REP     |      8955.882353 |
+|    151 | David Bernstein   | 2013-08-07 |  9500.00 | SA_REP     |      8955.882353 |
+|    152 | Peter Hall        | 1987-08-08 |  9000.00 | SA_REP     |      8955.882353 |
+|    156 | Janette King      | 1987-08-12 | 10000.00 | SA_REP     |      8955.882353 |
+|    157 | Patrick Sully     | 2002-08-13 |  9500.00 | SA_REP     |      8955.882353 |
+|    158 | Allan McEwen      | 1987-08-14 |  9000.00 | SA_REP     |      8955.882353 |
+|    162 | Clara Vishney     | 1987-08-18 | 10500.00 | SA_REP     |      8955.882353 |
+|    163 | Danielle Greene   | 1987-08-19 |  9500.00 | SA_REP     |      8955.882353 |
+|    168 | Lisa Ozer         | 1987-08-24 | 11500.00 | SA_REP     |      8955.882353 |
+|    169 | Harrison Bloom    | 1999-08-25 | 10000.00 | SA_REP     |      8955.882353 |
+|    170 | Tayler Fox        | 1987-08-26 |  9600.00 | SA_REP     |      8955.882353 |
+|    174 | Ellen Abel        | 1987-08-30 | 11000.00 | SA_REP     |      8955.882353 |
+|    100 | Steven King       | 1998-06-17 | 24000.00 | AD_PRES    |     19333.333333 |
+|    108 | Nancy Greenberg   | 1987-06-25 | 12000.00 | FI_MGR     |      8600.000000 |
+|    109 | Daniel Faviet     | 1992-06-26 |  9000.00 | FI_ACCOUNT |      8600.000000 |
+|    205 | Shelley Higgins   | 1987-09-30 | 12000.00 | AC_MGR     |     10150.000000 |
++--------+-------------------+------------+----------+------------+------------------+
+38 rows in set (0.02 sec)
+
+mysql> with x as (select emp_id, concat(first_name," ",last_name) as full_name,hire_date,salary,job_id,dep_id,avg(salary) over(partition by dep_id) as total_avg_salary  from myemp)
+    -> select * from x where salary>total_avg_salary;
++--------+-------------------+------------+----------+------------+--------+------------------+
+| emp_id | full_name         | hire_date  | salary   | job_id     | dep_id | total_avg_salary |
++--------+-------------------+------------+----------+------------+--------+------------------+
+|    201 | Michael Hartstein | 1987-09-26 | 13000.00 | MK_MAN     |     20 |      9500.000000 |
+|    114 | Den Raphaely      | 1987-07-01 | 11000.00 | PU_MAN     |     30 |      4150.000000 |
+|    120 | Matthew Weiss     | 1987-07-07 |  8000.00 | ST_MAN     |     50 |      3475.555556 |
+|    121 | Adam Fripp        | 1990-07-08 |  8200.00 | ST_MAN     |     50 |      3475.555556 |
+|    122 | Payam Kaufling    | 1987-07-09 |  7900.00 | ST_MAN     |     50 |      3475.555556 |
+|    123 | Shanta Vollman    | 1987-07-10 |  6500.00 | ST_MAN     |     50 |      3475.555556 |
+|    124 | Kevin Mourgos     | 1997-07-11 |  5800.00 | ST_MAN     |     50 |      3475.555556 |
+|    137 | Renske Ladwig     | 2000-07-24 |  3600.00 | ST_CLERK   |     50 |      3475.555556 |
+|    141 | Trenna Rajs       | 1987-07-28 |  3500.00 | ST_CLERK   |     50 |      3475.555556 |
+|    184 | Nandita Sarchand  | 2012-09-09 |  4200.00 | SH_CLERK   |     50 |      3475.555556 |
+|    185 | Alexis Bull       | 1987-09-10 |  4100.00 | SH_CLERK   |     50 |      3475.555556 |
+|    188 | Kelly Chung       | 1987-09-13 |  3800.00 | SH_CLERK   |     50 |      3475.555556 |
+|    189 | Jennifer Dilly    | 1987-09-14 |  3600.00 | SH_CLERK   |     50 |      3475.555556 |
+|    192 | Sarah Bell        | 1987-09-17 |  4000.00 | SH_CLERK   |     50 |      3475.555556 |
+|    193 | Britney Everett   | 1987-09-18 |  3900.00 | SH_CLERK   |     50 |      3475.555556 |
+|    103 | Alexander Hunold  | 1976-06-20 |  9000.00 | IT_PROG    |     60 |      5760.000000 |
+|    104 | Bruce Ernst       | 1987-06-21 |  6000.00 | IT_PROG    |     60 |      5760.000000 |
+|    145 | John Russell      | 1991-08-01 | 14000.00 | SA_MAN     |     80 |      8955.882353 |
+|    146 | Karen Partners    | 2019-08-02 | 13500.00 | SA_MAN     |     80 |      8955.882353 |
+|    147 | Alberto Errazuriz | 1987-08-03 | 12000.00 | SA_MAN     |     80 |      8955.882353 |
+|    148 | Gerald Cambrault  | 2015-08-04 | 11000.00 | SA_MAN     |     80 |      8955.882353 |
+|    149 | Eleni Zlotkey     | 1987-08-05 | 10500.00 | SA_MAN     |     80 |      8955.882353 |
+|    150 | Peter Tucker      | 1987-08-06 | 10000.00 | SA_REP     |     80 |      8955.882353 |
+|    151 | David Bernstein   | 2013-08-07 |  9500.00 | SA_REP     |     80 |      8955.882353 |
+|    152 | Peter Hall        | 1987-08-08 |  9000.00 | SA_REP     |     80 |      8955.882353 |
+|    156 | Janette King      | 1987-08-12 | 10000.00 | SA_REP     |     80 |      8955.882353 |
+|    157 | Patrick Sully     | 2002-08-13 |  9500.00 | SA_REP     |     80 |      8955.882353 |
+|    158 | Allan McEwen      | 1987-08-14 |  9000.00 | SA_REP     |     80 |      8955.882353 |
+|    162 | Clara Vishney     | 1987-08-18 | 10500.00 | SA_REP     |     80 |      8955.882353 |
+|    163 | Danielle Greene   | 1987-08-19 |  9500.00 | SA_REP     |     80 |      8955.882353 |
+|    168 | Lisa Ozer         | 1987-08-24 | 11500.00 | SA_REP     |     80 |      8955.882353 |
+|    169 | Harrison Bloom    | 1999-08-25 | 10000.00 | SA_REP     |     80 |      8955.882353 |
+|    170 | Tayler Fox        | 1987-08-26 |  9600.00 | SA_REP     |     80 |      8955.882353 |
+|    174 | Ellen Abel        | 1987-08-30 | 11000.00 | SA_REP     |     80 |      8955.882353 |
+|    100 | Steven King       | 1998-06-17 | 24000.00 | AD_PRES    |     90 |     19333.333333 |
+|    108 | Nancy Greenberg   | 1987-06-25 | 12000.00 | FI_MGR     |    100 |      8600.000000 |
+|    109 | Daniel Faviet     | 1992-06-26 |  9000.00 | FI_ACCOUNT |    100 |      8600.000000 |
+|    205 | Shelley Higgins   | 1987-09-30 | 12000.00 | AC_MGR     |    110 |     10150.000000 |
++--------+-------------------+------------+----------+------------+--------+------------------+
+38 rows in set (0.00 sec)
+
+mysql> select * from sales;
++----------------+-------------+--------+
+| sales_employee | fiscal_year | sale   |
++----------------+-------------+--------+
+| Alice          |        2016 | 150.00 |
+| Alice          |        2017 | 100.00 |
+| Alice          |        2018 | 200.00 |
+| Bob            |        2016 | 100.00 |
+| Bob            |        2017 | 150.00 |
+| Bob            |        2018 | 200.00 |
+| John           |        2016 | 200.00 |
+| John           |        2017 | 150.00 |
+| John           |        2018 | 250.00 |
++----------------+-------------+--------+
+9 rows in set (0.08 sec)
+
+mysql> select *,lag(sale) over(partition by sales_employee) as previous_year_sales,lead(sale) over(partiton by sales_employee) as next_year_sales from sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by sales_employee) as next_year_sales from sales' at line 1
+mysql> select *,lag(sale) over(partition by sales_employee) as previous_year_sales,lead(sale) over(partition by sales_employee) as next_year_sales from sales;
++----------------+-------------+--------+---------------------+-----------------+
+| sales_employee | fiscal_year | sale   | previous_year_sales | next_year_sales |
++----------------+-------------+--------+---------------------+-----------------+
+| Alice          |        2016 | 150.00 |                NULL |          100.00 |
+| Alice          |        2017 | 100.00 |              150.00 |          200.00 |
+| Alice          |        2018 | 200.00 |              100.00 |            NULL |
+| Bob            |        2016 | 100.00 |                NULL |          150.00 |
+| Bob            |        2017 | 150.00 |              100.00 |          200.00 |
+| Bob            |        2018 | 200.00 |              150.00 |            NULL |
+| John           |        2016 | 200.00 |                NULL |          150.00 |
+| John           |        2017 | 150.00 |              200.00 |          250.00 |
+| John           |        2018 | 250.00 |              150.00 |            NULL |
++----------------+-------------+--------+---------------------+-----------------+
+9 rows in set (0.02 sec)
+
+mysql> select *,lag(sale,2) over(partition by sales_employee) as previous_year_sales,lead(sale,2) over(partition by sales_employee) as next_year_sales from sales;
++----------------+-------------+--------+---------------------+-----------------+
+| sales_employee | fiscal_year | sale   | previous_year_sales | next_year_sales |
++----------------+-------------+--------+---------------------+-----------------+
+| Alice          |        2016 | 150.00 |                NULL |          200.00 |
+| Alice          |        2017 | 100.00 |                NULL |            NULL |
+| Alice          |        2018 | 200.00 |              150.00 |            NULL |
+| Bob            |        2016 | 100.00 |                NULL |          200.00 |
+| Bob            |        2017 | 150.00 |                NULL |            NULL |
+| Bob            |        2018 | 200.00 |              100.00 |            NULL |
+| John           |        2016 | 200.00 |                NULL |          250.00 |
+| John           |        2017 | 150.00 |                NULL |            NULL |
+| John           |        2018 | 250.00 |              200.00 |            NULL |
++----------------+-------------+--------+---------------------+-----------------+
+9 rows in set (0.02 sec)
+
+mysql> select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales;
++----------------+-------------+--------+---------------------+-----------------+
+| sales_employee | fiscal_year | sale   | previous_year_sales | next_year_sales |
++----------------+-------------+--------+---------------------+-----------------+
+| Alice          |        2016 | 150.00 | Not Avaliable       | 100.00          |
+| Alice          |        2017 | 100.00 | 150.00              | 200.00          |
+| Alice          |        2018 | 200.00 | 100.00              | Not Avaliable   |
+| Bob            |        2016 | 100.00 | Not Avaliable       | 150.00          |
+| Bob            |        2017 | 150.00 | 100.00              | 200.00          |
+| Bob            |        2018 | 200.00 | 150.00              | Not Avaliable   |
+| John           |        2016 | 200.00 | Not Avaliable       | 150.00          |
+| John           |        2017 | 150.00 | 200.00              | 250.00          |
+| John           |        2018 | 250.00 | 150.00              | Not Avaliable   |
++----------------+-------------+--------+---------------------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,concat(sale-previous_year_sales)/prvious_year_sales * 100,"%") as yoy_growth from x;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as yoy_growth from x' at line 2
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,concat(sale- previous_year_sales)/previous_year_sales * 100,"%") as yoy_growth from x;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as yoy_growth from x' at line 2
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,concat(sale- previous_year_sales)/previous_year_sales * 100,"%") as yoy_growth from x;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as yoy_growth from x' at line 2
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,if_null(concat(round((sale- previous_year_sales)/previous_year_sales * 100,2),"%"),"Not Avalaiable" as yoy_growth from x;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from x' at line 2
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,if_null(concat(round((sale- previous_year_sales)/previous_year_sales * 100,2),"%"),"Not Avalaiable") as yoy_growth from x;
+ERROR 1305 (42000): FUNCTION excelr_db.if_null does not exist
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select *,ifnull(concat(round((sale- previous_year_sales)/previous_year_sales * 100,2),"%"),"Not Avalaiable") as yoy_growth from x;
++----------------+-------------+--------+---------------------+-----------------+----------------+
+| sales_employee | fiscal_year | sale   | previous_year_sales | next_year_sales | yoy_growth     |
++----------------+-------------+--------+---------------------+-----------------+----------------+
+| Alice          |        2016 | 150.00 | Not Avaliable       | 100.00          | Not Avalaiable |
+| Alice          |        2017 | 100.00 | 150.00              | 200.00          | -33.33%        |
+| Alice          |        2018 | 200.00 | 100.00              | Not Avaliable   | 100%           |
+| Bob            |        2016 | 100.00 | Not Avaliable       | 150.00          | Not Avalaiable |
+| Bob            |        2017 | 150.00 | 100.00              | 200.00          | 50%            |
+| Bob            |        2018 | 200.00 | 150.00              | Not Avaliable   | 33.33%         |
+| John           |        2016 | 200.00 | Not Avaliable       | 150.00          | Not Avalaiable |
+| John           |        2017 | 150.00 | 200.00              | 250.00          | -25%           |
+| John           |        2018 | 250.00 | 150.00              | Not Avaliable   | 66.67%         |
++----------------+-------------+--------+---------------------+-----------------+----------------+
+9 rows in set, 9 warnings (0.02 sec)
+
+mysql> with x as (select *,lag(sale,1,"Not Avaliable") over(partition by sales_employee) as previous_year_sales,lead(sale,1,"Not Avaliable") over(partition by sales_employee) as next_year_sales from sales)
+    -> select sales_employee,fiscal_year,sale,previous_year_sales,ifnull(concat(round((sale- previous_year_sales)/previous_year_sales * 100,2),"%"),"Not Avalaiable") as yoy_growth from x;
++----------------+-------------+--------+---------------------+----------------+
+| sales_employee | fiscal_year | sale   | previous_year_sales | yoy_growth     |
++----------------+-------------+--------+---------------------+----------------+
+| Alice          |        2016 | 150.00 | Not Avaliable       | Not Avalaiable |
+| Alice          |        2017 | 100.00 | 150.00              | -33.33%        |
+| Alice          |        2018 | 200.00 | 100.00              | 100%           |
+| Bob            |        2016 | 100.00 | Not Avaliable       | Not Avalaiable |
+| Bob            |        2017 | 150.00 | 100.00              | 50%            |
+| Bob            |        2018 | 200.00 | 150.00              | 33.33%         |
+| John           |        2016 | 200.00 | Not Avaliable       | Not Avalaiable |
+| John           |        2017 | 150.00 | 200.00              | -25%           |
+| John           |        2018 | 250.00 | 150.00              | 66.67%         |
++----------------+-------------+--------+---------------------+----------------+
+9 rows in set, 9 warnings (0.00 sec)
+
+mysql> select * from trains;
++----------+---------------+----------+
+| Train_id | Station       | Time     |
++----------+---------------+----------+
+|      110 | San Francisco | 10:00:00 |
+|      110 | Redwood City  | 10:54:00 |
+|      110 | Palo Alto     | 11:02:00 |
+|      110 | San Jose      | 12:35:00 |
+|      120 | San Francisco | 11:00:00 |
+|      120 | Palo Alto     | 12:49:00 |
+|      120 | San Jose      | 13:30:00 |
++----------+---------------+----------+
+7 rows in set (0.04 sec)
+
+mysql> select *,lead(time) over(partition by train_id) as previous_station_time from trains;
++----------+---------------+----------+-----------------------+
+| Train_id | Station       | Time     | previous_station_time |
++----------+---------------+----------+-----------------------+
+|      110 | San Francisco | 10:00:00 | 10:54:00              |
+|      110 | Redwood City  | 10:54:00 | 11:02:00              |
+|      110 | Palo Alto     | 11:02:00 | 12:35:00              |
+|      110 | San Jose      | 12:35:00 | NULL                  |
+|      120 | San Francisco | 11:00:00 | 12:49:00              |
+|      120 | Palo Alto     | 12:49:00 | 13:30:00              |
+|      120 | San Jose      | 13:30:00 | NULL                  |
++----------+---------------+----------+-----------------------+
+7 rows in set (0.02 sec)
+
+mysql> select *,lag(time) over(partition by train_id) as previous_station_time from trains;
++----------+---------------+----------+-----------------------+
+| Train_id | Station       | Time     | previous_station_time |
++----------+---------------+----------+-----------------------+
+|      110 | San Francisco | 10:00:00 | NULL                  |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              |
+|      110 | San Jose      | 12:35:00 | 11:02:00              |
+|      120 | San Francisco | 11:00:00 | NULL                  |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              |
+|      120 | San Jose      | 13:30:00 | 12:49:00              |
++----------+---------------+----------+-----------------------+
+7 rows in set (0.00 sec)
+
+mysql> with x as (select *,lag(time) over(partition by train_id) as previous_station_time from trains)
+    -> select train_id,station,time,ifnull((time-previous_staion_time),"last satation") as duration from x;
+ERROR 1054 (42S22): Unknown column 'previous_staion_time' in 'field list'
+mysql> with x as (select *,lag(time) over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull((time-previous_station_time),"last satation") as duration from x;
++----------+---------------+----------+-----------------------+---------------+
+| Train_id | Station       | Time     | previous_station_time | duration      |
++----------+---------------+----------+-----------------------+---------------+
+|      110 | San Francisco | 10:00:00 | NULL                  | last satation |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 5400          |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 4800          |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 13300         |
+|      120 | San Francisco | 11:00:00 | NULL                  | last satation |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 14900         |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 8100          |
++----------+---------------+----------+-----------------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull((time-previous_station_time),"starting_station") as duration from x;
++----------+---------------+----------+-----------------------+----------+
+| Train_id | Station       | Time     | previous_station_time | duration |
++----------+---------------+----------+-----------------------+----------+
+|      110 | San Francisco | 10:00:00 | start journey         | 100000   |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 105390   |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 110190   |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 123489   |
+|      120 | San Francisco | 11:00:00 | start journey         | 110000   |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 124889   |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 132988   |
++----------+---------------+----------+-----------------------+----------+
+7 rows in set, 7 warnings (0.00 sec)
+
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull(subtime(time,previous_station_time),"starting_station") as duration from x;
++----------+---------------+----------+-----------------------+------------------+
+| Train_id | Station       | Time     | previous_station_time | duration         |
++----------+---------------+----------+-----------------------+------------------+
+|      110 | San Francisco | 10:00:00 | start journey         | starting_station |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 00:54:00.000000  |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 00:08:00.000000  |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 01:33:00.000000  |
+|      120 | San Francisco | 11:00:00 | start journey         | starting_station |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 01:49:00.000000  |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 00:41:00.000000  |
++----------+---------------+----------+-----------------------+------------------+
+7 rows in set, 2 warnings (0.00 sec)
+
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,subtime(time,previous_station_time) as duration from x;
++----------+---------------+----------+-----------------------+-----------------+
+| Train_id | Station       | Time     | previous_station_time | duration        |
++----------+---------------+----------+-----------------------+-----------------+
+|      110 | San Francisco | 10:00:00 | start journey         | NULL            |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 00:54:00.000000 |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 00:08:00.000000 |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 01:33:00.000000 |
+|      120 | San Francisco | 11:00:00 | start journey         | NULL            |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 01:49:00.000000 |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 00:41:00.000000 |
++----------+---------------+----------+-----------------------+-----------------+
+7 rows in set, 2 warnings (0.00 sec)
+
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull(subtime(time,previous_station_time),"starting_station") as duration from x;
++----------+---------------+----------+-----------------------+------------------+
+| Train_id | Station       | Time     | previous_station_time | duration         |
++----------+---------------+----------+-----------------------+------------------+
+|      110 | San Francisco | 10:00:00 | start journey         | starting_station |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 00:54:00.000000  |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 00:08:00.000000  |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 01:33:00.000000  |
+|      120 | San Francisco | 11:00:00 | start journey         | starting_station |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 01:49:00.000000  |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 00:41:00.000000  |
++----------+---------------+----------+-----------------------+------------------+
+7 rows in set, 2 warnings (0.00 sec)
+
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull(date_format(subtime(time,previous_station_time),"%h:%i:%s"),starting_station") as duration from x;
+    "> ^C
+mysql> select *,ifnull(date_format(subtime(time,previous_station_time),"%h:%i:%s"),starting_station") as duration from x;
+    "> ^C
+mysql> with x as (select *,lag(time,1,"start journey") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull(date_format(subtime(time,previous_station_time),"%h:%i:%s"),"starting_station") as duration from x;
++----------+---------------+----------+-----------------------+------------------+
+| Train_id | Station       | Time     | previous_station_time | duration         |
++----------+---------------+----------+-----------------------+------------------+
+|      110 | San Francisco | 10:00:00 | start journey         | starting_station |
+|      110 | Redwood City  | 10:54:00 | 10:00:00              | 12:54:00         |
+|      110 | Palo Alto     | 11:02:00 | 10:54:00              | 12:08:00         |
+|      110 | San Jose      | 12:35:00 | 11:02:00              | 01:33:00         |
+|      120 | San Francisco | 11:00:00 | start journey         | starting_station |
+|      120 | Palo Alto     | 12:49:00 | 11:00:00              | 01:49:00         |
+|      120 | San Jose      | 13:30:00 | 12:49:00              | 12:41:00         |
++----------+---------------+----------+-----------------------+------------------+
+7 rows in set, 2 warnings (0.02 sec)
+
+mysql> with x as (select *,lead(time,1,"end_station") over(partition by train_id) as previous_station_time from trains)
+    -> select *,ifnull(date_format(subtime(previous_station_time,time),"%h:%i:%s"),"last_station") as duration from x;
++----------+---------------+----------+-----------------------+--------------+
+| Train_id | Station       | Time     | previous_station_time | duration     |
++----------+---------------+----------+-----------------------+--------------+
+|      110 | San Francisco | 10:00:00 | 10:54:00              | 12:54:00     |
+|      110 | Redwood City  | 10:54:00 | 11:02:00              | 12:08:00     |
+|      110 | Palo Alto     | 11:02:00 | 12:35:00              | 01:33:00     |
+|      110 | San Jose      | 12:35:00 | end_station           | last_station |
+|      120 | San Francisco | 11:00:00 | 12:49:00              | 01:49:00     |
+|      120 | Palo Alto     | 12:49:00 | 13:30:00              | 12:41:00     |
+|      120 | San Jose      | 13:30:00 | end_station           | last_station |
++----------+---------------+----------+-----------------------+--------------+
+7 rows in set, 2 warnings (0.00 sec)
+
+mysql> select * from t
+    -> select * from t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from t' at line 2
+mysql> select * from t;
++------+
+| val  |
++------+
+|    1 |
+|    2 |
+|    2 |
+|    3 |
+|    4 |
+|    4 |
+|    5 |
++------+
+7 rows in set (0.04 sec)
+
+mysql> select *,rank() over(order by val desc) as rank,denc_rank() over(order by val desc) as d_rank from t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,denc_rank() over(order by val desc) as d_rank from t' at line 1
+mysql> select *,rank() over(order by val desc) as rank,dense_rank() over(order by val desc) as d_rank from t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,dense_rank() over(order by val desc) as d_rank from t' at line 1
+mysql> select *,rank() over(order by val desc) as rnk,dense_rank() over(order by val desc) as d_rank from t;
++------+-----+--------+
+| val  | rnk | d_rank |
++------+-----+--------+
+|    5 |   1 |      1 |
+|    4 |   2 |      2 |
+|    4 |   2 |      2 |
+|    3 |   4 |      3 |
+|    2 |   5 |      4 |
+|    2 |   5 |      4 |
+|    1 |   7 |      5 |
++------+-----+--------+
+7 rows in set (0.02 sec)
+
+mysql> select * from myemp
+    -> select * from myemp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from myemp' at line 2
+mysql> select * from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+
+106 rows in set (0.02 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary limit 1 offset2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'offset2' at line 1
+mysql> select * from myemp where dep_id=30 order by salary limit 1 offset 2;
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+|    117 | Sigal      | Tobias    | STOBIAS | 1987-07-04 | PU_CLERK | 2800.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.01 sec)
+
+mysql> select *, rank() over(partition by dep_id order by salary desc) as rnk from myemp;
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+-----+
+| EMP_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MGR_ID | DEP_ID | rnk |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+-----+
+|    200 | Jennifer    | Whalen      | JWHALEN  | 1988-09-25 | AD_ASST    |  4400.00 |           0.00 |    101 |     10 |   1 |
+|    201 | Michael     | Hartstein   | MHARTSTE | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |    100 |     20 |   1 |
+|    202 | Pat         | Fay         | PFAY     | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |    201 |     20 |   2 |
+|    114 | Den         | Raphaely    | DRAPHEAL | 1987-07-01 | PU_MAN     | 11000.00 |           0.00 |    100 |     30 |   1 |
+|    115 | Alexander   | Khoo        | AKHOO    | 1983-07-02 | PU_CLERK   |  3100.00 |           0.00 |    114 |     30 |   2 |
+|    116 | Shelli      | Baida       | SBAIDA   | 1987-07-03 | PU_CLERK   |  2900.00 |           0.00 |    114 |     30 |   3 |
+|    117 | Sigal       | Tobias      | STOBIAS  | 1987-07-04 | PU_CLERK   |  2800.00 |           0.00 |    114 |     30 |   4 |
+|    118 | Guy         | Himuro      | GHIMURO  | 1995-07-05 | PU_CLERK   |  2600.00 |           0.00 |    114 |     30 |   5 |
+|    119 | Karen       | Colmenares  | KCOLMENA | 1987-07-06 | PU_CLERK   |  2500.00 |           0.00 |    114 |     30 |   6 |
+|    203 | Susan       | Mavris      | SMAVRIS  | 1989-09-28 | HR_REP     |  6500.00 |           0.00 |    101 |     40 |   1 |
+|    121 | Adam        | Fripp       | AFRIPP   | 1990-07-08 | ST_MAN     |  8200.00 |           0.00 |    100 |     50 |   1 |
+|    120 | Matthew     | Weiss       | MWEISS   | 1987-07-07 | ST_MAN     |  8000.00 |           0.00 |    100 |     50 |   2 |
+|    122 | Payam       | Kaufling    | PKAUFLIN | 1987-07-09 | ST_MAN     |  7900.00 |           0.00 |    100 |     50 |   3 |
+|    123 | Shanta      | Vollman     | SVOLLMAN | 1987-07-10 | ST_MAN     |  6500.00 |           0.00 |    100 |     50 |   4 |
+|    124 | Kevin       | Mourgos     | KMOURGOS | 1997-07-11 | ST_MAN     |  5800.00 |           0.00 |    100 |     50 |   5 |
+|    184 | Nandita     | Sarchand    | NSARCHAN | 2012-09-09 | SH_CLERK   |  4200.00 |           0.00 |    121 |     50 |   6 |
+|    185 | Alexis      | Bull        | ABULL    | 1987-09-10 | SH_CLERK   |  4100.00 |           0.00 |    121 |     50 |   7 |
+|    192 | Sarah       | Bell        | SBELL    | 1987-09-17 | SH_CLERK   |  4000.00 |           0.00 |    123 |     50 |   8 |
+|    193 | Britney     | Everett     | BEVERETT | 1987-09-18 | SH_CLERK   |  3900.00 |           0.00 |    123 |     50 |   9 |
+|    188 | Kelly       | Chung       | KCHUNG   | 1987-09-13 | SH_CLERK   |  3800.00 |           0.00 |    122 |     50 |  10 |
+|    137 | Renske      | Ladwig      | RLADWIG  | 2000-07-24 | ST_CLERK   |  3600.00 |           0.00 |    123 |     50 |  11 |
+|    189 | Jennifer    | Dilly       | JDILLY   | 1987-09-14 | SH_CLERK   |  3600.00 |           0.00 |    122 |     50 |  11 |
+|    141 | Trenna      | Rajs        | TRAJS    | 1987-07-28 | ST_CLERK   |  3500.00 |           0.00 |    124 |     50 |  13 |
+|    186 | Julia       | Dellinger   | JDELLING | 1987-09-11 | SH_CLERK   |  3400.00 |           0.00 |    121 |     50 |  14 |
+|    129 | Laura       | Bissot      | LBISSOT  | 1987-07-16 | ST_CLERK   |  3300.00 |           0.00 |    121 |     50 |  15 |
+|    133 | Jason       | Mallin      | JMALLIN  | 1985-07-20 | ST_CLERK   |  3300.00 |           0.00 |    122 |     50 |  15 |
+|    125 | Julia       | Nayer       | JNAYER   | 1987-07-12 | ST_CLERK   |  3200.00 |           0.00 |    120 |     50 |  17 |
+|    138 | Stephen     | Stiles      | SSTILES  | 1987-07-25 | ST_CLERK   |  3200.00 |           0.00 |    123 |     50 |  17 |
+|    180 | Winston     | Taylor      | WTAYLOR  | 1987-09-05 | SH_CLERK   |  3200.00 |           0.00 |    120 |     50 |  17 |
+|    194 | Samuel      | McCain      | SMCCAIN  | 2000-09-19 | SH_CLERK   |  3200.00 |           0.00 |    123 |     50 |  17 |
+|    142 | Curtis      | Davies      | CDAVIES  | 1986-07-29 | ST_CLERK   |  3100.00 |           0.00 |    124 |     50 |  21 |
+|    181 | Jean        | Fleaur      | JFLEAUR  | 1987-09-06 | SH_CLERK   |  3100.00 |           0.00 |    120 |     50 |  21 |
+|    196 | Alana       | Walsh       | AWALSH   | 1987-09-21 | SH_CLERK   |  3100.00 |           0.00 |    124 |     50 |  21 |
+|    187 | Anthony     | Cabrio      | ACABRIO  | 2007-09-12 | SH_CLERK   |  3000.00 |           0.00 |    121 |     50 |  24 |
+|    197 | Kevin       | Feeney      | KFEENEY  | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |    124 |     50 |  24 |
+|    134 | Michael     | Rogers      | MROGERS  | 1987-07-21 | ST_CLERK   |  2900.00 |           0.00 |    122 |     50 |  26 |
+|    190 | Timothy     | Gates       | TGATES   | 1987-09-15 | SH_CLERK   |  2900.00 |           0.00 |    122 |     50 |  26 |
+|    130 | Mozhe       | Atkinson    | MATKINSO | 1983-07-17 | ST_CLERK   |  2800.00 |           0.00 |    121 |     50 |  28 |
+|    183 | Girard      | Geoni       | GGEONI   | 1987-09-08 | SH_CLERK   |  2800.00 |           0.00 |    120 |     50 |  28 |
+|    195 | Vance       | Jones       | VJONES   | 1996-09-20 | SH_CLERK   |  2800.00 |           0.00 |    123 |     50 |  28 |
+|    126 | Irene       | Mikkilineni | IMIKKILI | 1987-07-13 | ST_CLERK   |  2700.00 |           0.00 |    120 |     50 |  31 |
+|    139 | John        | Seo         | JSEO     | 1989-07-26 | ST_CLERK   |  2700.00 |           0.00 |    123 |     50 |  31 |
+|    143 | Randall     | Matos       | RMATOS   | 1987-07-30 | ST_CLERK   |  2600.00 |           0.00 |    124 |     50 |  33 |
+|    198 | Donald      | OConnell    | DOCONNEL | 1997-09-23 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |  33 |
+|    199 | Douglas     | Grant       | DGRANT   | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |    124 |     50 |  33 |
+|    131 | James       | Marlow      | JAMRLOW  | 1987-07-18 | ST_CLERK   |  2500.00 |           0.00 |    121 |     50 |  36 |
+|    140 | Joshua      | Patel       | JPATEL   | 2011-07-27 | ST_CLERK   |  2500.00 |           0.00 |    123 |     50 |  36 |
+|    144 | Peter       | Vargas      | PVARGAS  | 1998-07-31 | ST_CLERK   |  2500.00 |           0.00 |    124 |     50 |  36 |
+|    182 | Martha      | Sullivan    | MSULLIVA | 1987-09-07 | SH_CLERK   |  2500.00 |           0.00 |    120 |     50 |  36 |
+|    191 | Randall     | Perkins     | RPERKINS | 1987-09-16 | SH_CLERK   |  2500.00 |           0.00 |    122 |     50 |  36 |
+|    127 | James       | Landry      | JLANDRY  | 1978-07-14 | ST_CLERK   |  2400.00 |           0.00 |    120 |     50 |  41 |
+|    135 | Ki          | Gee         | KGEE     | 1987-07-22 | ST_CLERK   |  2400.00 |           0.00 |    122 |     50 |  41 |
+|    128 | Steven      | Markle      | SMARKLE  | 1987-07-15 | ST_CLERK   |  2200.00 |           0.00 |    120 |     50 |  43 |
+|    136 | Hazel       | Philtanker  | HPHILTAN | 1990-07-23 | ST_CLERK   |  2200.00 |           0.00 |    122 |     50 |  43 |
+|    132 | TJ          | Olson       | TJOLSON  | 1987-07-19 | ST_CLERK   |  2100.00 |           0.00 |    121 |     50 |  45 |
+|    103 | Alexander   | Hunold      | AHUNOLD  | 1976-06-20 | IT_PROG    |  9000.00 |           0.00 |    102 |     60 |   1 |
+|    104 | Bruce       | Ernst       | BERNST   | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |    103 |     60 |   2 |
+|    105 | David       | Austin      | DAUSTIN  | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |   3 |
+|    106 | Valli       | Pataballa   | VPATABAL | 1980-06-23 | IT_PROG    |  4800.00 |           0.00 |    103 |     60 |   3 |
+|    107 | Diana       | Lorentz     | DLORENTZ | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |    103 |     60 |   5 |
+|    204 | Hermann     | Baer        | HBAER    | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |    101 |     70 |   1 |
+|    145 | John        | Russell     | JRUSSEL  | 1991-08-01 | SA_MAN     | 14000.00 |           0.40 |    100 |     80 |   1 |
+|    146 | Karen       | Partners    | KPARTNER | 2019-08-02 | SA_MAN     | 13500.00 |           0.30 |    100 |     80 |   2 |
+|    147 | Alberto     | Errazuriz   | AERRAZUR | 1987-08-03 | SA_MAN     | 12000.00 |           0.30 |    100 |     80 |   3 |
+|    168 | Lisa        | Ozer        | LOZER    | 1987-08-24 | SA_REP     | 11500.00 |           0.25 |    148 |     80 |   4 |
+|    148 | Gerald      | Cambrault   | GCAMBRAU | 2015-08-04 | SA_MAN     | 11000.00 |           0.30 |    100 |     80 |   5 |
+|    174 | Ellen       | Abel        | EABEL    | 1987-08-30 | SA_REP     | 11000.00 |           0.30 |    149 |     80 |   5 |
+|    149 | Eleni       | Zlotkey     | EZLOTKEY | 1987-08-05 | SA_MAN     | 10500.00 |           0.20 |    100 |     80 |   7 |
+|    162 | Clara       | Vishney     | CVISHNEY | 1987-08-18 | SA_REP     | 10500.00 |           0.25 |    147 |     80 |   7 |
+|    150 | Peter       | Tucker      | PTUCKER  | 1987-08-06 | SA_REP     | 10000.00 |           0.30 |    145 |     80 |   9 |
+|    156 | Janette     | King        | JKING    | 1987-08-12 | SA_REP     | 10000.00 |           0.35 |    146 |     80 |   9 |
+|    169 | Harrison    | Bloom       | HBLOOM   | 1999-08-25 | SA_REP     | 10000.00 |           0.20 |    148 |     80 |   9 |
+|    170 | Tayler      | Fox         | TFOX     | 1987-08-26 | SA_REP     |  9600.00 |           0.20 |    148 |     80 |  12 |
+|    151 | David       | Bernstein   | DBERNSTE | 2013-08-07 | SA_REP     |  9500.00 |           0.25 |    145 |     80 |  13 |
+|    157 | Patrick     | Sully       | PSULLY   | 2002-08-13 | SA_REP     |  9500.00 |           0.35 |    146 |     80 |  13 |
+|    163 | Danielle    | Greene      | DGREENE  | 1987-08-19 | SA_REP     |  9500.00 |           0.15 |    147 |     80 |  13 |
+|    152 | Peter       | Hall        | PHALL    | 1987-08-08 | SA_REP     |  9000.00 |           0.25 |    145 |     80 |  16 |
+|    158 | Allan       | McEwen      | AMCEWEN  | 1987-08-14 | SA_REP     |  9000.00 |           0.35 |    146 |     80 |  16 |
+|    175 | Alyssa      | Hutton      | AHUTTON  | 1996-08-31 | SA_REP     |  8800.00 |           0.25 |    149 |     80 |  18 |
+|    176 | Jonathon    | Taylor      | JTAYLOR  | 1987-09-01 | SA_REP     |  8600.00 |           0.20 |    149 |     80 |  19 |
+|    177 | Jack        | Livingston  | JLIVINGS | 1987-09-02 | SA_REP     |  8400.00 |           0.20 |    149 |     80 |  20 |
+|    153 | Christopher | Olsen       | COLSEN   | 1987-08-09 | SA_REP     |  8000.00 |           0.20 |    145 |     80 |  21 |
+|    159 | Lindsey     | Smith       | LSMITH   | 1987-08-15 | SA_REP     |  8000.00 |           0.30 |    146 |     80 |  21 |
+|    154 | Nanette     | Cambrault   | NCAMBRAU | 1987-08-10 | SA_REP     |  7500.00 |           0.20 |    145 |     80 |  23 |
+|    160 | Louise      | Doran       | LDORAN   | 2003-08-16 | SA_REP     |  7500.00 |           0.30 |    146 |     80 |  23 |
+|    171 | William     | Smith       | WSMITH   | 1987-08-27 | SA_REP     |  7400.00 |           0.15 |    148 |     80 |  25 |
+|    172 | Elizabeth   | Bates       | EBATES   | 1987-08-28 | SA_REP     |  7300.00 |           0.15 |    148 |     80 |  26 |
+|    164 | Mattea      | Marvins     | MMARVINS | 2007-08-20 | SA_REP     |  7200.00 |           0.10 |    147 |     80 |  27 |
+|    155 | Oliver      | Tuvault     | OTUVAULT | 1987-08-11 | SA_REP     |  7000.00 |           0.15 |    145 |     80 |  28 |
+|    161 | Sarath      | Sewall      | SSEWALL  | 1987-08-17 | SA_REP     |  7000.00 |           0.25 |    146 |     80 |  28 |
+|    165 | David       | Lee         | DLEE     | 1987-08-21 | SA_REP     |  6800.00 |           0.10 |    147 |     80 |  30 |
+|    166 | Sundar      | Ande        | SANDE    | 1987-08-22 | SA_REP     |  6400.00 |           0.10 |    147 |     80 |  31 |
+|    167 | Amit        | Banda       | ABANDA   | 1987-08-23 | SA_REP     |  6200.00 |           0.10 |    147 |     80 |  32 |
+|    179 | Charles     | Johnson     | CJOHNSON | 1999-09-04 | SA_REP     |  6200.00 |           0.10 |    149 |     80 |  32 |
+|    173 | Sundita     | Kumar       | SKUMAR   | 1987-08-29 | SA_REP     |  6100.00 |           0.10 |    148 |     80 |  34 |
+|    100 | Steven      | King        | SKING    | 1998-06-17 | AD_PRES    | 24000.00 |           0.00 |      0 |     90 |   1 |
+|    101 | Neena       | Kochhar     | NKOCHHAR | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |   2 |
+|    102 | Lex         | De Haan     | LDEHAAN  | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |    100 |     90 |   2 |
+|    108 | Nancy       | Greenberg   | NGREENBE | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |    101 |    100 |   1 |
+|    109 | Daniel      | Faviet      | DFAVIET  | 1992-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |    108 |    100 |   2 |
+|    110 | John        | Chen        | JCHEN    | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |    108 |    100 |   3 |
+|    112 | Jose Manuel | Urman       | JMURMAN  | 1981-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |    108 |    100 |   4 |
+|    111 | Ismael      | Sciarra     | ISCIARRA | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |    108 |    100 |   5 |
+|    113 | Luis        | Popp        | LPOPP    | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |    108 |    100 |   6 |
+|    205 | Shelley     | Higgins     | SHIGGINS | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |    101 |    110 |   1 |
+|    206 | William     | Gietz       | WGIETZ   | 1997-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |    205 |    110 |   2 |
++--------+-------------+-------------+----------+------------+------------+----------+----------------+--------+--------+-----+
+106 rows in set (0.00 sec)
+
+mysql> with x as(select *, rank() over(partition by dep_id order by salary desc) as rnk from myemp)
+    -> slect concat(first_name," ",last_name) as emp_name from x where rnk=3 and dep_id=30;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect concat(first_name," ",last_name) as emp_name from x where rnk=3 and dep_id' at line 2
+mysql> with x as(select *, rank() over(partition by dep_id order by salary desc) as rnk from myemp)
+    -> select concat(first_name," ",last_name) as emp_name from x where rnk=3 and dep_id=30;
++--------------+
+| emp_name     |
++--------------+
+| Shelli Baida |
++--------------+
+1 row in set (0.02 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary limit 1 offset 1;
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+|    118 | Guy        | Himuro    | GHIMURO | 1995-07-05 | PU_CLERK | 2600.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary limit 1 offset 2;
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+|    117 | Sigal      | Tobias    | STOBIAS | 1987-07-04 | PU_CLERK | 2800.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary limit 1 offset 3;
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL  | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+|    116 | Shelli     | Baida     | SBAIDA | 1987-07-03 | PU_CLERK | 2900.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary limit 2,1;
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL   | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+|    117 | Sigal      | Tobias    | STOBIAS | 1987-07-04 | PU_CLERK | 2800.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+---------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from myemp where dep_id=30 order by salary desc limit 2,1;
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+| EMP_ID | FIRST_NAME | LAST_NAME | EMAIL  | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MGR_ID | DEP_ID |
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+|    116 | Shelli     | Baida     | SBAIDA | 1987-07-03 | PU_CLERK | 2900.00 |           0.00 |    114 |     30 |
++--------+------------+-----------+--------+------------+----------+---------+----------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql>

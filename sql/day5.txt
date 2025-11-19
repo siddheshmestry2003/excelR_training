@@ -1,0 +1,379 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use excelr_db
+Database changed
+mysql> select * from ,date_format(DOB,"%D-%b-%y") as new_DOB from patients;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',date_format(DOB,"%D-%b-%y") as new_DOB from patients' at line 1
+mysql> select *,date_format(DOB,"%D-%b-%y") as new_DOB from patients;
++------+----------+------------+---------------------+-------------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB     |
++------+----------+------------+---------------------+-------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 16th-Jun-03 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 16th-Aug-07 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 25th-Nov-02 |
++------+----------+------------+---------------------+-------------+
+3 rows in set (0.06 sec)
+
+mysql> select *,date_format(DOB,"%d-%b-%y") as new_DOB from patients;
++------+----------+------------+---------------------+-----------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB   |
++------+----------+------------+---------------------+-----------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | 16-Jun-03 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | 16-Aug-07 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | 25-Nov-02 |
++------+----------+------------+---------------------+-----------+
+3 rows in set (0.02 sec)
+
+mysql> select *,date_format(DOB,"%a-%b-%y") as new_DOB from patients;
++------+----------+------------+---------------------+------------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB    |
++------+----------+------------+---------------------+------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Mon-Jun-03 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thu-Aug-07 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Mon-Nov-02 |
++------+----------+------------+---------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select *,date_format(DOB,"%a (%d)-%b-%y") as new_DOB from patients;
++------+----------+------------+---------------------+-----------------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB         |
++------+----------+------------+---------------------+-----------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Mon (16)-Jun-03 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thu (16)-Aug-07 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Mon (25)-Nov-02 |
++------+----------+------------+---------------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select *,date_format(DOB,"%a-%m-%y") as new_DOB from patients;
++------+----------+------------+---------------------+-----------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB   |
++------+----------+------------+---------------------+-----------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Mon-06-03 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thu-08-07 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Mon-11-02 |
++------+----------+------------+---------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select *,date_format(DOB,"%a-%M-%y") as new_DOB from patients;
++------+----------+------------+---------------------+-----------------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB         |
++------+----------+------------+---------------------+-----------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Mon-June-03     |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thu-August-07   |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Mon-November-02 |
++------+----------+------------+---------------------+-----------------+
+3 rows in set (0.02 sec)
+
+mysql> select *,date_format(DOB,"%a-%M-%Y") as new_DOB from patients;
++------+----------+------------+---------------------+-------------------+
+| p_id | p_name   | DOB        | TOA                 | new_DOB           |
++------+----------+------------+---------------------+-------------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Mon-June-2003     |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thu-August-2007   |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Mon-November-2002 |
++------+----------+------------+---------------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *,dayname(DOB),month(DOB),year(DOB),Hour(TOA),minute(TOA) as new_DOA ,second(TOA) from patients;
++------+----------+------------+---------------------+--------------+------------+-----------+-----------+---------+-------------+
+| p_id | p_name   | DOB        | TOA                 | dayname(DOB) | month(DOB) | year(DOB) | Hour(TOA) | new_DOA | second(TOA) |
++------+----------+------------+---------------------+--------------+------------+-----------+-----------+---------+-------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 | Monday       |          6 |      2003 |        15 |      30 |          36 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 | Thursday     |          8 |      2007 |         2 |      56 |          37 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 | Monday       |         11 |      2002 |         8 |      30 |          55 |
++------+----------+------------+---------------------+--------------+------------+-----------+-----------+---------+-------------+
+3 rows in set (0.01 sec)
+
+mysql> select datediff('2007-10-31','2007-10-31');
++-------------------------------------+
+| datediff('2007-10-31','2007-10-31') |
++-------------------------------------+
+|                                   0 |
++-------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> select datediff('2007-10-31','2007-10-30');
++-------------------------------------+
+| datediff('2007-10-31','2007-10-30') |
++-------------------------------------+
+|                                   1 |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(month,'2003-12-12','2001-04-18');
++------------------------------------------------+
+| timestampdiff(month,'2003-12-12','2001-04-18') |
++------------------------------------------------+
+|                                            -31 |
++------------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> select timestampdiff(month,'2003-12-12','2008-04-18');
++------------------------------------------------+
+| timestampdiff(month,'2003-12-12','2008-04-18') |
++------------------------------------------------+
+|                                             52 |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select emp_id,first_name,last_name,concat(first_name," ",last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(frist_name,3) as left,right(first_name,3) as right, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) ad lenght , repeat(firs_name) from patients limit 12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'left,right(first_name,3) as right, reverse(first_name) as reverse,mid(first_name' at line 1
+mysql> select emp_id,first_name,last_name,concat(first_name," ",last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(frist_name,3) as left_ ,right(first_name,3) as right_, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) ad lenght , repeat(firs_name) from patients limit 12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'lenght , repeat(firs_name) from patients limit 12' at line 1
+mysql> select emp_id,first_name,last_name,concat(first_name," ",last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(frist_name,3) as left_ ,right(first_name,3) as right_, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) ad lenght_, repeat(firs_name) from patients limit 12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'lenght_, repeat(firs_name) from patients limit 12' at line 1
+mysql> select emp_id,first_name,last_name,concat(first_name,' ',last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(first_name,3) as left_ ,right(first_name,3) as right_, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) as lenght_, repeat(firs_name,3) from patients limit 12;
+ERROR 1054 (42S22): Unknown column 'emp_id' in 'field list'
+mysql> show tables;
++---------------------+
+| Tables_in_excelr_db |
++---------------------+
+| authors             |
+| book_sales          |
+| books               |
+| customers           |
+| dep_1               |
+| department_3        |
+| department_333      |
+| dept_11             |
+| drinks              |
+| emp_1               |
+| emp_99              |
+| employees           |
+| fraud               |
+| meals               |
+| members             |
+| movies              |
+| myclass_1           |
+| myclass_2           |
+| myemp               |
+| offices             |
+| orders              |
+| patients            |
+| patients_2          |
+| payments            |
+| person              |
+| product_sold        |
+| products            |
+| sales               |
+| secretsanta         |
+| student             |
+| students_d          |
+| t                   |
+| temperature         |
+| trains              |
++---------------------+
+34 rows in set (0.10 sec)
+
+mysql> select emp_id,first_name,last_name,concat(first_name,' ',last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(first_name,3) as left_ ,right(first_name,3) as right_, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) as lenght_, repeat(firs_name,3) from myemp limit 12;
+ERROR 1054 (42S22): Unknown column 'firs_name' in 'field list'
+mysql> select emp_id,first_name,last_name,concat(first_name,' ',last_name) as fullname,upper(first_name) as up,lower(first_name) as low,left(first_name,3) as left_ ,right(first_name,3) as right_, reverse(first_name) as reverse,mid(first_name,3,2) as mid,char_length(first_name) as lenght_, repeat(first_name,3) from myemp limit 12;
++--------+------------+-----------+------------------+-----------+-----------+-------+--------+-----------+------+---------+-----------------------------+
+| emp_id | first_name | last_name | fullname         | up        | low       | left_ | right_ | reverse   | mid  | lenght_ | repeat(first_name,3)        |
++--------+------------+-----------+------------------+-----------+-----------+-------+--------+-----------+------+---------+-----------------------------+
+|    100 | Steven     | King      | Steven King      | STEVEN    | steven    | Ste   | ven    | nevetS    | ev   |       6 | StevenStevenSteven          |
+|    101 | Neena      | Kochhar   | Neena Kochhar    | NEENA     | neena     | Nee   | ena    | aneeN     | en   |       5 | NeenaNeenaNeena             |
+|    102 | Lex        | De Haan   | Lex De Haan      | LEX       | lex       | Lex   | Lex    | xeL       | x    |       3 | LexLexLex                   |
+|    103 | Alexander  | Hunold    | Alexander Hunold | ALEXANDER | alexander | Ale   | der    | rednaxelA | ex   |       9 | AlexanderAlexanderAlexander |
+|    104 | Bruce      | Ernst     | Bruce Ernst      | BRUCE     | bruce     | Bru   | uce    | ecurB     | uc   |       5 | BruceBruceBruce             |
+|    105 | David      | Austin    | David Austin     | DAVID     | david     | Dav   | vid    | divaD     | vi   |       5 | DavidDavidDavid             |
+|    106 | Valli      | Pataballa | Valli Pataballa  | VALLI     | valli     | Val   | lli    | illaV     | ll   |       5 | ValliValliValli             |
+|    107 | Diana      | Lorentz   | Diana Lorentz    | DIANA     | diana     | Dia   | ana    | anaiD     | an   |       5 | DianaDianaDiana             |
+|    108 | Nancy      | Greenberg | Nancy Greenberg  | NANCY     | nancy     | Nan   | ncy    | ycnaN     | nc   |       5 | NancyNancyNancy             |
+|    109 | Daniel     | Faviet    | Daniel Faviet    | DANIEL    | daniel    | Dan   | iel    | leinaD    | ni   |       6 | DanielDanielDaniel          |
+|    110 | John       | Chen      | John Chen        | JOHN      | john      | Joh   | ohn    | nhoJ      | hn   |       4 | JohnJohnJohn                |
+|    111 | Ismael     | Sciarra   | Ismael Sciarra   | ISMAEL    | ismael    | Ism   | ael    | leamsI    | ma   |       6 | IsmaelIsmaelIsmael          |
++--------+------------+-----------+------------------+-----------+-----------+-------+--------+-----------+------+---------+-----------------------------+
+12 rows in set (0.02 sec)
+
+mysql> select emp_id,lsat_name,hire_date,concat(first_name,' ',last_name,'-',hire_date) as empl ,concat(' ',first_name,last_name,hire_date) as dep from myemp limit 12;
+ERROR 1054 (42S22): Unknown column 'lsat_name' in 'field list'
+mysql> select emp_id,last_name,hire_date,concat(first_name,' ',last_name,'-',hire_date) as empl ,concat(' ',first_name,last_name,hire_date) as dep from myemp limit 12;
++--------+-----------+------------+-----------------------------+----------------------------+
+| emp_id | last_name | hire_date  | empl                        | dep                        |
++--------+-----------+------------+-----------------------------+----------------------------+
+|    100 | King      | 1998-06-17 | Steven King-1998-06-17      |  StevenKing1998-06-17      |
+|    101 | Kochhar   | 1987-06-18 | Neena Kochhar-1987-06-18    |  NeenaKochhar1987-06-18    |
+|    102 | De Haan   | 1987-06-19 | Lex De Haan-1987-06-19      |  LexDe Haan1987-06-19      |
+|    103 | Hunold    | 1976-06-20 | Alexander Hunold-1976-06-20 |  AlexanderHunold1976-06-20 |
+|    104 | Ernst     | 1987-06-21 | Bruce Ernst-1987-06-21      |  BruceErnst1987-06-21      |
+|    105 | Austin    | 1987-06-22 | David Austin-1987-06-22     |  DavidAustin1987-06-22     |
+|    106 | Pataballa | 1980-06-23 | Valli Pataballa-1980-06-23  |  ValliPataballa1980-06-23  |
+|    107 | Lorentz   | 1987-06-24 | Diana Lorentz-1987-06-24    |  DianaLorentz1987-06-24    |
+|    108 | Greenberg | 1987-06-25 | Nancy Greenberg-1987-06-25  |  NancyGreenberg1987-06-25  |
+|    109 | Faviet    | 1992-06-26 | Daniel Faviet-1992-06-26    |  DanielFaviet1992-06-26    |
+|    110 | Chen      | 1987-06-27 | John Chen-1987-06-27        |  JohnChen1987-06-27        |
+|    111 | Sciarra   | 1987-06-28 | Ismael Sciarra-1987-06-28   |  IsmaelSciarra1987-06-28   |
++--------+-----------+------------+-----------------------------+----------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select emp_id,last_name,hire_date,concat(first_name,' ',last_name,'-',hire_date) as empl ,concat_ws(' ',first_name,last_name,hire_date) as dep from myemp limit 12;
++--------+-----------+------------+-----------------------------+-----------------------------+
+| emp_id | last_name | hire_date  | empl                        | dep                         |
++--------+-----------+------------+-----------------------------+-----------------------------+
+|    100 | King      | 1998-06-17 | Steven King-1998-06-17      | Steven King 1998-06-17      |
+|    101 | Kochhar   | 1987-06-18 | Neena Kochhar-1987-06-18    | Neena Kochhar 1987-06-18    |
+|    102 | De Haan   | 1987-06-19 | Lex De Haan-1987-06-19      | Lex De Haan 1987-06-19      |
+|    103 | Hunold    | 1976-06-20 | Alexander Hunold-1976-06-20 | Alexander Hunold 1976-06-20 |
+|    104 | Ernst     | 1987-06-21 | Bruce Ernst-1987-06-21      | Bruce Ernst 1987-06-21      |
+|    105 | Austin    | 1987-06-22 | David Austin-1987-06-22     | David Austin 1987-06-22     |
+|    106 | Pataballa | 1980-06-23 | Valli Pataballa-1980-06-23  | Valli Pataballa 1980-06-23  |
+|    107 | Lorentz   | 1987-06-24 | Diana Lorentz-1987-06-24    | Diana Lorentz 1987-06-24    |
+|    108 | Greenberg | 1987-06-25 | Nancy Greenberg-1987-06-25  | Nancy Greenberg 1987-06-25  |
+|    109 | Faviet    | 1992-06-26 | Daniel Faviet-1992-06-26    | Daniel Faviet 1992-06-26    |
+|    110 | Chen      | 1987-06-27 | John Chen-1987-06-27        | John Chen 1987-06-27        |
+|    111 | Sciarra   | 1987-06-28 | Ismael Sciarra-1987-06-28   | Ismael Sciarra 1987-06-28   |
++--------+-----------+------------+-----------------------------+-----------------------------+
+12 rows in set (0.02 sec)
+
+mysql> select abs(-7);
++---------+
+| abs(-7) |
++---------+
+|       7 |
++---------+
+1 row in set (0.02 sec)
+
+mysql> select pow(25,2);
++-----------+
+| pow(25,2) |
++-----------+
+|       625 |
++-----------+
+1 row in set (0.02 sec)
+
+mysql> round(5.8888888885996544,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'round(5.8888888885996544,2)' at line 1
+mysql> select round(5.8888888885996544,2);
++-----------------------------+
+| round(5.8888888885996544,2) |
++-----------------------------+
+|                        5.89 |
++-----------------------------+
+1 row in set (0.02 sec)
+
+mysql> round(5,8);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'round(5,8)' at line 1
+mysql> select round(5,8);
++------------+
+| round(5,8) |
++------------+
+|          5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sqrt(625);
++-----------+
+| sqrt(625) |
++-----------+
+|        25 |
++-----------+
+1 row in set (0.02 sec)
+
+mysql> select sqrt(round(25.552555,0));
++--------------------------+
+| sqrt(round(25.552555,0)) |
++--------------------------+
+|       5.0990195135927845 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select sqrt(round(25.552555,1));
++--------------------------+
+| sqrt(round(25.552555,1)) |
++--------------------------+
+|        5.059644256269407 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select first_name as f from myemp where left(f,1) in (a,e,i,o,u);
+ERROR 1054 (42S22): Unknown column 'f' in 'where clause'
+mysql> select first_name as f from myemp where left(first_name,1) in (a,e,i,o,u);
+ERROR 1054 (42S22): Unknown column 'a' in 'where clause'
+ ysql> select first_name as f from myemp where left(first_name,1) in ('a','e','i','o','u');
++-----------+
+| f         |
++-----------+
+| Alexander |
+| Ismael    |
+| Alexander |
+| Adam      |
+| Irene     |
+| Alberto   |
+| Eleni     |
+| Oliver    |
+| Allan     |
+| Amit      |
+| Elizabeth |
+| Ellen     |
+| Alyssa    |
+| Alexis    |
+| Anthony   |
+| Alana     |
++-----------+
+16 rows in set (0.02 sec)
+
+mysql> select first_name as f from myemp where left(first_name,1) in ('a','e','i','o','u') and salary between 10000 and 15000;
++---------+
+| f       |
++---------+
+| Alberto |
+| Eleni   |
+| Ellen   |
++---------+
+3 rows in set (0.07 sec)
+
+mysql> select first_name as f,salary from myemp where left(first_name,1) in ('a','e','i','o','u') and round(salary between 10000 and 15000,0);
++---------+----------+
+| f       | salary   |
++---------+----------+
+| Alberto | 12000.00 |
+| Eleni   | 10500.00 |
+| Ellen   | 11000.00 |
++---------+----------+
+3 rows in set (0.02 sec)
+
+mysql> select first_name as f,round(salary,0) from myemp where left(first_name,1) in ('a','e','i','o','u') and salary between 10000 and 15000;
++---------+-----------------+
+| f       | round(salary,0) |
++---------+-----------------+
+| Alberto |           12000 |
+| Eleni   |           10500 |
+| Ellen   |           11000 |
++---------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select fist_name from myemp left(first_name,1) in ('a','e','i','o','u') and right(first_name,1) not in ('a','e','i','o','u') and right(left(first_name,char_length(first_name)-1),1) not in ('a','e','i','o','u');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(first_name,1) in ('a','e','i','o','u') and right(first_name,1) not in ('a','e',' at line 1
+mysql> select fist_name from myemp where left(first_name,1) in ('a','e','i','o','u') and right(first_name,1) not in ('a','e','i','o','u') and right(left(first_name,char_length(first_name)-1),1) not in ('a','e','i','o','u');
+ERROR 1054 (42S22): Unknown column 'fist_name' in 'field list'
+mysql> select first_name from myemp where left(first_name,1) in ('a','e','i','o','u') and right(first_name,1) not in ('a','e','i','o','u') and right(left(first_name,char_length(first_name)-1),1) not in ('a','e','i','o','u');
++------------+
+| first_name |
++------------+
+| Elizabeth  |
+| Anthony    |
++------------+
+2 rows in set (0.02 sec)
+
+mysql> select first_name from myemp where left(first_name,1) in ('a','e','i','o','u') and right(first_name,1) not in ('a','e','i','o','u') and left(right(first_name,2),1) not in ('a','e','i','o','u');
++------------+
+| first_name |
++------------+
+| Elizabeth  |
+| Anthony    |
++------------+
+2 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,475 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| awesome chocolates |
+| college            |
+| colleges           |
+| excelr_db          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| rooms_detail       |
+| sakila             |
+| sidd_infotech      |
+| sys                |
+| world              |
+| xyz                |
++--------------------+
+13 rows in set (0.09 sec)
+
+mysql> use excelr_db
+Database changed
+mysql> use excelr_db;
+Database changed
+mysql> select * from excelr_db;
+ERROR 1146 (42S02): Table 'excelr_db.excelr_db' doesn't exist
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tabels
+    -> show tabels
+    -> clear;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabels
+show tabels
+clear' at line 1
+mysql> use excelr_db;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_excelr_db |
++---------------------+
+| student             |
++---------------------+
+1 row in set (0.03 sec)
+
+mysql> create table patients (p_id int unsigned,p_name varchar(100),DOB DATE,TOA datetime);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into patients values(1,"siddhesh","2003-06-16","2025-10-21 15:30:36");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into patients values(2,"sagar","2007-08-16","2024-8-21 2:56:37");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from patients;
++------+----------+------------+---------------------+
+| p_id | p_name   | DOB        | TOA                 |
++------+----------+------------+---------------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 |
++------+----------+------------+---------------------+
+2 rows in set (0.02 sec)
+
+mysql> insert into patients values(3,"Amey","2002-11-25","2025-5-29 08:30:55");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from patients;
++------+----------+------------+---------------------+
+| p_id | p_name   | DOB        | TOA                 |
++------+----------+------------+---------------------+
+|    1 | siddhesh | 2003-06-16 | 2025-10-21 15:30:36 |
+|    2 | sagar    | 2007-08-16 | 2024-08-21 02:56:37 |
+|    3 | Amey     | 2002-11-25 | 2025-05-29 08:30:55 |
++------+----------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> use student
+ERROR 1049 (42000): Unknown database 'student'
+mysql> select * from student
+    -> select * from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from student' at line 2
+mysql> select * from student;
++------+--------+-------+
+| s_id | s_name | marks |
++------+--------+-------+
+|    1 | mahesh |    56 |
+|    2 | sagar  |    96 |
+|    3 | suchit |    86 |
+|    4 | mahesh |    58 |
+|    6 | sagar  |    46 |
++------+--------+-------+
+5 rows in set (0.04 sec)
+
+mysql> alter table student drop column marks;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+
+| s_id | s_name |
++------+--------+
+|    1 | mahesh |
+|    2 | sagar  |
+|    3 | suchit |
+|    4 | mahesh |
+|    6 | sagar  |
++------+--------+
+5 rows in set (0.00 sec)
+
+mysql> desc student
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc student' at line 2
+mysql> desc student;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| s_id   | int      | NO   | PRI | NULL    |       |
+| s_name | char(25) | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> alter table student add column marks int unsigned;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| s_id   | int          | NO   | PRI | NULL    |       |
+| s_name | char(25)     | YES  |     | NULL    |       |
+| marks  | int unsigned | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student change s_name name varchar(90);
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int          | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student modify columns s_id int unsigned;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's_id int unsigned' at line 1
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int          | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table student modify column s_id int unsigned;
+Query OK, 5 rows affected (0.18 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int unsigned | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student rename myclass;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc myclass;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int unsigned | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> rename table myclass to student
+    -> rename table myclass to student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rename table myclass to student' at line 2
+mysql> rename table myclass to student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int unsigned | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values (10,"sam",95),(11,"ram",88);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int unsigned | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    6 | sagar  |  NULL |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
++------+--------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select 3+3;
++-----+
+| 3+3 |
++-----+
+|   6 |
++-----+
+1 row in set (0.02 sec)
+
+mysql> select 3="3";
++-------+
+| 3="3" |
++-------+
+|     1 |
++-------+
+1 row in set (0.02 sec)
+
+mysql> select 4='5';
++-------+
+| 4='5' |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select 3=null;
++--------+
+| 3=null |
++--------+
+|   NULL |
++--------+
+1 row in set (0.00 sec)
+
+mysql> insert student values(8,NULL,35);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    6 | sagar  |  NULL |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
++------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert student values(12,null,35);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    6 | sagar  |  NULL |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | NULL   |    35 |
++------+--------+-------+
+9 rows in set (0.00 sec)
+
+mysql> insert student values(8,35);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student (s_id.marks) values (18,98)'
+    '> insert into student (s_id.marks) values (18,98);
+    '>
+    '>
+    '> insert into student (s_id,marks) values (18,98);
+    '> insert into student (s_id,marks) values (18,98);select
+    '> clear;
+    '> insert into student (s_id,marks) values(18,98);
+    '> insert into student (s_id,marks) values(20,88);
+    '> ^C
+mysql> desc student
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc student' at line 2
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| s_id  | int unsigned | NO   | PRI | NULL    |       |
+| name  | varchar(90)  | YES  |     | NULL    |       |
+| marks | int unsigned | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student (s_id,marks) values (20,95);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    6 | sagar  |  NULL |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | NULL   |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into student values(5,"tony",60);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> update student set name="jerry" where s_id=5;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    5 | jerry  |    60 |
+|    6 | sagar  |  NULL |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | NULL   |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+11 rows in set (0.00 sec)
+
+mysql> update student set name="tom" where name="jerry";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |  NULL |
+|    2 | sagar  |  NULL |
+|    3 | suchit |  NULL |
+|    4 | mahesh |  NULL |
+|    5 | tom    |    60 |
+|    6 | sagar  |  NULL |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | NULL   |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+11 rows in set (0.00 sec)
+
+mysql> select name  is null;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select name from student where name is null;
++------+
+| name |
++------+
+| NULL |
+| NULL |
+| NULL |
++------+
+3 rows in set (0.00 sec)
+
+mysql> select s_id,name from student where name is null;
++------+------+
+| s_id | name |
++------+------+
+|    8 | NULL |
+|   12 | NULL |
+|   20 | NULL |
++------+------+
+3 rows in set (0.00 sec)
+
+mysql> update student set marks=72 where marks is null;
+Query OK, 5 rows affected (0.02 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | NULL   |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+11 rows in set (0.00 sec)
+
+mysql> update student set name='pixel' where s_id=12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+
+| s_id | name   | marks |
++------+--------+-------+
+|    1 | mahesh |    72 |
+|    2 | sagar  |    72 |
+|    3 | suchit |    72 |
+|    4 | mahesh |    72 |
+|    5 | tom    |    60 |
+|    6 | sagar  |    72 |
+|    8 | NULL   |    35 |
+|   10 | sam    |    95 |
+|   11 | ram    |    88 |
+|   12 | pixel  |    35 |
+|   20 | NULL   |    95 |
++------+--------+-------+
+11 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,19 @@
+date related function
+
+=year() - to get year
+
+=month()- to get month
+
+=day()- to get day
+
+today()- return current date
+
+now()- display current date and time
+
+days are start from sundar-1,....saturaday-7
+weekday()- this return number of day 
+
+
+
+
+
