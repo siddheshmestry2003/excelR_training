@@ -100,6 +100,41 @@ select * from orders;
 select c.country as country, count(o.orderNumber) as order_count from customers as c join orders as o on c.customernumber=o.customernumber group by country order by order_count desc limit 5;
 
 /*
+Q6
+
+a. Create a table project with below fields.
+
+
+●	EmployeeID : integer set as the PRIMARY KEY and AUTO_INCREMENT.
+●	FullName: varchar(50) with no null values
+●	Gender : Values should be only ‘Male’  or ‘Female’
+●	ManagerID: integer 
+
+
+*/
+create table project(
+EmployeeID int primary key auto_increment not null,
+FullName varchar(111) not null,
+gender enum("Male","female"),
+managerID int 
+
+);
+INSERT INTO project (EmployeeID,FullName, gender, managerID) 
+VALUES
+(1, 'Pranaya', 'Male', 3),
+(2, 'Priyanka', 'Female', 1),
+(3, 'Preety', 'Female', NULL),
+(4, 'Anurag', 'Male', 1),
+(5, 'Sambit', 'Male', 1),
+(6, 'Rajesh', 'Male', 3),
+(7, 'Hina', 'Female', 3);
+select * from project;
+
+select m.fullname as manager,e.fullname as employee from project as e join project as m on e.managerid=m.employeeid order by manager;
+
+
+
+/*
 
 Q7. DDL Commands: Create, Alter, Rename
 a. Create table facility. Add the below fields into it.
@@ -169,6 +204,26 @@ create table Emp_EH(
  EmailAddress varchar(111)
 );
 
+/*
+Q10. Window functions - Rank, dense_rank, lead and lag
+
+a) Using customers and orders tables, rank the customers based on their order frequency
+
+*/
+select * from customers;
+desc customers;
+desc orders;
+select c.customername,count(o.orderNumber) as order_count ,rank() over(order by count(o.orderNumber) desc) as rnk
+ from customers as c join orders as o on c.customernumber=o.customernumber group by c.customername;
+
+
+/*
+
+b) Calculate year wise, month name wise count of orders and year over year (YoY) percentage change. Format the YoY values in no decimals and show in % sign.
+*/
+
+ with x as(SELECT years,months,counts,LAG(counts,1,"not avaliable") OVER (PARTITION BY years ORDER BY months) AS prev_month_count FROM (SELECT YEAR(orderDate) AS years,MONTH(orderDate) AS months,COUNT(orderNumber) AS counts FROM orders GROUP BY YEAR(orderDate),MONTH(orderDate)) AS t ORDER BY years,months)
+ select years,months,counts,concat(round(((counts-prev_month_count)/prev_month_count)*100,0),"%") from x;
 
 /*
 
